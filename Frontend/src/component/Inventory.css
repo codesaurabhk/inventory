@@ -1,0 +1,39 @@
+.main {
+    display: flex;
+    width: 1296px;
+    padding: 24px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.upnav {
+    display: flex;
+    width: 1248px;
+    padding: 10px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+
+
+    border-radius: 8px;
+    border: 1px solid #727B00;
+    background: #FEFFEB;
+}
+
+.box {
+    display: flex;
+    height: 426px;
+    padding: 16px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    align-self: stretch;
+
+
+    border-radius: 8px;
+    border: 1px solid var(--Black-Stroke-Grey, #E6E6E6);
+    background: var(--White-Pure-white, #FFF);
+
+}
