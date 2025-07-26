@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import './AddProduct.css';
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+
 
 const AddProduct = () => {
     const [product, setProduct] = useState({
@@ -27,6 +30,19 @@ const AddProduct = () => {
         variantValue: '',
     });
 
+    const modules = {
+        toolbar: [
+            [{ 'header': [1, 2, 3, 4, 5, 6, false] }], // Added more header options for flexibility
+            ['bold', 'italic', 'underline', 'strike'],
+            [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+            ['link', 'image'],
+            ['clean']
+        ],
+    };
+
+    const formats = [
+        'header', 'bold', 'italic', 'underline', 'strike', 'list', 'bullet', 'link', 'image'
+    ];
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
         setProduct((prev) => ({
@@ -34,7 +50,10 @@ const AddProduct = () => {
             [name]: type === 'checkbox' ? checked : value
         }));
     };
-
+    const [description, setDescription] = useState("");
+    const handleDescriptionChange = (value) => {
+        setDescription(value);
+    };
     return (
         <div className="add-product-wrapper">
             <h3>Inventory · Add Product</h3>
@@ -112,15 +131,26 @@ const AddProduct = () => {
 
             {/* Description & Media */}
             <div className="section">
-                <span>Description & Media</span>
-                <label style={{ marginTop: "20px" }} className="section-title">Description</label>
-                <textarea
-                    name="description"
-                    rows="5"
-                    placeholder="Text Here"
-                    className="description-input"
-                    onChange={handleChange}
-                ></textarea>
+                <span className="section-title">Description & Media</span>
+                <div className="variant-field">
+                    <label className="section-title">Description</label>
+                    <ReactQuill
+                        className="rich-text-editor"
+                        theme="snow"
+                        value={product.description}
+                        onChange={handleDescriptionChange}
+                        modules={modules}
+                        formats={formats}
+                        placeholder="Text Here"
+                        defaultValue="<p>paragraph</p>"
+                        style={{
+                            minHeight: '100px',
+                            borderRadius: '8px',
+                            backgroundColor: '#f9f9f9',
+                            border: '1px solid #ccc'
+                        }}
+                    />
+                </div>
 
                 <label className="section-title">Media</label>
                 <div className="media-box">
@@ -204,7 +234,7 @@ const AddProduct = () => {
 
 
             {/* Variants */}
-            
+
 
             <div className="section">
                 <label className="section-title">Add Variants</label>

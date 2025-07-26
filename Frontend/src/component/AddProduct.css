@@ -215,3 +215,33 @@ h3 {
     font-weight: 500;
     cursor: pointer;
 }
+
+.rich-text-editor {
+    margin-bottom: 24px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    background-color: #ffffff;
+    min-height: 200px;
+}
+
+.rich-text-editor .ql-toolbar {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom: 1px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+.rich-text-editor .ql-container {
+    border: none;
+    min-height: 100px;
+}
+
+.rich-text-editor .ql-editor {
+    min-height: 100px;
+    padding: 10px;
+    color: #333;
+}
+
+.rich-text-editor .ql-editor::placeholder {
+    color: #999;
+}

@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Inventory from './component/Inventory'
 import AddProduct from './component/AddProduct'
+import Dashboard from './component/Dashboard'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -11,7 +12,8 @@ function App() {
   return (
     <>
       {/* <Inventory /> */}
-      <AddProduct />
+      {/* <AddProduct /> */}
+      <Dashboard />
     </>
   )
 }
