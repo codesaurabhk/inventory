@@ -1,0 +1,217 @@
+.add-product-wrapper {
+    max-width: 850px;
+    margin: auto;
+    padding: 32px;
+    font-family: 'Segoe UI', sans-serif;
+    background: #F7F7F7;
+}
+
+h3 {
+    font-size: 18px;
+    margin-bottom: 24px;
+    color: #333;
+}
+
+.section {
+    background: #fff;
+    border: 1px solid #E1E1E1;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 24px;
+}
+
+.section label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 6px;
+    font-weight: 500;
+}
+
+.section input,
+.section select,
+.section textarea {
+    width: 96%;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    margin-bottom: 16px;
+    font-size: 14px;
+}
+
+.checkbox-group {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    margin-bottom: 10px;
+    white-space: nowrap;
+}
+
+.checkbox-group label {
+    display: flex;
+    gap: 6px;
+
+    font-size: 14px;
+    cursor: pointer;
+
+    flex-wrap: nowrap;
+}
+
+
+#hsn {
+    width: 43%;
+}
+
+#serialno {
+    width: 30%;
+}
+
+.divider-line {
+    border-top: 2px solid #ccc;
+    margin-top: 18px;
+    margin-bottom: 18px;
+    /* display: block; */
+    padding-top: 20px;
+}
+
+
+.row-2 {
+    display: flex;
+    gap: 16px;
+    /* margin-bottom: 1px; */
+    margin-top: 15px;
+}
+
+
+.section span {
+    font-weight: 500;
+}
+
+.return {
+    display: flex;
+}
+
+
+.row-2>div {
+    flex: 1;
+}
+
+.row-3 {
+    display: flex;
+    gap: 25px;
+    margin-right: 10px;
+    margin-top: 5px;
+    padding-top: 8px;
+    border-top: 2px solid #ccc;
+}
+
+.media-box {
+    border: 2px dashed #ccc;
+    padding: 20px;
+    text-align: center;
+    border-radius: 6px;
+    background: #FAFAFA;
+    margin-top: 8px;
+}
+
+.browse {
+    color: #007bff;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.add-variant,
+.done-btn {
+    margin-top: 10px;
+    padding: 8px 12px;
+    border: 1px dashed #ccc;
+    background: #f9f9f9;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.footer-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.btn-draft,
+.btn-save {
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-draft {
+    background: #E6E6E6;
+}
+
+.btn-save {
+    background: black;
+    color: white;
+}
+
+.mrp {
+    width: 42%;
+}
+
+.tax {
+    width: 28%;
+}
+
+
+.section-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.variant-row {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 1rem;
+    margin-top: 13px;
+}
+
+.variant-field {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.variant-field label {
+    margin-bottom: 0.3rem;
+    font-weight: 500;
+}
+
+.variant-field input {
+    padding: 0.6rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    font-size: 0.95rem;
+}
+
+.done-btn {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-bottom: 1rem;
+}
+
+.add-variant {
+    background-color: #f1f1f1;
+    color: #333;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+}
