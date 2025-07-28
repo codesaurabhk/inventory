@@ -2,9 +2,9 @@
     padding: 20px;
     font-family: sans-serif;
     background: #f8f9fa;
+    margin: 0px;
 }
 
-/* ========== TOP SECTION ========== */
 .top-section {
     margin-bottom: 20px;
 }
@@ -13,7 +13,7 @@
 .dashboard-metrics {
     display: flex;
     justify-content: space-between;
-    gap: 20px;
+    gap: 2px;
     margin-bottom: 20px;
 }
 
@@ -22,8 +22,8 @@
     align-items: center;
     flex: 1;
     background: white;
-    padding: 20px;
-    border-radius: 10px;
+
+    padding-left: 35px;
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.05);
 }
 
@@ -37,6 +37,7 @@
     justify-content: center;
     font-size: 20px;
     margin-right: 15px;
+    color: #007bff;
 }
 
 .metric-icon.blue {
@@ -45,34 +46,50 @@
 }
 
 .metric-title {
-    font-size: 14px;
+    font-size: 15px;
     color: #666;
-    margin-bottom: 4px;
+    /* margin-bottom: 4px; */
+    margin-bottom: -10px;
 }
 
 .metric-growth {
     font-size: 13px;
     color: #28a745;
     margin-left: 5px;
+
 }
 
-/* Toolbar */
-.toolbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
+.overview {
     background: white;
-    padding: 15px 20px;
-    border-radius: 10px;
+
+    border-radius: 8px;
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.05);
 }
 
-.toolbar-title {
+/* Toolbar */
+
+
+/* new */
+.toolbars {
     display: flex;
-    align-items: center;
-    gap: 10px;
+    justify-content: space-between;
+    padding: 0px 20px;
+    margin-bottom: -8px;
 }
+
+.toolbar-titles {
+    margin-top: 4px;
+    margin-left: 15px;
+}
+
+.toolbar-actions-th {
+    display: flex;
+    justify-content: space-between;
+    border-top: 2px solid #E6E6E6;
+}
+
+
+
 
 .toolbar-filter-btn {
     padding: 6px 14px;
@@ -89,6 +106,24 @@
     flex-wrap: wrap;
 }
 
+.toolbar-action {
+    display: flex;
+    /* align-items: center; */
+    gap: 10px;
+    /* flex-wrap: wrap; */
+    margin-right: 20px;
+}
+
+.toolbar-actions-sec {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-left: 120px;
+    margin-top: 10px;
+
+}
+
 .btn {
     padding: 6px 14px;
     border: 1px solid #ccc;
@@ -103,27 +138,32 @@
     border: none;
 }
 
+.btn-light {
+    background-color: white;
+}
+
 .icon-btn {
     font-size: 18px;
     background: #f1f3f5;
-    border: none;
+    /* border: none; */
+    border: 2px solid rgb(233, 233, 233);
+    background-color: white;
     border-radius: 6px;
     padding: 6px 10px;
     cursor: pointer;
 }
 
 /* ========== TABLE SECTION ========== */
-.products-section {
-    background: white;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 0 4px rgba(0, 0, 0, 0.05);
-}
+
 
 .product-table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
+    /* margin-top: 20px; */
+}
+
+.product-table thead {
+    background-color: #f8f9fa;
 }
 
 .product-table th,
@@ -152,8 +192,43 @@
 }
 
 .pagination {
-    margin-top: 20px;
+    margin-top: 10px;
+    padding-bottom: 9px;
+    padding-right: 30px;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
+    gap: 10px;
     font-size: 14px;
+}
+
+.pagination-box {
+    padding: 3px 10px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 36px;
+    box-shadow: 5px 10px 8px #888888;
+
+}
+
+.pagination-info {
+    gap: 10px;
+}
+
+.pagination-arrow {
+    background: transparent;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    color: #000;
+    padding: 4px;
+    border-radius: 4px;
+}
+
+.pagination-arrow:disabled {
+    color: #ccc;
+    cursor: not-allowed;
 }
