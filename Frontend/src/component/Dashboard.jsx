@@ -6,20 +6,32 @@ import { FaStopCircle } from "react-icons/fa";
 import { IoSearch } from "react-icons/io5";
 import { CgSortAz } from "react-icons/cg";
 import { TbArrowsSort } from "react-icons/tb";
+import chair from "../images/chair.jpg";
+import tshirt from "../images/tshirts.jpg";
+import wheelchair from "../images/chair2.png";
+import chair3 from "../images/chair3.jpg";
+import cheery from "../images/cheery.jpg";
+import mouse from "../images/mouse.jpg";
+import sofa from "../images/sofa.jpg";
+import tshirts2 from "../images/tshirts2.jpg";
+import tshirts3 from "../images/tshirts3.jpg";
+import bag from "../images/bag.jpg";
 
 const Dashboard = () => {
+
     const data = [
-        ['Chair', 'Active', '3 Pieces • 2 Variants', 'Office Chair', 'Warehouse 01'],
-        ['T-Shirt', 'Inactive', '30 Pieces • 5 Variants', 'T-Shirt', 'WH-04'],
-        ['Wheel Chair', 'Active', '30 Pieces • 5 Variants', 'T-Shirt', 'WH-04'],
-        ['Strawberry', 'Active', '30 Pieces • 5 Variants', 'T-Shirt', 'WH-04'],
-        ['T-Shirt - Label MN', 'Active', '30 Pieces • 5 Variants', 'T-Shirt', 'WH-04'],
-        ['Gaming Chair', 'Active', '30 Pieces • 5 Variants', 'T-Shirt', 'WH-04'],
-        ['Luxury Bag', 'Active', '30 Pieces • 5 Variants', 'T-Shirt', 'WH-04'],
-        ['Purple T-Shirt', 'Active', '30 Pieces • 5 Variants', 'T-Shirt', 'WH-04'],
-        ['Sofa', 'Active', '30 Pieces • 5 Variants', 'T-Shirt', 'WH-04'],
-        ['Gaming Mouse', 'Active', '30 Pieces • 5 Variants', 'T-Shirt', 'WH-04'],
+        { name: 'Chair', status: 'Active', inventory: '3 Pieces • 2 Variants', category: 'Office Chair', stored: 'Warehouse 01', image: chair },
+        { name: 'T-Shirt', status: 'Inactive', inventory: '30 Pieces • 5 Variants', category: 'T-Shirt', stored: 'WH-04', image: tshirt },
+        { name: 'Wheel Chair', status: 'Active', inventory: '30 Pieces • 5 Variants', category: 'T-Shirt', stored: 'WH-04', image: wheelchair },
+        { name: 'Strawberry', status: 'Active', inventory: '30 Pieces • 5 Variants', category: 'T-Shirt', stored: 'WH-04', image: cheery },
+        { name: 'T-Shirt - Label MN', status: 'Active', inventory: '30 Pieces • 5 Variants', category: 'T-Shirt', stored: 'WH-04', image: tshirts2 },
+        { name: 'Gaming Chair', status: 'Active', inventory: '30 Pieces • 5 Variants', category: 'T-Shirt', stored: 'WH-04', image: chair3 },
+        { name: 'Luxury Bag', status: 'Active', inventory: '30 Pieces • 5 Variants', category: 'T-Shirt', stored: 'WH-04', image: bag },
+        { name: 'Purple T-Shirt', status: 'Active', inventory: '30 Pieces • 5 Variants', category: 'T-Shirt', stored: 'WH-04', image: tshirts3 },
+        { name: 'Sofa', status: 'Active', inventory: '30 Pieces • 5 Variants', category: 'T-Shirt', stored: 'WH-04', image: sofa },
+        { name: 'Gaming Mouse', status: 'Active', inventory: '30 Pieces • 5 Variants', category: 'T-Shirt', stored: 'WH-04', image: mouse }
     ];
+
     return (
         <div className="dashboard-container">
             {/* Top Section */}
@@ -87,7 +99,7 @@ const Dashboard = () => {
                     <table className="product-table">
                         <thead>
                             <tr style={{ color: "#676767" }}>
-                                <th></th>
+                                <th><input type="checkbox" /></th>
                                 <th>Product</th>
                                 <th>Status</th>
                                 <th>Inventory</th>
@@ -96,14 +108,21 @@ const Dashboard = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {data.map(([name, status, inventory, category, stored], index) => (
+                            {data.map((product, index) => (
                                 <tr key={index}>
                                     <td><input type="checkbox" /></td>
-                                    <td>{name}</td>
-                                    <td><span className={`status ${status.toLowerCase()}`}>{status}</span></td>
-                                    <td>{inventory}</td>
-                                    <td>{category}</td>
-                                    <td>{stored}</td>
+                                    <td className="product-cell">
+                                        <img
+                                            src={product.image}
+                                            alt={product.name}
+                                            className="product-img"
+                                        />
+                                        {product.name}
+                                    </td>
+                                    <td> <span className={`status ${product.status.toLowerCase()}`}>{product.status}</span></td>
+                                    <td>{product.inventory}</td>
+                                    <td>{product.category}</td>
+                                    <td>{product.stored}</td>
                                 </tr>
                             ))}
                         </tbody>

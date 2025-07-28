@@ -173,7 +173,18 @@
     text-align: left;
     font-weight: 500;
 }
+.product-img {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  border-radius: 6px;
+  object-fit: cover;
+}
 
+.product-cell {
+  display: flex;
+  align-items: center;
+}
 .status {
     padding: 4px 10px;
     border-radius: 5px;
