@@ -5,6 +5,7 @@ import './App.css'
 import Inventory from './component/Inventory'
 import AddProduct from './component/AddProduct'
 import Dashboard from './component/Dashboard'
+import AboutProduct from './component/AboutProduct'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -13,7 +14,8 @@ function App() {
     <>
       {/* <Inventory /> */}
       {/* <AddProduct /> */}
-      <Dashboard />
+      {/* <Dashboard /> */}
+      <AboutProduct/>
     </>
   )
 }
