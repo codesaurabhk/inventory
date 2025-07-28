@@ -86,7 +86,7 @@ const Dashboard = () => {
                 <div>
                     <table className="product-table">
                         <thead>
-                            <tr>
+                            <tr style={{ color: "#676767" }}>
                                 <th></th>
                                 <th>Product</th>
                                 <th>Status</th>
