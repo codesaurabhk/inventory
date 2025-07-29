@@ -9,7 +9,7 @@ import AboutProduct from './component/AboutProduct'
 import Category from './component/Category.jsx';
 import CategoryDashbord from './component/CategoryDashbord.jsx'
 import Stocks from './component/Stocks.jsx'
-
+import StockDashbord from "./component/StockDashbord.jsx";
 function App() {
   const [count, setCount] = useState(0)
 
@@ -21,7 +21,8 @@ function App() {
       {/* <AboutProduct/> */}
        {/* <Category/> */}
        {/* <CategoryDashbord/> */}
-       <Stocks/>
+       {/* <Stocks/> */}
+       <StockDashbord/>
     </>
   )
 }
