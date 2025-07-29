@@ -1,0 +1,55 @@
+.ap-container{
+    padding: 20px;
+    font-family: sans-serif;
+    background: #f8f9fa;
+    margin: 0px;
+}
+
+.gray-color{
+    color:#828486;
+}
+
+.ap-path{
+    display: flex;
+    align-items: center;
+    font-size: large;
+}
+
+.ap-name{
+    font-weight: 550;
+}
+
+.ap-wrapper{
+    max-width: 996px;
+    margin: auto;
+    padding: 32px;
+    font-family: 'Segoe UI', sans-serif;
+    background: #F7F7F7;
+    display: flex;
+    gap: 24px;
+}
+
+.ap-basic-wrapper{
+    padding: 0px 15px;
+    width: 656px;
+}
+
+
+.ap-basic-description{
+    background: #fff;
+    border: 1px solid #E1E1E1;
+    border-radius: 8px;
+    padding: 0px 15px;
+    width: 321px;
+    height: 525px;
+}
+
+.ap-basic-details{
+    background: #fff;
+    border: 1px solid #E1E1E1;
+    border-radius: 8px;
+    padding: 0px 16px 18px 18px;
+    margin-bottom: 24px;
+    width: 96%;
+}
+
