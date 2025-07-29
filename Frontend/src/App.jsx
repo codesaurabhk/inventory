@@ -8,11 +8,15 @@ import './App.css'
 import AboutProduct from './component/AboutProduct'
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import Category from './component/Category.jsx';
 import CategoryDashbord from './component/CategoryDashbord.jsx'
  import Stocks from './component/Stocks.jsx'
  import StockDashbord from "./component/StockDashbord.jsx";
 import PurchaseOrder from './component/Purchase/PurchaseOrder.jsx'
+=======
+import AddCategory from './component/AddCategory'
+>>>>>>> Stashed changes
 =======
 import AddCategory from './component/AddCategory'
 >>>>>>> Stashed changes
@@ -31,12 +35,16 @@ function App() {
       {/* <AboutProduct/> */}
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
        {/* <Category/> */}
        {/* <CategoryDashbord/> */}
        {/* <Stocks/> */}
        {/* <StockDashbord/> */}
        <PurchaseOrder/>
 
+=======
+      <AddCategory/>
+>>>>>>> Stashed changes
 =======
       <AddCategory/>
 >>>>>>> Stashed changes
