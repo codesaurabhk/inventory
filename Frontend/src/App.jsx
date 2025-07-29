@@ -7,6 +7,7 @@ import AddProduct from './component/AddProduct'
 import Dashboard from './component/Dashboard'
 import AboutProduct from './component/AboutProduct'
 import Category from './component/Category.jsx';
+import CategoryDashbord from './component/CategoryDashbord.jsx'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -17,7 +18,8 @@ function App() {
       {/* <AddProduct /> */}
       {/* <Dashboard /> */}
       {/* <AboutProduct/> */}
-       <Category/>
+       {/* <Category/> */}
+       <CategoryDashbord/>
     </>
   )
 }
