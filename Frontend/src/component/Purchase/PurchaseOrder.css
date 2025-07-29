@@ -23,6 +23,7 @@
 }
 
 
+
 .link {
     color: #4B4B4B;
 }
@@ -49,9 +50,9 @@
 }
 
 .group1 {
-    width: 70%;
+    width: 50%;
     height: auto;
-    margin-left: 6vw;
+    margin-left: 7vw;
 }
 
 .imgs {
@@ -65,7 +66,7 @@
 
 .content {
     text-align: center;
-    margin-top: 5%;
+    margin-top: 0%;
     margin-left: 5%;
 }
 
