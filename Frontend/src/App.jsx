@@ -37,7 +37,7 @@ function App() {
       {/* <ExpiryItems/> */}
       {/* <ExpiryItemsDashbord/> */}
       {/* <Damages/> */}
-      <Damagesdashbord/>
+      {/* <Damagesdashbord/> */}
     </>
   )
 }
