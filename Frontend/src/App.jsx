@@ -13,6 +13,7 @@ import StockDashbord from "./component/StockDashbord.jsx";
 import PurchaseOrder from './component/Purchase/PurchaseOrder.jsx'
 import AddCategory from './component/AddCategory'
 import PurchaseDashbord from './component/Purchase/PurchaseDashbord.jsx'
+import ExpiryItems from './component/ExpiryItems.jsx'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -29,7 +30,8 @@ function App() {
       {/* <StockDashbord/> */}
       {/* <PurchaseOrder/> */}
       {/* <AddCategory/> */}
-      <PurchaseDashbord/>
+      {/* <PurchaseDashbord/> */}
+      <ExpiryItems/>
     </>
   )
 }
