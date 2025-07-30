@@ -16,6 +16,7 @@ import PurchaseDashbord from './component/Purchase/PurchaseDashbord.jsx'
 import ExpiryItems from './component/ExpiryItems.jsx'
 import ExpiryItemsDashbord from './component/ExpiryItemsDashbord.jsx'
 import Damages from './component/Damages.jsx'
+import Damagesdashbord from './component/Damagesdashbord.jsx'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -35,7 +36,8 @@ function App() {
       {/* <PurchaseDashbord/> */}
       {/* <ExpiryItems/> */}
       {/* <ExpiryItemsDashbord/> */}
-      <Damages/>
+      {/* <Damages/> */}
+      <Damagesdashbord/>
     </>
   )
 }
