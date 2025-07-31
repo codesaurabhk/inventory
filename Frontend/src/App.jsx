@@ -18,6 +18,7 @@ import ExpiryItemsDashbord from './component/ExpiryItemsDashbord.jsx'
 import Damages from './component/Damages.jsx'
 import Damagesdashbord from './component/Damagesdashbord.jsx'
 import Manageproduct from './component/Manageproduct.jsx'
+import CreatePurchaseOrder from './component/CreatePurchaseOrder.jsx'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -39,7 +40,8 @@ function App() {
       {/* <ExpiryItemsDashbord/> */}
       {/* <Damages/> */}
       {/* <Damagesdashbord/> */}
-      <Manageproduct/>
+      {/* <Manageproduct/> */}
+      <CreatePurchaseOrder/>
     </>
   )
 }
