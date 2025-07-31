@@ -28,9 +28,9 @@ function App() {
       {/* <Dashboard /> */}
       {/* <AboutProduct/> */}
       {/* <Category/> */}
-      <CategoryDashbord/>
+      {/* <CategoryDashbord/> */}
       {/* <Stocks/> */}
-      {/* <StockDashbord/> */}
+      <StockDashbord/>
       {/* <PurchaseOrder/> */}
       {/* <AddCategory/> */}
       {/* <PurchaseDashbord/> */}
