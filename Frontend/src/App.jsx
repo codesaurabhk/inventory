@@ -1,6 +1,3 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import Inventory from './component/Inventory.jsx'
 import AddProduct from './component/AddProduct'
@@ -17,24 +14,22 @@ import ExpiryItems from './component/ExpiryItems.jsx'
 import ExpiryItemsDashbord from './component/ExpiryItemsDashbord.jsx'
 import Damages from './component/Damages.jsx'
 import Damagesdashbord from './component/Damagesdashbord.jsx'
+import Track from './component/Track.jsx'
 import Manageproduct from './component/Manageproduct.jsx'
 import CreatePurchaseOrder from './component/CreatePurchaseOrder.jsx'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
       {/* <Inventory /> */}
       {/* <AddProduct /> */}
       {/* <Dashboard /> */}
-      {/* <AboutProduct/> */}
       {/* <Category/> */}
       {/* <CategoryDashbord/> */}
       {/* <Stocks/> */}
       {/* <StockDashbord/> */}
       {/* <PurchaseOrder/> */}
-      {/* <AddCategory/> */}
       {/* <PurchaseDashbord/> */}
       {/* <ExpiryItems/> */}
       {/* <ExpiryItemsDashbord/> */}
@@ -42,6 +37,12 @@ function App() {
       {/* <Damagesdashbord/> */}
       {/* <Manageproduct/> */}
       {/* <CreatePurchaseOrder/> */}
+
+      
+      {/* <AboutProduct/> */}
+      {/* <AddCategory/> */}
+      {/* <Track/> */}
+      {/* <Manageproduct/> */}
     </>
   )
 }

@@ -1,7 +1,20 @@
-.add-product-wrapper {
-    max-width: 850px;
+.add-product-container {
+    margin: 0px;
+    padding: 20px;
+    font-family: sans-serif;
+    background: #f8f9fa;
+}
+
+.add-product-path{
+    display: flex;
+    align-items: center;
+    font-size: large;
+}
+
+.add-product-wrapper{
+    max-width: 996px;
     margin: auto;
-    padding: 32px;
+    padding: 16px 32px;
     font-family: 'Segoe UI', sans-serif;
     background: #F7F7F7;
 }

@@ -56,6 +56,8 @@ function AddCategory() {
     }
   };
 
+  const [product, setProduct] = useState('');
+
   return (
     <div className='ac-container'>
     
@@ -64,9 +66,17 @@ function AddCategory() {
             <span className='gray-color'>Inventory <IoIosArrowForward /> Category <IoIosArrowForward /></span>
             <span className='ac-name'>Add Category</span>
           </div>
+          
     
           {/* full wrapper */}
           <div className='ac-details'>
+
+          {/* added successfully message */}
+          {product &&
+            <div style={{marginTop: '16px',width: '98%',border:'1px solid #007B42',backgroundColor:'#BAFFDF',borderRadius:'4px',padding:'3px 5px'}}>
+              <span>🎉 Great! You have successfully created a category.</span>
+            </div>
+          }
 
             {/* category */}
             <div style={{marginTop: '16px',width: '100%'}}>
@@ -136,15 +146,8 @@ function AddCategory() {
                 </div>
 
                 {/* when there is no product*/}
-                <div style={{textAlign:'center',border: '1px solid #C2C2C2', borderRadius: '4px', padding: '32px 16px', backgroundColor: '#FBFBFB', color: '#C2C2C2', cursor: 'pointer',marginTop: '15px'}}>
-                    <AiFillProduct style={{fontSize: '50px', marginBottom: '10px'}} />
-                    <br/>
-                    You haven't added any products yet.
-                    <br/>
-                    Use browse or search to get started.
-                </div>
-    
-                {/* when any product is added */}
+                {product ? 
+                <>
                 <div style={{borderRadius: '8px', overflow: 'hidden', marginBottom: '16px',border:'1px solid #E1E1E1',marginTop:'15px'}}>
                   <table style={{width: '100%', borderCollapse: 'collapse',borderRadius: '8px', overflow: 'hidden',fontSize: '14px'}}>
                     <thead style={{backgroundColor: '#E6E6E6', borderRadius: '8px',borderCollapse: 'collapse'}}>
@@ -168,11 +171,26 @@ function AddCategory() {
                     </tbody>
                   </table>
                 </div>
-                        
-                {/* save button */}
                 <div style={{display: 'flex', justifyContent: 'end', marginTop: '16px'}}>
                     <span style={{border:'1px solid black',backgroundColor:'black',padding:'5px 8px',color:'white',borderRadius:'5px'}}>Save</span>
                 </div>
+                </>
+                : 
+                <>
+                <div style={{textAlign:'center',border: '1px solid #C2C2C2', borderRadius: '4px', padding: '32px 16px', backgroundColor: '#FBFBFB', color: '#C2C2C2', cursor: 'pointer',marginTop: '15px'}}>
+                    <AiFillProduct style={{fontSize: '50px', marginBottom: '10px'}} />
+                    <br/>
+                    You haven't added any products yet.
+                    <br/>
+                    Use browse or search to get started.
+                </div>
+                <div style={{display: 'flex', justifyContent: 'end', marginTop: '16px'}}>
+                    <span style={{border:'1px solid black',backgroundColor:'black',padding:'5px 8px',color:'white',borderRadius:'5px'}}>Done</span>
+                </div>
+                </>
+                }
+                        
+                {/* save button */}
 
             </div>
 
