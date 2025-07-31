@@ -166,7 +166,7 @@
     font-size: 14px;
 }
 
-.pagination-box {
+.pagination-boxx {
     padding: 3px 10px;
     background: white;
     border: 1px solid #ddd;
@@ -175,7 +175,7 @@
     align-items: center;
     gap: 10px;
     height: 36px;
-    box-shadow: 5px 10px 8px #888888;
+    box-shadow: 1px 1px 4px #888888;
 
 }
 

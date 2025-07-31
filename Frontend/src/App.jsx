@@ -30,10 +30,10 @@ function App() {
       {/* <Category/> */}
       {/* <CategoryDashbord/> */}
       {/* <Stocks/> */}
-      <StockDashbord/>
+      {/* <StockDashbord/> */}
       {/* <PurchaseOrder/> */}
       {/* <AddCategory/> */}
-      {/* <PurchaseDashbord/> */}
+      <PurchaseDashbord/>
       {/* <ExpiryItems/> */}
       {/* <ExpiryItemsDashbord/> */}
       {/* <Damages/> */}
