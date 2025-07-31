@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import "./Damagesdashbord.css";
 
 
@@ -43,6 +43,25 @@ const startIndex = (currentPage - 1) * itemsPerPage;
 const endIndex = startIndex + itemsPerPage;
 const paginatedData = data.slice(startIndex, endIndex);
 
+
+  const [isFormOpen, setIsFormOpen] = useState(false);
+  const formRef = useRef(null);
+
+  const openForm = () => setIsFormOpen(true);
+  const closeForm = () => setIsFormOpen(false);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (isFormOpen && formRef.current && !formRef.current.contains(event.target)) {
+        closeForm();
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isFormOpen]);
 
   return (
     
@@ -110,7 +129,7 @@ const paginatedData = data.slice(startIndex, endIndex);
             </thead>
             <tbody>
               {paginatedData.map((product, index) => (
-                <tr key={index}>
+                <tr key={index} onClick={openForm}>
                   <td>
                     <input type="checkbox" />
                   </td>
@@ -169,6 +188,130 @@ const paginatedData = data.slice(startIndex, endIndex);
 
         </div>
       </div>
+
+      {isFormOpen && (
+        <div style={{
+            position: 'fixed',
+            top: '0',
+            left: '0',
+            width: '100%',
+            height: '100%',
+            backgroundColor: 'rgba(199, 197, 197, 0.4)',
+            backdropFilter: 'blur(1px)',
+            display: 'flex',
+            justifyContent: 'center',
+            zIndex: '10',
+          }}>
+            <div ref={formRef} style={{width:'646px',margin:'auto',marginTop:'80px',backgroundColor:'white',border:'1px solid #E1E1E1',borderRadius:'8px',padding:'10px 16px'}}>
+
+              <div style={{marginTop: '16px',border:'1px solid #007B42',backgroundColor:'#BAFFDF',borderRadius:'4px',padding:'3px 15px'}}>
+            <span>This item has been returned successfully.</span>
+        </div>
+        
+        <div style={{border:'1px solid #C2C2C2',padding:'10px 16px',marginTop:'16px',borderRadius:'16px',lineHeight:'25px'}}>
+            <div style={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
+                <div>
+                    <span>Order Details</span>
+                    <br/>
+                    <span style={{color:'#676767'}}>Ponds Cream</span>
+                    <br/>
+                    <span style={{color:'#676767'}}>Order ID - DAC7634</span>
+                    <br/>
+                    <span style={{color:'#676767'}}>Amount -</span> <span>₹ 543.00</span>
+                </div>
+                <div>
+                    <span style={{border:'1px solid #E4F3FF',padding:'2px 4px',backgroundColor:'#E4F3FF',color:'rgb(51, 157, 244)',borderRadius:'5px'}}>Return</span>
+                </div>
+            </div>
+            <div style={{display:'flex',justifyContent:'space-between',marginTop:'16px'}}>
+                <div>
+                    <span>SKU</span>
+                    <br/>
+                    <span style={{color:'#676767'}}>PMC425</span>
+                </div>
+                <div>
+                    <span>Quantity</span>
+                    <br/>
+                    <span style={{color:'#676767'}}>03</span>
+                </div>
+                <div>
+                    <span>Serial no.</span>
+                    <br/>
+                    <span style={{color:'#676767'}}>89</span>
+                </div>
+                <div>
+                    <span>Category</span>
+                    <br/>
+                    <span style={{color:'#676767'}}>Makeup & Beauty</span>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <div style={{borderLeft:'2px dashed #CCDEFA',height:'60px',width:'1px',marginLeft:'25px'}}></div>
+        </div>
+
+        <div>
+            <div style={{display:'flex',gap:'16px'}}>
+                <div>
+                    <div style={{color:' #1368EC',marginLeft:'13px',fontSize:'10px',border:'5px solid rgb(222, 231, 246)',borderRadius:'50%',padding:'2px 6px',backgroundColor:'#1368EC'}}>•</div>
+                    <div style={{borderLeft:'2px solid #CCDEFA',height:'64px',width:'1px',marginLeft:'25px',marginTop:'0px'}}></div>
+                </div>
+                <div>
+                    <span>Return Requested</span>
+                    <br/>
+                    <span style={{color:'#676767'}}>Wed, 16th Jan</span>
+                </div>
+            </div>
+            <div style={{display:'flex',gap:'16px'}}>
+                <div>
+                    <div style={{color:' #1368EC',marginLeft:'13px',fontSize:'10px',border:'5px solid rgb(222, 231, 246)',borderRadius:'50%',padding:'2px 6px',backgroundColor:'#1368EC'}}>•</div>
+                    <div style={{borderLeft:'2px solid #CCDEFA',height:'64px',width:'1px',marginLeft:'25px',marginTop:'0px'}}></div>
+                </div>
+                <div>
+                    <span>Return Approved</span>
+                    <br/>
+                    <span style={{color:'#676767'}}>Wed, 16th Jan</span>
+                </div>
+            </div>
+            <div style={{display:'flex',gap:'16px'}}>
+                <div>
+                    <div style={{color:' #1368EC',marginLeft:'13px',fontSize:'10px',border:'5px solid rgb(222, 231, 246)',borderRadius:'50%',padding:'2px 6px',backgroundColor:'#1368EC'}}>•</div>
+                    <div style={{borderLeft:'2px solid #CCDEFA',height:'64px',width:'1px',marginLeft:'25px',marginTop:'0px'}}></div>
+                </div>
+                <div>
+                    <span>Prder picked up from customer</span>
+                    <br/>
+                    <span style={{color:'#676767'}}>Thru, 18th Jan</span>
+                </div>
+            </div>
+            <div style={{display:'flex',gap:'16px'}}>
+                <div>
+                    <div style={{color:' #1368EC',marginLeft:'13px',fontSize:'10px',border:'5px solid rgb(222, 231, 246)',borderRadius:'50%',padding:'2px 6px',backgroundColor:'#1368EC'}}>•</div>
+                    <div style={{borderLeft:'2px solid #CCDEFA',height:'64px',width:'1px',marginLeft:'25px',marginTop:'0px'}}></div>
+                </div>
+                <div>
+                    <span>Returned to warehouse</span>
+                    <br/>
+                    <span style={{color:'#676767'}}>Fri, 19th Jan</span>
+                    <br/>
+                    <span style={{color:'#676767'}}>Received to WH-009</span>
+                </div>
+            </div>
+            <div style={{display:'flex',gap:'16px'}}>
+                <div>
+                    <div style={{color:' #1368EC',marginLeft:'13px',fontSize:'10px',border:'5px solid rgb(222, 231, 246)',borderRadius:'50%',padding:'2px 6px',backgroundColor:'#1368EC'}}>•</div>
+                </div>
+                <div>
+                    <span>Refund Successful</span>
+                    <br/>
+                    <span style={{color:'#676767'}}>Sun, 21th Jan</span>
+                </div>
+            </div>
+        </div>
+            </div>
+        </div>
+      )}
     </div>
   );
 };

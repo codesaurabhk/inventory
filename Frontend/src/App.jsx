@@ -14,7 +14,6 @@ import ExpiryItems from './component/ExpiryItems.jsx'
 import ExpiryItemsDashbord from './component/ExpiryItemsDashbord.jsx'
 import Damages from './component/Damages.jsx'
 import Damagesdashbord from './component/Damagesdashbord.jsx'
-import Track from './component/Track.jsx'
 import Manageproduct from './component/Manageproduct.jsx'
 
 function App() {
@@ -38,8 +37,7 @@ function App() {
       
       {/* <AboutProduct/> */}
       {/* <AddCategory/> */}
-      {/* <Track/> */}
-      <Manageproduct/>
+      {/* <Manageproduct/> */}
     </>
   )
 }
