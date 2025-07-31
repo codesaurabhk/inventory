@@ -61,7 +61,6 @@ function CreatePurchaseOrder() {
   };
 
   return (
-    <div style={{ maxWidth: "645px", margin: "auto" }}>
       <div className="ac-containers">
         {/* path */}
         <div className="ac-path">
@@ -416,7 +415,6 @@ function CreatePurchaseOrder() {
           </button>
         </div>
       </div>
-    </div>
   );
 }
 
