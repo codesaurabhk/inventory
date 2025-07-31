@@ -19,8 +19,14 @@ import tshirts2 from "../images/tshirts2.jpg";
 import tshirts3 from "../images/tshirts3.jpg";
 import bag from "../images/bag.jpg";
 import { FaAngleRight } from "react-icons/fa";
+import { useState } from 'react';
+import { FaAngleLeft } from "react-icons/fa6";
+import { FaChevronRight } from "react-icons/fa";
 
 const StockDashbord = () => {
+    const [currentPage, setCurrentPage] = useState(1);
+const itemsPerPage = 8; 
+
 
     const data = [
         { name: 'Chair',available : "3 Pieces • 2 Varients", status: 'Active', time: '11:23 PM', HandleBy: 'Aman kumar', image: chair , Storage :"Warehouse 01"},
@@ -34,6 +40,13 @@ const StockDashbord = () => {
         { name: 'Sofa',available : "3 Pieces • 2 Varients", status: 'Active', time: '11:23 PM', HandleBy: 'Ajay Mehra', image: sofa , Storage : "WH-04"},
         { name: 'Gaming Mouse',available : "3 Pieces • 2 Varients", status: 'Active', time: '11:23 PM', HandleBy: 'Shubham', image: mouse, Storage : "WH-04" }
     ];
+
+    const totalItems = data.length;
+const totalPages = Math.ceil(totalItems / itemsPerPage);
+const startIndex = (currentPage - 1) * itemsPerPage;
+const endIndex = startIndex + itemsPerPage;
+const paginatedData = data.slice(startIndex, endIndex);
+
 
     return (
         <div className="dashboard-container">
@@ -85,7 +98,7 @@ const StockDashbord = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {data.map((product, index) => (
+                            {paginatedData.map((product, index) => (
                                 <tr key={index}>
                                     <td><input type="checkbox" /></td>
                                     <td className="product-cell">
@@ -106,15 +119,28 @@ const StockDashbord = () => {
                         </tbody>
                     </table>
 
-                    <div className="pagination">
-                        <div className="pagination-box">25 per page</div>
-                        <div className="pagination-box pagination-info">
-                            <span>1-10 of 721</span>
-                            <span style={{ color: "grey" }}> | </span>
-                            <button style={{ color: "grey" }} className="pagination-arrow" >{'<'}</button>
-                            <button className="pagination-arrow">{'>'}</button>
-                        </div>
-                    </div>
+                   <div className="pagination">
+    <div className="pagination-boxx">{itemsPerPage} per page</div>
+    <div className="pagination-boxx pagination-info">
+        <span>{startIndex + 1}-{Math.min(endIndex, totalItems)} of {totalItems}</span>
+        <span style={{ color: "grey" }}> | </span>
+        <button
+            disabled={currentPage === 1}
+            onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+            className="pagination-arrow"
+        >
+            <FaAngleLeft />
+        </button>
+        <button
+            disabled={currentPage === totalPages}
+            onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+            className="pagination-arrow"
+        >
+            <FaChevronRight />
+        </button>
+    </div>
+</div>
+
 
                 </div>
             </div>
