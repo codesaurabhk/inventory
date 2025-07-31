@@ -2,7 +2,10 @@ import React, { useState } from 'react';
 import './AddProduct.css';
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-
+import { IoIosArrowForward } from "react-icons/io";
+import { FaPlusSquare } from "react-icons/fa";
+import Chair2 from '../images/chair2.png';
+import Chair2r from '../images/chair2r.png';
 
 const AddProduct = () => {
     const [product, setProduct] = useState({
@@ -54,9 +57,25 @@ const AddProduct = () => {
     const handleDescriptionChange = (value) => {
         setDescription(value);
     };
+
+    const [productAdded, setProductAdded] = useState(false);
+
     return (
-        <div className="add-product-wrapper">
-            <h3>Inventory · Add Product</h3>
+        <div className="add-product-container">
+
+            {/* path */}
+            <div className='add-product-path'>
+                <span className='gray-color'>Inventory <IoIosArrowForward /></span>
+                <span className='ap-name'>Add Product</span>
+            </div>
+
+            {productAdded &&
+            <div style={{marginTop: '20px',width: '100%',border:'1px solid #007B42',backgroundColor:'#BAFFDF',borderRadius:'4px',padding:'3px 5px',maxWidth:'980px',margin:'auto'}}>
+              <span>🎉 Great! You have successfully created a category.</span>
+            </div>
+            }
+            
+            <div className='add-product-wrapper'>
 
             {/* Product Info */}
             <div className="section">
@@ -130,7 +149,28 @@ const AddProduct = () => {
             </div>
 
             {/* Description & Media */}
+
             <div className="section">
+                {productAdded ? 
+                <>
+                <div style={{borderBottom:'1px solid #D9D9D9',marginBottom: '16px'}}>
+                    <span>Description</span>
+          
+                    <div style={{padding: '16px',backgroundColor: '#f8f9fa',borderRadius: '8px',marginBottom: '24px', marginTop:'8px', fontSize:'14px', }} className='gray-color'>
+                        <span>Key Features</span>
+                        <ul>
+                            <li>Foldable & Portable</li>
+                            <li>Confortable Padded Seat</li>
+                            <li>Detachable Footrests</li>
+                            <li>Strong, lightweight build</li>
+                            <li>Support upto 100 Kg</li>
+                        </ul>
+                        <br/>
+                        <span>Ideal for personal or medical use.</span>
+                    </div>
+                </div>
+                </> : <>
+                <div>
                 <span className="section-title">Description & Media</span>
                 <div className="variant-field">
                     <label className="section-title">Description</label>
@@ -151,7 +191,25 @@ const AddProduct = () => {
                         }}
                     />
                 </div>
-
+                </div>
+                </>}
+                
+                {productAdded ? 
+                <>
+                <div>
+                <label className="section-title">Media</label>
+                <div className='media-box'>
+                    <div style={{display: 'flex', gap: '8px', marginTop: '16px',alignItems: 'center'}}>
+                        <img src={Chair2} style={{width:'68px',border:'2px solid #d1d1d1ff',borderRadius:'10px'}}></img>
+                        <img src={Chair2r} style={{width:'68px',border:'2px solid #d1d1d1ff',borderRadius:'10px'}}></img>
+                        <div className='ap-add-media'>
+                            <FaPlusSquare style={{fontSize: '32px', color: '#d1d1d1ff',borderRadius:'12px'}} />
+                        </div>
+                    </div>
+                </div>
+                </div>
+                </> : <>
+                <div>
                 <label className="section-title">Media</label>
                 <div className="media-box">
                     <p>
@@ -160,7 +218,11 @@ const AddProduct = () => {
                     </p>
                     <small>Supports JPEG, PNG, JPG</small>
                 </div>
+                </div>
+                </>}
+
             </div>
+            
 
             {/* Pricing & Tax */}
             <div className="section pricing-section">
@@ -234,8 +296,6 @@ const AddProduct = () => {
 
 
             {/* Variants */}
-
-
             <div className="section">
                 <label className="section-title">Add Variants</label>
 
@@ -266,12 +326,13 @@ const AddProduct = () => {
                 <button className="add-variant">+ Add another variants</button>
             </div>
 
-
             {/* Footer */}
             <div className="footer-actions">
                 <button className="btn-draft">Draft</button>
                 <button className="btn-save">Save</button>
             </div>
+            </div>
+
         </div >
     );
 };
