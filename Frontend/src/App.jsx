@@ -40,7 +40,6 @@ function App() {
       
       {/* <AboutProduct/> */}
       {/* <AddCategory/> */}
-      {/* <Track/> */}
       {/* <Manageproduct/> */}
     </>
   )

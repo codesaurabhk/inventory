@@ -60,6 +60,8 @@ function CreatePurchaseOrder() {
     }
   };
 
+  const [product, setProduct] = useState(true);
+
   return (
       <div className="ac-containers">
         {/* path */}
@@ -70,7 +72,18 @@ function CreatePurchaseOrder() {
           <span className="ac-name">Create Purchase Order</span>
         </div>
 
+        
+        
         {/* full wrapper */}
+
+        {product ? 
+        <>
+          <div style={{marginTop: '16px',width: '100%',border:'1px solid #007B42',backgroundColor:'#BAFFDF',borderRadius:'4px',padding:'3px 5px',maxWidth:'665px',margin:'auto'}}>
+            <span>🎉 You have successfully placed a purchase order.</span>
+          </div>
+        </> : <></>
+        }
+
         <div className="ac-details">
           {/* category */}
           <div style={{ display: "flex", gap: "3%" }}>
@@ -381,11 +394,39 @@ function CreatePurchaseOrder() {
           </div>
         </div>
 
+        {product ? 
+        <>
         <div
           style={{
             display: "flex",
             justifyContent: "end",
             gap: "10px",
+            maxWidth: '645px',
+            margin:'auto',
+            marginTop: "16px",
+          }}
+        >
+          <button
+            style={{
+              padding: "6px 12px",
+              borderRadius: "5px",
+              border: "1px solid black",
+              backgroundColor: "black",
+              color: "white",
+              cursor: "pointer",
+            }}
+          >
+            Done
+          </button>
+        </div>
+        </> : <>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "end",
+            gap: "10px",
+            maxWidth: '645px',
+            margin:'auto',
             marginTop: "16px",
           }}
         >
@@ -414,6 +455,9 @@ function CreatePurchaseOrder() {
             Save
           </button>
         </div>
+        </>
+        }
+
       </div>
   );
 }
