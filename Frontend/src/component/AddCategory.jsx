@@ -9,7 +9,9 @@ import chair3 from '../images/chair3.jpg';
 
 function AddCategory() {
     
-  const [value, setValue] = useState('');
+   const [value, setValue] = useState("");
+    const inputRef = useRef(null);
+    const [fileName, setFileName] = useState("");
 
   const quillRef = useRef(null);
 
@@ -43,6 +45,16 @@ function AddCategory() {
       editor.root.setAttribute('data-placeholder', 'Type the message');
     }
   }, []);
+   const handleClick = () => {
+    inputRef.current.click(); 
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setFileName(file.name);
+    }
+  };
 
   return (
     <div className='ac-container'>
@@ -87,9 +99,35 @@ function AddCategory() {
                         <input type='text' style={{outline:'none',border: 'none',backgroundColor: '#FBFBFB',color: '#C2C2C2',width:'100%'}} />
                     </div>
                     
-                    <div style={{display: 'flex', alignItems: 'center'}}>
-                    <input type='file' style={{padding:'8px 8px',width: '92px',borderRadius: '4px', border: '1px solid #C2C2C2', fontSize: '16px',backgroundColor: '#FBFBFB',color: '#C2C2C2'}} />
-                    </div>
+                    <div
+                style={{ display: "flex", alignItems: "center", gap: "10px" }}
+              >
+                <button
+                  onClick={handleClick}
+                  style={{
+                    padding: "8px 16px",
+                    borderRadius: "4px",
+                    border: "1px solid #C2C2C2",
+                    backgroundColor: "#FBFBFB",
+                    color: "#333",
+                    fontSize: "16px",
+                    cursor: "pointer",
+                  }}
+                >
+                  Browse
+                </button>
+                <input
+                  type="file"
+                  ref={inputRef}
+                  onChange={handleFileChange}
+                  style={{ display: "none" }}
+                />
+                {fileName && (
+                  <span style={{ fontSize: "14px", color: "#666" }}>
+                    {fileName}
+                  </span>
+                )}
+              </div>
 
                     <select style={{width: '150px',height:'37px',padding:'0px 8px',borderRadius: '4px', border: '1px solid #C2C2C2', fontSize: '16px',backgroundColor: '#FBFBFB',color: '#C2C2C2'}}>
                         <option value="" style={{color:'#C2C2C2'}}>Top Selling</option>
@@ -145,4 +183,3 @@ function AddCategory() {
 }
 
 export default AddCategory
-

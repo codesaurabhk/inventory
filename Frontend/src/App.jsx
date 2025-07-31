@@ -41,7 +41,7 @@ function App() {
       {/* <Damages/> */}
       {/* <Damagesdashbord/> */}
       {/* <Manageproduct/> */}
-      <CreatePurchaseOrder/>
+      {/* <CreatePurchaseOrder/> */}
     </>
   )
 }

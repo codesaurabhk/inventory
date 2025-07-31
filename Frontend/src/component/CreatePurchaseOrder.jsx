@@ -15,7 +15,7 @@ function CreatePurchaseOrder() {
 
   const quillRef = useRef(null);
 
-  // Toolbar options matching the screenshot
+  
   const modules = {
     toolbar: [
       [{ font: [] }],
@@ -29,9 +29,9 @@ function CreatePurchaseOrder() {
     ],
   };
 
-  // Word count logic
+  
   const handleChange = (content) => {
-    const text = content.replace(/(<([^>]+)>)/gi, ""); // Strip HTML tags
+    const text = content.replace(/(<([^>]+)>)/gi, ""); 
     const wordCount = text
       .trim()
       .split(/\s+/)
@@ -41,7 +41,7 @@ function CreatePurchaseOrder() {
     }
   };
 
-  // Workaround for findDOMNode issue
+  
   useEffect(() => {
     if (quillRef.current) {
       const editor = quillRef.current.getEditor();
@@ -50,7 +50,7 @@ function CreatePurchaseOrder() {
   }, []);
 
   const handleClick = () => {
-    inputRef.current.click(); // triggers the hidden file input
+    inputRef.current.click(); 
   };
 
   const handleFileChange = (e) => {
