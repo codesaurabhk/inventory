@@ -33,11 +33,11 @@ function App() {
       {/* <StockDashbord/> */}
       {/* <PurchaseOrder/> */}
       {/* <AddCategory/> */}
-      <PurchaseDashbord/>
+      {/* <PurchaseDashbord/> */}
       {/* <ExpiryItems/> */}
       {/* <ExpiryItemsDashbord/> */}
       {/* <Damages/> */}
-      {/* <Damagesdashbord/> */}
+      <Damagesdashbord/>
     </>
   )
 }
