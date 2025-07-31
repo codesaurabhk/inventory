@@ -1,0 +1,37 @@
+.ac-containers{
+    padding: 20px;
+    font-family: sans-serif;
+    background: #f7f7f7;
+    
+    margin: 0px;
+}
+
+.gray-color{
+    color:#828486;
+}
+
+.ac-path{
+    display: flex;
+    align-items: center;
+    font-size: large;
+    margin-left: 5px;
+}
+
+.ac-name{
+    font-weight: 550;
+}
+
+.ac-details{
+    max-width: 645px;
+    margin: auto;
+    margin-top: 25px;
+    /* margin-bottom: 80px; */
+    padding: 32px;
+    padding: 0px 16px 18px 18px;
+    font-family: 'Segoe UI', sans-serif;
+    background:#FFFFFF;
+    
+    gap: 24px;
+    border: 1px solid #E1E1E1;
+    border-radius: 8px;
+}

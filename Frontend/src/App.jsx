@@ -15,6 +15,7 @@ import ExpiryItemsDashbord from './component/ExpiryItemsDashbord.jsx'
 import Damages from './component/Damages.jsx'
 import Damagesdashbord from './component/Damagesdashbord.jsx'
 import Manageproduct from './component/Manageproduct.jsx'
+import CreatePurchaseOrder from './component/CreatePurchaseOrder.jsx'
 
 function App() {
 
@@ -33,10 +34,13 @@ function App() {
       {/* <ExpiryItemsDashbord/> */}
       {/* <Damages/> */}
       {/* <Damagesdashbord/> */}
+      {/* <Manageproduct/> */}
+      {/* <CreatePurchaseOrder/> */}
 
       
       {/* <AboutProduct/> */}
       {/* <AddCategory/> */}
+      {/* <Track/> */}
       {/* <Manageproduct/> */}
     </>
   )
