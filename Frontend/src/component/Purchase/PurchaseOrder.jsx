@@ -1,6 +1,7 @@
 
 import "../Purchase/PurchaseOrder.css";
 import Order from "../../images/Order.png"
+import { Link } from "react-router-dom";
 const PurchaseOrder = () => {
     return (
         <div className="main">
@@ -17,7 +18,7 @@ const PurchaseOrder = () => {
                     <div className="buttons">
                         <button className="import-btn">Import</button>
                         <button className="import-btn">Export</button>
-                        <button className="add-btn">Create Purchase Order</button>
+                        <Link to="/CreatePurchaseOrder" className="add-btn">Create Purchase Order</Link>
                     </div>
                 </div>
             </div>

@@ -19,6 +19,7 @@ import bag from "../images/bag.jpg";
 import { FaAngleLeft } from "react-icons/fa6";
 import { FaChevronRight } from "react-icons/fa";
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 
 const Dashboard = () => {
@@ -81,14 +82,14 @@ const paginatedData = data.slice(startIndex, endIndex);
             {/* Toolbar */}
             <div className='overview'>
                 <div >
-                    <div className='toolbars' >
+                    <div className='toolbarsa' >
                         <div >
                             <h3>All Products</h3>
                         </div>
                         <div className="toolbar-actions">
                             <button className="btn btn-light">Import</button>
                             <button className="btn btn-light">Export</button>
-                            <button className="btn btn-primary">Add Product</button>
+                            <Link to="/AddProduct" className="btn btn-primary">Add Product</Link>
                         </div>
                     </div>
 
@@ -126,13 +127,15 @@ const paginatedData = data.slice(startIndex, endIndex);
                             {paginatedData.map((product, index) => (
                                 <tr key={index}>
                                     <td><input type="checkbox" /></td>
-                                    <td className="product-cell">
+                                    <td>
+                                        <Link to="/AboutProduct" style={{textDecoration:'none',color:'black'}} >
                                         <img
                                             src={product.image}
                                             alt={product.name}
                                             className="product-img"
                                         />
                                         {product.name}
+                                        </Link>
                                     </td>
                                     <td> <span className={`status ${product.status.toLowerCase()}`}>{product.status}</span></td>
                                     <td>{product.inventory}</td>

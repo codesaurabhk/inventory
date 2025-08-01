@@ -23,7 +23,7 @@
     flex: 1;
     background: white;
 
-    padding-left: 35px;
+    padding-left: 45px;
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.05);
 }
 
@@ -70,11 +70,15 @@
 
 
 /* new */
-.toolbars {
+.toolbarsa {
     display: flex;
     justify-content: space-between;
-    padding: 0px 20px;
-    margin-bottom: -8px;
+    padding: 0px 25px;
+    margin-bottom: 0px;
+    /* background-color: #007bff; */
+}
+.toolbarsa h3{
+    padding-top: 25px;
 }
 
 .toolbar-titles {

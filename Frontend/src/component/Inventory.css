@@ -8,9 +8,9 @@
     font-family: 'Segoe UI', sans-serif;
 }
 
-.upnav {
+.in-upnav {
     display: flex;
-    width: 98%;
+    width: 100%;
     padding: 10px 16px;
     justify-content: center;
     align-items: center;
@@ -27,21 +27,21 @@
     color: #4B4B4B;
 }
 
-.box {
+.in-box {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 16px;
     padding: 32px;
-    width: 96%;
+    width: 100%;
     height: 426px;
     background: #FFF;
     border: 1px solid #E6E6E6;
     border-radius: 8px;
 }
 
-.boxx {
+.in-boxx {
     position: relative;
     width: 100%;
     max-width: 400px;
@@ -105,6 +105,7 @@
     border-radius: 4px;
     cursor: pointer;
     font-size: 14px;
+    text-decoration: none;
 }
 
 .add-btn:hover {

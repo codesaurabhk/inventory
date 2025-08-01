@@ -6,6 +6,7 @@ import { IoIosArrowForward } from "react-icons/io";
 import { FaPlusSquare } from "react-icons/fa";
 import Chair2 from '../images/chair2.png';
 import Chair2r from '../images/chair2r.png';
+import { Link } from 'react-router-dom';
 
 const AddProduct = () => {
     const [product, setProduct] = useState({
@@ -58,22 +59,20 @@ const AddProduct = () => {
         setDescription(value);
     };
 
-    const [productAdded, setProductAdded] = useState(false);
 
     return (
         <div className="add-product-container">
 
             {/* path */}
             <div className='add-product-path'>
-                <span className='gray-color'>Inventory <IoIosArrowForward /></span>
+                <Link to="/Dashboard" style={{textDecoration:'none'}}><span className='gray-color'>Inventory <IoIosArrowForward /></span></Link>
                 <span className='ap-name'>Add Product</span>
             </div>
 
-            {productAdded &&
-            <div style={{marginTop: '20px',width: '100%',border:'1px solid #007B42',backgroundColor:'#BAFFDF',borderRadius:'4px',padding:'3px 5px',maxWidth:'980px',margin:'auto'}}>
+            
+            <div style={{marginTop: '20px',width: '100%',border:'1px solid #007B42',backgroundColor:'#BAFFDF',borderRadius:'4px',padding:'3px 5px',maxWidth:'935px',margin:'auto'}}>
               <span>🎉 Great! You have successfully created a category.</span>
             </div>
-            }
             
             <div className='add-product-wrapper'>
 
@@ -151,8 +150,8 @@ const AddProduct = () => {
             {/* Description & Media */}
 
             <div className="section">
-                {productAdded ? 
-                <>
+                
+                
                 <div style={{borderBottom:'1px solid #D9D9D9',marginBottom: '16px'}}>
                     <span>Description</span>
           
@@ -169,7 +168,7 @@ const AddProduct = () => {
                         <span>Ideal for personal or medical use.</span>
                     </div>
                 </div>
-                </> : <>
+                
                 <div>
                 <span className="section-title">Description & Media</span>
                 <div className="variant-field">
@@ -192,10 +191,7 @@ const AddProduct = () => {
                     />
                 </div>
                 </div>
-                </>}
                 
-                {productAdded ? 
-                <>
                 <div>
                 <label className="section-title">Media</label>
                 <div className='media-box'>
@@ -208,7 +204,7 @@ const AddProduct = () => {
                     </div>
                 </div>
                 </div>
-                </> : <>
+                
                 <div>
                 <label className="section-title">Media</label>
                 <div className="media-box">
@@ -219,7 +215,6 @@ const AddProduct = () => {
                     <small>Supports JPEG, PNG, JPG</small>
                 </div>
                 </div>
-                </>}
 
             </div>
             

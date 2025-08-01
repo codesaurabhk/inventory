@@ -20,6 +20,7 @@ import "./CategoryDashbord.css"
 import { useState } from 'react';
 import { FaAngleLeft } from "react-icons/fa6";
 import { FaChevronRight } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 
 const Dashboard = () => {
@@ -59,7 +60,7 @@ const paginatedData = data.slice(startIndex, endIndex);
                         <div className="toolbar-actions">
                             <button className="btn btn-light">Import</button>
                             <button className="btn btn-light">Export</button>
-                            <button className="btn btn-primary">Add Product</button>
+                            <Link to="/AddCategory" className="btn btn-primary">Add Category</Link>
                         </div>
                     </div>
 
