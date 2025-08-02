@@ -1,6 +1,6 @@
-.main {
+.po-main {
     display: flex;
-    width: 97%;
+    width: 100%;
     padding: 24px;
     flex-direction: column;
     align-items: flex-start;
@@ -8,9 +8,9 @@
     font-family: 'Segoe UI', sans-serif;
 }
 
-.upnav {
+.po-upnav {
     display: flex;
-    width: 98%;
+    width: 100%;
     padding: 10px 16px;
     justify-content: center;
     align-items: center;
@@ -28,21 +28,21 @@
     color: #4B4B4B;
 }
 
-.box {
+.po-box {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 16px;
     padding: 32px;
-    width: 96%;
+    width: 100%;
     height: 426px;
     background: #FFF;
     border: 1px solid #E6E6E6;
     border-radius: 8px;
 }
 
-.boxx {
+.po-boxx {
     position: relative;
     width: 100%;
     max-width: 400px;
@@ -64,19 +64,19 @@
     height: 76.479px;
 }
 
-.content {
+.po-content {
     text-align: center;
     margin-top: 0%;
     margin-left: 5%;
 }
 
-.content h4 {
+.po-content h4 {
     font-size: 16px;
     font-weight: 600;
     margin: 8px 0 4px 0;
 }
 
-.content p {
+.po-content p {
     font-size: 14px;
     color: #6B6B6B;
     margin-bottom: 16px;

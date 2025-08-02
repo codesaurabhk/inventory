@@ -7,6 +7,7 @@ import "react-quill/dist/quill.snow.css";
 import chair2 from "../images/chair2.png";
 import chair3 from "../images/chair3.jpg";
 import { TbArrowsSort } from "react-icons/tb";
+import { Link } from "react-router-dom";
 
 function CreatePurchaseOrder() {
   const [value, setValue] = useState("");
@@ -60,14 +61,12 @@ function CreatePurchaseOrder() {
     }
   };
 
-  const [product, setProduct] = useState(true);
-
   return (
       <div className="ac-containers">
         {/* path */}
         <div className="ac-path">
           <span className="gray-color">
-            Inventory <IoIosArrowForward /> Purchase Order <IoIosArrowForward />
+            Inventory <IoIosArrowForward /> <Link to="/PurchaseDashbord" style={{textDecoration:'none',color:'#828486'}}>Purchase Order</Link> <IoIosArrowForward />
           </span>
           <span className="ac-name">Create Purchase Order</span>
         </div>
@@ -76,13 +75,9 @@ function CreatePurchaseOrder() {
         
         {/* full wrapper */}
 
-        {product ? 
-        <>
-          <div style={{marginTop: '16px',width: '100%',border:'1px solid #007B42',backgroundColor:'#BAFFDF',borderRadius:'4px',padding:'3px 5px',maxWidth:'665px',margin:'auto'}}>
+          <div style={{marginTop: '25px',border:'1px solid #007B42',backgroundColor:'#BAFFDF',borderRadius:'4px',padding:'3px 5px',maxWidth:'645px',margin:'auto'}}>
             <span>🎉 You have successfully placed a purchase order.</span>
           </div>
-        </> : <></>
-        }
 
         <div className="ac-details">
           {/* category */}
@@ -336,7 +331,7 @@ function CreatePurchaseOrder() {
           <div
             style={
               {
-                //   marginTop: '0px',
+                  marginTop: '16px',
                 //   borderTop: '1px solid #E1E1E1',
                 //   paddingTop: '20px'
               }
@@ -394,8 +389,6 @@ function CreatePurchaseOrder() {
           </div>
         </div>
 
-        {product ? 
-        <>
         <div
           style={{
             display: "flex",
@@ -419,7 +412,6 @@ function CreatePurchaseOrder() {
             Done
           </button>
         </div>
-        </> : <>
         <div
           style={{
             display: "flex",
@@ -455,8 +447,6 @@ function CreatePurchaseOrder() {
             Save
           </button>
         </div>
-        </>
-        }
 
       </div>
   );

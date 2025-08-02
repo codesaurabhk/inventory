@@ -12,6 +12,7 @@ import { FaAngleRight } from "react-icons/fa";
 import { useState } from 'react';
 import { FaAngleLeft } from "react-icons/fa6";
 import { FaChevronRight } from "react-icons/fa";
+import Damages from "./Damages";
 
 const Damagesdashbord = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -64,7 +65,8 @@ const paginatedData = data.slice(startIndex, endIndex);
   }, [isFormOpen]);
 
   return (
-    
+    <>
+    <Damages/>
     <div className="dashboard-container">
       <div className="overview">
         <div>
@@ -133,7 +135,7 @@ const paginatedData = data.slice(startIndex, endIndex);
                   <td>
                     <input type="checkbox" />
                   </td>
-                  <td className="product-cell">
+                  <td>
                     <img
                       src={product.image}
                       alt={product.name}
@@ -201,8 +203,9 @@ const paginatedData = data.slice(startIndex, endIndex);
             display: 'flex',
             justifyContent: 'center',
             zIndex: '10',
+            overflowY: 'auto',
           }}>
-            <div ref={formRef} style={{width:'646px',margin:'auto',marginTop:'80px',backgroundColor:'white',border:'1px solid #E1E1E1',borderRadius:'8px',padding:'10px 16px'}}>
+            <div ref={formRef} style={{width:'646px',height:'780px',margin:'auto',marginTop:'80px',marginBottom:'80px',backgroundColor:'white',border:'1px solid #E1E1E1',borderRadius:'8px',padding:'10px 16px'}}>
 
               <div style={{marginTop: '16px',border:'1px solid #007B42',backgroundColor:'#BAFFDF',borderRadius:'4px',padding:'3px 15px'}}>
             <span>This item has been returned successfully.</span>
@@ -244,6 +247,11 @@ const paginatedData = data.slice(startIndex, endIndex);
                     <br/>
                     <span style={{color:'#676767'}}>Makeup & Beauty</span>
                 </div>
+                <div>
+                    <span>Brand</span>
+                    <br/>
+                    <span style={{color:'#676767'}}>ABC</span>
+                </div>
             </div>
         </div>
 
@@ -254,7 +262,7 @@ const paginatedData = data.slice(startIndex, endIndex);
         <div>
             <div style={{display:'flex',gap:'16px'}}>
                 <div>
-                    <div style={{color:' #1368EC',marginLeft:'13px',fontSize:'10px',border:'5px solid rgb(222, 231, 246)',borderRadius:'50%',padding:'2px 6px',backgroundColor:'#1368EC'}}>•</div>
+                    <div style={{color:' #1368EC',marginLeft:'13px',fontSize:'7px',border:'5px solid rgb(222, 231, 246)',borderRadius:'50%',padding:'2px 6px',backgroundColor:'#1368EC'}}>•</div>
                     <div style={{borderLeft:'2px solid #CCDEFA',height:'64px',width:'1px',marginLeft:'25px',marginTop:'0px'}}></div>
                 </div>
                 <div>
@@ -265,7 +273,7 @@ const paginatedData = data.slice(startIndex, endIndex);
             </div>
             <div style={{display:'flex',gap:'16px'}}>
                 <div>
-                    <div style={{color:' #1368EC',marginLeft:'13px',fontSize:'10px',border:'5px solid rgb(222, 231, 246)',borderRadius:'50%',padding:'2px 6px',backgroundColor:'#1368EC'}}>•</div>
+                    <div style={{color:' #1368EC',marginLeft:'13px',fontSize:'7px',border:'5px solid rgb(222, 231, 246)',borderRadius:'50%',padding:'2px 6px',backgroundColor:'#1368EC'}}>•</div>
                     <div style={{borderLeft:'2px solid #CCDEFA',height:'64px',width:'1px',marginLeft:'25px',marginTop:'0px'}}></div>
                 </div>
                 <div>
@@ -276,7 +284,7 @@ const paginatedData = data.slice(startIndex, endIndex);
             </div>
             <div style={{display:'flex',gap:'16px'}}>
                 <div>
-                    <div style={{color:' #1368EC',marginLeft:'13px',fontSize:'10px',border:'5px solid rgb(222, 231, 246)',borderRadius:'50%',padding:'2px 6px',backgroundColor:'#1368EC'}}>•</div>
+                    <div style={{color:' #1368EC',marginLeft:'13px',fontSize:'7px',border:'5px solid rgb(222, 231, 246)',borderRadius:'50%',padding:'2px 6px',backgroundColor:'#1368EC'}}>•</div>
                     <div style={{borderLeft:'2px solid #CCDEFA',height:'64px',width:'1px',marginLeft:'25px',marginTop:'0px'}}></div>
                 </div>
                 <div>
@@ -287,7 +295,7 @@ const paginatedData = data.slice(startIndex, endIndex);
             </div>
             <div style={{display:'flex',gap:'16px'}}>
                 <div>
-                    <div style={{color:' #1368EC',marginLeft:'13px',fontSize:'10px',border:'5px solid rgb(222, 231, 246)',borderRadius:'50%',padding:'2px 6px',backgroundColor:'#1368EC'}}>•</div>
+                    <div style={{color:' #1368EC',marginLeft:'13px',fontSize:'7px',border:'5px solid rgb(222, 231, 246)',borderRadius:'50%',padding:'2px 6px',backgroundColor:'#1368EC'}}>•</div>
                     <div style={{borderLeft:'2px solid #CCDEFA',height:'64px',width:'1px',marginLeft:'25px',marginTop:'0px'}}></div>
                 </div>
                 <div>
@@ -300,7 +308,7 @@ const paginatedData = data.slice(startIndex, endIndex);
             </div>
             <div style={{display:'flex',gap:'16px'}}>
                 <div>
-                    <div style={{color:' #1368EC',marginLeft:'13px',fontSize:'10px',border:'5px solid rgb(222, 231, 246)',borderRadius:'50%',padding:'2px 6px',backgroundColor:'#1368EC'}}>•</div>
+                    <div style={{color:' #1368EC',marginLeft:'13px',fontSize:'7px',border:'5px solid rgb(222, 231, 246)',borderRadius:'50%',padding:'2px 6px',backgroundColor:'#1368EC'}}>•</div>
                 </div>
                 <div>
                     <span>Refund Successful</span>
@@ -313,6 +321,7 @@ const paginatedData = data.slice(startIndex, endIndex);
         </div>
       )}
     </div>
+    </>
   );
 };
 

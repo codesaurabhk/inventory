@@ -21,6 +21,7 @@ import { useState } from 'react';
 import { FaAngleLeft } from "react-icons/fa6";
 import { FaChevronRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import Category from "./Category";
 
 
 const Dashboard = () => {
@@ -50,12 +51,16 @@ const paginatedData = data.slice(startIndex, endIndex);
 
 
     return (
+        <>
+        <Category/>
         <div className="dashboard-container">
             <div className='overview'>
                 <div >
                     <div className='toolbars' >
-                        <div className="right">
-                            <span style={{color:"#676767", fontWeight:"600"}}>Inventory</span>  <span style={{color:"#676767"}} ><FaAngleRight style={{marginTop:"4px"}} /></span> <span>Category</span>
+                        <div className="right" style={{ display: "flex", alignItems: "center"}}>
+                            <span style={{color:"#676767", fontWeight:"600"}}>Inventory</span> 
+                            <span style={{color:"#676767"}} ><FaAngleRight/></span>
+                            <span>Category</span>
                         </div>
                         <div className="toolbar-actions">
                             <button className="btn btn-light">Import</button>
@@ -101,7 +106,7 @@ const paginatedData = data.slice(startIndex, endIndex);
                             {paginatedData.map((product, index) => (
                                 <tr key={index}>
                                     <td><input type="checkbox" /></td>
-                                    <td className="product-cell">
+                                    <td>
                                         <img
                                             src={product.image}
                                             alt={product.name}
@@ -143,6 +148,7 @@ const paginatedData = data.slice(startIndex, endIndex);
                 </div>
             </div>
         </div >
+        </>
     );
 };
 

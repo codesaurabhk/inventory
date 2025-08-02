@@ -49,7 +49,7 @@ function First() {
               <li
                 className={`sidebar-list-all ${activeItem === "SupplierHistory" ? "active" : ""}`}
               >
-               <Link to="/PurchaseOrder" className="link">Purchase Order</Link>
+               <Link to="/PurchaseDashbord" className="link">Purchase Order</Link>
               </li>
               <li
                 className={`sidebar-list-all ${activeItem === "SupplierHistory" ? "active" : ""}`}

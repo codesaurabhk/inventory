@@ -8,7 +8,7 @@ import Dashboard from './Dashboard';
 const Inventory = () => {
     return (
         <>
-        <div className="main">
+        <div className="in-main">
             <div className="in-upnav">
                 You currently have no inventory. <Link to="/AddProduct" className="link"><u>Add products</u></Link> to start managing your stock.
             </div>

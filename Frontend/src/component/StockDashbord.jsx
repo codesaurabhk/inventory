@@ -22,6 +22,7 @@ import { FaAngleRight } from "react-icons/fa";
 import { useState } from 'react';
 import { FaAngleLeft } from "react-icons/fa6";
 import { FaChevronRight } from "react-icons/fa";
+import Stocks from './Stocks';
 
 const StockDashbord = () => {
     const [currentPage, setCurrentPage] = useState(1);
@@ -49,6 +50,8 @@ const paginatedData = data.slice(startIndex, endIndex);
 
 
     return (
+        <>
+        <Stocks/>
         <div className="dashboard-container">
             <div className='overview'>
                 <div >
@@ -101,7 +104,7 @@ const paginatedData = data.slice(startIndex, endIndex);
                             {paginatedData.map((product, index) => (
                                 <tr key={index}>
                                     <td><input type="checkbox" /></td>
-                                    <td className="product-cell">
+                                    <td>
                                         <img
                                             src={product.image}
                                             alt={product.name}
@@ -145,6 +148,7 @@ const paginatedData = data.slice(startIndex, endIndex);
                 </div>
             </div>
         </div >
+        </>
     );
 };
 

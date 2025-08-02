@@ -70,7 +70,7 @@ const AddProduct = () => {
             </div>
 
             
-            <div style={{marginTop: '20px',width: '100%',border:'1px solid #007B42',backgroundColor:'#BAFFDF',borderRadius:'4px',padding:'3px 5px',maxWidth:'935px',margin:'auto'}}>
+            <div style={{marginTop: '20px',width: '100%',border:'1px solid #007B42',backgroundColor:'#BAFFDF',borderRadius:'4px',padding:'3px 5px',maxWidth:'930px',margin:'auto'}}>
               <span>🎉 Great! You have successfully created a category.</span>
             </div>
             
@@ -79,16 +79,16 @@ const AddProduct = () => {
             {/* Product Info */}
             <div className="section">
                 <label>Product Name</label>
-                <input type="text" name="name" placeholder="Product name" onChange={handleChange} />
+                <input type="text" name="name" placeholder="Product name" onChange={handleChange} style={{color:'#F1F1F1',backgroundColor:'#F1F1F1'}} />
 
                 <div className="row-2">
                     <div>
                         <label>SKU</label>
-                        <input type="text" name="sku" placeholder="SKU No" onChange={handleChange} />
+                        <input type="text" name="sku" placeholder="SKU No" onChange={handleChange} style={{color:'#F1F1F1',backgroundColor:'#F1F1F1'}} />
                     </div>
                     <div>
                         <label>Quantity</label>
-                        <input type="number" name="quantity" placeholder="21" onChange={handleChange} />
+                        <input type="number" name="quantity" placeholder="21" onChange={handleChange} style={{color:'#F1F1F1',backgroundColor:'#F1F1F1'}} />
                     </div>
                 </div>
 
@@ -96,6 +96,19 @@ const AddProduct = () => {
                 <select name="category" onChange={handleChange}>
                     <option>Select a product category</option>
                 </select>
+                
+                <label>Sub Category</label>
+                <select name="category" onChange={handleChange}>
+                    <option>Select a product sub category</option>
+                </select>
+                
+                <label>Brand</label>
+                <select name="category" onChange={handleChange}>
+                    <option>Select a product category</option>
+                </select>
+
+                <br/>
+                <span>This Product have :-</span>
 
                 <div className="checkbox-group">
                     <label><input type="checkbox" name="serial" onChange={handleChange} /> Serial number</label>
@@ -151,24 +164,6 @@ const AddProduct = () => {
 
             <div className="section">
                 
-                
-                <div style={{borderBottom:'1px solid #D9D9D9',marginBottom: '16px'}}>
-                    <span>Description</span>
-          
-                    <div style={{padding: '16px',backgroundColor: '#f8f9fa',borderRadius: '8px',marginBottom: '24px', marginTop:'8px', fontSize:'14px', }} className='gray-color'>
-                        <span>Key Features</span>
-                        <ul>
-                            <li>Foldable & Portable</li>
-                            <li>Confortable Padded Seat</li>
-                            <li>Detachable Footrests</li>
-                            <li>Strong, lightweight build</li>
-                            <li>Support upto 100 Kg</li>
-                        </ul>
-                        <br/>
-                        <span>Ideal for personal or medical use.</span>
-                    </div>
-                </div>
-                
                 <div>
                 <span className="section-title">Description & Media</span>
                 <div className="variant-field">
@@ -190,6 +185,23 @@ const AddProduct = () => {
                         }}
                     />
                 </div>
+                </div>
+                
+                <div style={{borderBottom:'1px solid #D9D9D9',marginBottom: '16px'}}>
+                    <span>Description</span>
+          
+                    <div style={{padding: '16px',backgroundColor: '#f8f9fa',borderRadius: '8px',marginBottom: '24px', marginTop:'8px', fontSize:'14px', }} className='gray-color'>
+                        <span>Key Features</span>
+                        <ul>
+                            <li>Foldable & Portable</li>
+                            <li>Confortable Padded Seat</li>
+                            <li>Detachable Footrests</li>
+                            <li>Strong, lightweight build</li>
+                            <li>Support upto 100 Kg</li>
+                        </ul>
+                        <br/>
+                        <span>Ideal for personal or medical use.</span>
+                    </div>
                 </div>
                 
                 <div>

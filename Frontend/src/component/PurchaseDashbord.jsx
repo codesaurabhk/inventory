@@ -8,6 +8,8 @@ import { useState } from 'react';
 import { FaAngleLeft } from "react-icons/fa6";
 import { FaChevronRight } from "react-icons/fa";
 import { IoIosArrowRoundForward, } from "react-icons/io";
+import { Link } from 'react-router-dom';
+import PurchaseOrder from './PurchaseOrder';
 
 const PurchaseDashbord = () => {
 
@@ -47,6 +49,8 @@ const paginatedData = data.slice(startIndex, endIndex);
   }, [isFormOpen]);
 
     return (
+        <>
+        <PurchaseOrder/>
         <div className="dashboard-container">
             <div className='overview'>
                 <div >
@@ -57,6 +61,7 @@ const paginatedData = data.slice(startIndex, endIndex);
                         <div className="toolbar-actions">
                             <button className="btn btn-light">Import</button>
                             <button className="btn btn-light">Export</button>
+                            <Link to="/CreatePurchaseOrder" className="btn btn-primary">Create Purchase Order</Link>
                         </div>
                     </div>
 
@@ -92,7 +97,7 @@ const paginatedData = data.slice(startIndex, endIndex);
                             {paginatedData.map((product, index) => (
                                 <tr key={index} onClick={openForm}>
                                     <td><input type="checkbox" /></td>
-                                    <td className="product-cell">
+                                    <td>
                                        
                                         {product.name}
                                     </td>
@@ -144,17 +149,18 @@ const paginatedData = data.slice(startIndex, endIndex);
             display: 'flex',
             justifyContent: 'center',
             zIndex: '10',
+            overflowY: 'auto',
           }}>
-            <div ref={formRef} style={{width:'646px',margin:'auto',marginTop:'80px',backgroundColor:'white',border:'1px solid #E1E1E1',borderRadius:'8px',padding:'10px 16px'}}>
+            <div ref={formRef} style={{width:'646px',height:'820px',margin:'auto',marginTop:'80px',marginBottom:'80px',backgroundColor:'white',border:'1px solid #E1E1E1',borderRadius:'8px',padding:'10px 16px'}}>
                 
                 <div style={{display:'flex',justifyContent:'space-between',gap:'8px',marginTop:'16px'}}>
                     <div>
-                        <span>Supplier</span>
+                        <span style={{fontWeight:'600'}}>Supplier</span>
                         <br/>
                         <span style={{color:'#676767'}}>Reliance - Mumbai</span>
                     </div>
                     <div>
-                        <span>Destination</span>
+                        <span style={{fontWeight:'600'}}>Destination</span>
                         <br/>
                         <span style={{color:'#676767'}}>WH-009</span>
                     </div>
@@ -163,22 +169,34 @@ const paginatedData = data.slice(startIndex, endIndex);
 
                 <div style={{display:'flex',justifyContent:'space-between',gap:'8px',marginTop:'16px'}}>
                     <div>
-                        <span>SKU</span>
+                        <span style={{fontWeight:'600'}}>SKU</span>
                         <br/>
                         <span style={{color:'#676767'}}>Wheel Chair</span>
                     </div>
                     <div>
-                        <span>Quantity</span>
+                        <span style={{fontWeight:'600'}}>Quantity</span>
                         <br/>
                         <span style={{color:'#676767'}}>09</span>
                     </div><div>
-                        <span>Serial no.</span>
+                        <span style={{fontWeight:'600'}}>Serial no.</span>
                         <br/>
                         <span style={{color:'#676767'}}>0089</span>
                     </div><div>
-                        <span>Category</span>
+                        <span style={{fontWeight:'600'}}>Category</span>
                         <br/>
                         <span style={{color:'#676767'}}>Chair</span>
+                    </div><div>
+                        <span style={{fontWeight:'600'}}>Sub Category</span>
+                        <br/>
+                        <span style={{color:'#676767'}}>Wheel Chair</span>
+                    </div>
+                </div>
+
+                <div style={{display:'flex',justifyContent:'space-between',gap:'8px',marginTop:'16px'}}>
+                    <div>
+                        <span style={{fontWeight:'600'}}>Brand</span>
+                        <br/>
+                        <span style={{color:'#676767'}}>ABC</span>
                     </div>
                 </div>
 
@@ -210,7 +228,7 @@ const paginatedData = data.slice(startIndex, endIndex);
                 </div>
 
                 <div style={{marginTop:'32px'}}>
-                    <span>Payment Information & Financial Details</span>
+                    <span style={{fontWeight:'600'}}>Payment Information & Financial Details</span>
                     <div style={{marginTop:'8px',display:'flex',justifyContent:'space-between',gap:'16px'}}>
                         <div style={{width:'100%'}}>
                             <span>Payments Terms</span>
@@ -284,6 +302,7 @@ const paginatedData = data.slice(startIndex, endIndex);
         </div>
       )}
         </div >
+        </>
     );
 };
 

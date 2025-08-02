@@ -1,6 +1,6 @@
-.main {
+.in-main {
     display: flex;
-    width: 97%;
+    width: 100%;
     padding: 24px;
     flex-direction: column;
     align-items: flex-start;
@@ -63,19 +63,19 @@
     height: 76.479px;
 }
 
-.content {
+.in-content {
     text-align: center;
     margin-top: 5%;
     margin-left: 5%;
 }
 
-.content h4 {
+.in-content h4 {
     font-size: 16px;
     font-weight: 600;
     margin: 8px 0 4px 0;
 }
 
-.content p {
+.in-content p {
     font-size: 14px;
     color: #6B6B6B;
     margin-bottom: 16px;

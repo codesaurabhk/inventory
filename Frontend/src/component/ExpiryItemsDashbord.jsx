@@ -21,6 +21,7 @@ import { FaAngleRight } from "react-icons/fa";
 import { useState } from 'react';
 import { FaAngleLeft } from "react-icons/fa6";
 import { FaChevronRight } from "react-icons/fa";
+import ExpiryItems from "./ExpiryItems";
 
 const ExpiryItemsDashbord = () => {
 
@@ -52,6 +53,8 @@ const paginatedData = data.slice(startIndex, endIndex);
 
 
   return (
+    <>
+    <ExpiryItems/>
     <div className="dashboard-container">
       <div className="overview">
         <div>
@@ -117,7 +120,7 @@ const paginatedData = data.slice(startIndex, endIndex);
                   <td>
                     <input type="checkbox" />
                   </td>
-                  <td className="product-cell">
+                  <td>
                     <img
                       src={product.image}
                       alt={product.name}
@@ -170,6 +173,7 @@ const paginatedData = data.slice(startIndex, endIndex);
         </div>
       </div>
     </div>
+    </>
   );
 };
 

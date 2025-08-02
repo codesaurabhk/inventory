@@ -8,16 +8,16 @@ import icons from "../images/sandclock.png"
 
 const ExpiryItems = () => {
     return (
-        <div className="main">
-            <div className="upnav">
+        <div className="ex-main">
+            <div className="ex-upnav">
                 Your inventory has no expired items at the moment.
             </div>
-            <div className="box">
-                <div className="boxx">
+            <div className="ex-box">
+                <div className="ex-boxx">
                     <img src={icons} alt="img" className='group1' />
                     
                 </div>
-                <div className="content">
+                <div className="ex-content">
                     <p style={{fontSize:"large"}}>Moniter Expired Items.</p>
                     <p style={{color:"#676767"}}> Track all your expired products here within your inventory</p>
                     {/* <div className="buttons">

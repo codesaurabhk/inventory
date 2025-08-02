@@ -1,7 +1,7 @@
 
-.main {
+.st-main {
     display: flex;
-    width: 97%;
+    width: 100%;
     padding: 24px;
     flex-direction: column;
     align-items: flex-start;
@@ -9,9 +9,9 @@
     font-family: 'Segoe UI', sans-serif;
 }
 
-.upnav {
+.st-upnav {
     display: flex;
-    width: 98%;
+    width: 100%;
     padding: 10px 16px;
     justify-content: center;
     align-items: center;
@@ -27,21 +27,21 @@
     color: #4B4B4B;
 }
 
-.box {
+.st-box {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 16px;
     padding: 32px;
-    width: 96%;
+    width: 100%;
     height: 426px;
     background: #FFF;
     border: 1px solid #E6E6E6;
     border-radius: 8px;
 }
 
-.boxx {
+.st-boxx {
     position: relative;
     width: 100%;
     max-width: 400px;
@@ -66,7 +66,7 @@
     height: 76.479px;
 }
 
-.content {
+.st-content {
     text-align: center;
     margin-top: 0%;
     margin-left: 5%;
@@ -74,7 +74,7 @@
 
 
 
-.content p {
+.st-content p {
     font-size: 14px;
     color: black;
     margin-bottom: 16px;

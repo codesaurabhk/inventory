@@ -1,18 +1,18 @@
 
-import "../Purchase/PurchaseOrder.css";
-import Order from "../../images/Order.png"
+import "./PurchaseOrder.css";
+import Order from "../images/Order.png"
 import { Link } from "react-router-dom";
 const PurchaseOrder = () => {
     return (
-        <div className="main">
-            <div className="upnav">
+        <div className="po-main">
+            <div className="po-upnav">
                 You haven't cretaed any <a href="#" className="link">purchase orders</a> yet. Start by placing your first one.
             </div>
-            <div className="box">
-                <div className="boxx">
+            <div className="po-box">
+                <div className="po-boxx">
                     <img src={Order}  alt="Background" className="group1" />
                 </div>
-                <div className="content">
+                <div className="po-content">
                     <h4>Monitor Purchase Orders</h4>
                     <p>Easily track every order you've placed and received from  suppliers.</p>
                     <div className="buttons">

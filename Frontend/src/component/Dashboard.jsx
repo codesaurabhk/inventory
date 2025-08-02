@@ -20,14 +20,12 @@ import { FaAngleLeft } from "react-icons/fa6";
 import { FaChevronRight } from "react-icons/fa";
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Inventory from './Inventory';
 
 
 const Dashboard = () => {
-    const [currentPage, setCurrentPage] = useState(1);
+const [currentPage, setCurrentPage] = useState(1);
 const itemsPerPage = 5; 
-
-
-
 
     const data = [
         { name: 'Chair', status: 'Active', inventory: '3 Pieces • 2 Variants', category: 'Office Chair', stored: 'Warehouse 01', image: chair },
@@ -42,19 +40,21 @@ const itemsPerPage = 5;
         { name: 'Gaming Mouse', status: 'Active', inventory: '30 Pieces • 5 Variants', category: 'T-Shirt', stored: 'WH-04', image: mouse }
     ];
 
-    const totalItems = data.length;
+const totalItems = data.length;
 const totalPages = Math.ceil(totalItems / itemsPerPage);
 const startIndex = (currentPage - 1) * itemsPerPage;
 const endIndex = startIndex + itemsPerPage;
 const paginatedData = data.slice(startIndex, endIndex);
 
     return (
+        <>
+        <Inventory/>
         <div className="dashboard-container">
             {/* Top Section */}
             <div className="top-section">
                 {/* Metrics */}
                 <div className="dashboard-metrics">
-                    <div className="metric-card" style={{ borderTopLeftRadius: "10px", borderEndStartRadius: "10px" }}>
+                    <div className="metric-card" style={{ borderTopLeftRadius: "10px", borderEndStartRadius: "10px",padding:'15px' }}>
                         <div className="metric-icon"><FaSackDollar /></div>
                         <div>
                             <p className="metric-title">Total Stock Value</p>
@@ -106,9 +106,6 @@ const paginatedData = data.slice(startIndex, endIndex);
                         </div>
                     </div>
                 </div>
-
-
-
 
                 {/* Product Table */}
                 <div>
@@ -172,6 +169,7 @@ const paginatedData = data.slice(startIndex, endIndex);
                 </div>
             </div>
         </div >
+        </>
     );
 };
 

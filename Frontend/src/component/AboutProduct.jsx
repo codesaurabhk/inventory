@@ -4,6 +4,7 @@ import { IoIosArrowForward, IoIosArrowRoundForward, } from "react-icons/io";
 import { FaPlusSquare } from "react-icons/fa";
 import Chair2 from '../images/chair2.png';
 import Chair2r from '../images/chair2r.png';
+import { Link } from 'react-router-dom';
 
 function AboutProduct() {
   return (
@@ -11,7 +12,7 @@ function AboutProduct() {
 
       {/* path */}
       <div className='ap-path'>
-        <span className='gray-color'>Inventory <IoIosArrowForward /> All Product <IoIosArrowForward /></span>
+        <span className='gray-color'>Inventory <IoIosArrowForward /> <Link to="/Dashboard" style={{textDecoration:'none', color:'#828486'}}>All Products</Link> <IoIosArrowForward /></span>
         <span className='ap-name'>Product Name</span>
       </div>
 
@@ -30,7 +31,7 @@ function AboutProduct() {
             <span className='gray-color'>Wheel Chair</span>
             <br/>
             <br/>
-            <div style={{display: 'flex', gap: '24px',justifyContent: 'space-between'}}>
+            <div style={{display: 'flex', gap: '6px',justifyContent: 'space-between'}}>
               <div>
                 <span>SKU</span>
                 <br/>
@@ -52,9 +53,22 @@ function AboutProduct() {
                 <span className='gray-color'>Chair</span>
               </div>
               <div>
+                <span>Sub Category</span>
+                <br/>
+                <span className='gray-color'>Wheel Chair</span>
+              </div>
+              <div>
                 <span>HSN/SAC</span>
                 <br/>
                 <span className='gray-color'>9854</span>
+              </div>
+            </div>
+            
+            <div style={{display: 'flex', gap: '24px',justifyContent: 'space-between'}}>
+              <div>
+                <span>Brand</span>
+                <br/>
+                <span className='gray-color'>ABC Chair Company</span>
               </div>
             </div>
           </div>

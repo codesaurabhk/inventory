@@ -6,6 +6,7 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import chair2 from '../images/chair2.png';
 import chair3 from '../images/chair3.jpg';
+import { Link } from 'react-router-dom';
 
 function AddCategory() {
     
@@ -56,14 +57,12 @@ function AddCategory() {
     }
   };
 
-  const [product, setProduct] = useState('');
-
   return (
     <div className='ac-container'>
     
           {/* path */}
           <div className='ac-path'>
-            <span className='gray-color'>Inventory <IoIosArrowForward /> Category <IoIosArrowForward /></span>
+            <span className='gray-color'>Inventory <IoIosArrowForward /> <Link to="/CategoryDashbord" style={{textDecoration:'none',color:'#828486'}}>Category</Link> <IoIosArrowForward /></span>
             <span className='ac-name'>Add Category</span>
           </div>
           
@@ -72,11 +71,10 @@ function AddCategory() {
           <div className='ac-details'>
 
           {/* added successfully message */}
-          {product &&
+          
             <div style={{marginTop: '16px',width: '98%',border:'1px solid #007B42',backgroundColor:'#BAFFDF',borderRadius:'4px',padding:'3px 5px'}}>
               <span>🎉 Great! You have successfully created a category.</span>
             </div>
-          }
 
             {/* category */}
             <div style={{marginTop: '16px',width: '100%'}}>
@@ -85,6 +83,26 @@ function AddCategory() {
                 <select style={{width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #C2C2C2', fontSize: '16px',marginTop: '5px',backgroundColor: '#FBFBFB',color: '#C2C2C2'}}>
                     <option value="" style={{color:'#C2C2C2'}}>Select Category</option>
                     <option value="chair" style={{color:'#C2C2C2'}}>Chair</option>
+                </select>
+            </div>
+            
+            {/* sub category */}
+            <div style={{marginTop: '16px',width: '100%'}}>
+                <span>Sub Category</span>
+                <br/>
+                <select style={{width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #C2C2C2', fontSize: '16px',marginTop: '5px',backgroundColor: '#FBFBFB',color: '#C2C2C2'}}>
+                    <option value="" style={{color:'#C2C2C2'}}>Select Sub Category</option>
+                    <option value="chair" style={{color:'#C2C2C2'}}>Wheel Chair</option>
+                </select>
+            </div>
+            
+            {/* brand */}
+            <div style={{marginTop: '16px',width: '100%'}}>
+                <span>Brand</span>
+                <br/>
+                <select style={{width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #C2C2C2', fontSize: '16px',marginTop: '5px',backgroundColor: '#FBFBFB',color: '#C2C2C2'}}>
+                    <option value="" style={{color:'#C2C2C2'}}>Select Brand</option>
+                    <option value="chair" style={{color:'#C2C2C2'}}>ABC Wheel Chair Company</option>
                 </select>
             </div>
 
@@ -98,7 +116,7 @@ function AddCategory() {
             </div>
 
             {/* products */}
-            <div style={{marginTop: '50px',width: '100%'}}>
+            <div style={{marginTop: '80px',width: '100%'}}>
                 
                 <span>Products</span>
                 <br/>
@@ -146,8 +164,6 @@ function AddCategory() {
                 </div>
 
                 {/* when there is no product*/}
-                {product ? 
-                <>
                 <div style={{borderRadius: '8px', overflow: 'hidden', marginBottom: '16px',border:'1px solid #E1E1E1',marginTop:'15px'}}>
                   <table style={{width: '100%', borderCollapse: 'collapse',borderRadius: '8px', overflow: 'hidden',fontSize: '14px'}}>
                     <thead style={{backgroundColor: '#E6E6E6', borderRadius: '8px',borderCollapse: 'collapse'}}>
@@ -174,9 +190,6 @@ function AddCategory() {
                 <div style={{display: 'flex', justifyContent: 'end', marginTop: '16px'}}>
                     <span style={{border:'1px solid black',backgroundColor:'black',padding:'5px 8px',color:'white',borderRadius:'5px'}}>Save</span>
                 </div>
-                </>
-                : 
-                <>
                 <div style={{textAlign:'center',border: '1px solid #C2C2C2', borderRadius: '4px', padding: '32px 16px', backgroundColor: '#FBFBFB', color: '#C2C2C2', cursor: 'pointer',marginTop: '15px'}}>
                     <AiFillProduct style={{fontSize: '50px', marginBottom: '10px'}} />
                     <br/>
@@ -187,8 +200,6 @@ function AddCategory() {
                 <div style={{display: 'flex', justifyContent: 'end', marginTop: '16px'}}>
                     <span style={{border:'1px solid black',backgroundColor:'black',padding:'5px 8px',color:'white',borderRadius:'5px'}}>Done</span>
                 </div>
-                </>
-                }
                         
                 {/* save button */}
 

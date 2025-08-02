@@ -1,6 +1,7 @@
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+
 import First from './First.jsx';
 
 import Inventory from './component/Inventory.jsx'
@@ -11,8 +12,8 @@ import AddProduct from './component/AddProduct'
 import Category from './component/Category.jsx';
 import CategoryDashbord from './component/CategoryDashbord.jsx'
 
-import PurchaseOrder from './component/Purchase/PurchaseOrder.jsx'
-import PurchaseDashbord from './component/Purchase/PurchaseDashbord.jsx'
+import PurchaseOrder from './component/PurchaseOrder.jsx'
+import PurchaseDashbord from './component/PurchaseDashbord.jsx'
 
 import Stocks from './component/Stocks.jsx'
 import StockDashbord from "./component/StockDashbord.jsx";
