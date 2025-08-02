@@ -4,31 +4,31 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 import First from './First.jsx';
 
-import Inventory from './component/Inventory.jsx'
+import Inventory from './component/inventory/Inventory.jsx'
 
-import Dashboard from './component/Dashboard'
-import AddProduct from './component/AddProduct'
+import Dashboard from './component/inventory/Dashboard'
+import AddProduct from './component/inventory/AddProduct'
 
-import Category from './component/Category.jsx';
-import CategoryDashbord from './component/CategoryDashbord.jsx'
+import Category from './component/inventory/Category.jsx';
+import CategoryDashbord from './component/inventory/CategoryDashbord.jsx'
 
-import PurchaseOrder from './component/PurchaseOrder.jsx'
-import PurchaseDashbord from './component/PurchaseDashbord.jsx'
+import PurchaseOrder from './component/inventory/PurchaseOrder.jsx'
+import PurchaseDashbord from './component/inventory/PurchaseDashbord.jsx'
 
-import Stocks from './component/Stocks.jsx'
-import StockDashbord from "./component/StockDashbord.jsx";
+import Stocks from './component/inventory/Stocks.jsx'
+import StockDashbord from "./component/inventory/StockDashbord.jsx";
 
-import ExpiryItems from './component/ExpiryItems.jsx'
-import ExpiryItemsDashbord from './component/ExpiryItemsDashbord.jsx'
+import ExpiryItems from './component/inventory/ExpiryItems.jsx'
+import ExpiryItemsDashbord from './component/inventory/ExpiryItemsDashbord.jsx'
 
-import Damages from './component/Damages.jsx'
-import Damagesdashbord from './component/Damagesdashbord.jsx'
+import Damages from './component/inventory/Damages.jsx'
+import Damagesdashbord from './component/inventory/Damagesdashbord.jsx'
 
-import AboutProduct from './component/AboutProduct'
-import AddCategory from './component/AddCategory'
-import CreatePurchaseOrder from './component/CreatePurchaseOrder.jsx'
+import AboutProduct from './component/inventory/AboutProduct'
+import AddCategory from './component/inventory/AddCategory'
+import CreatePurchaseOrder from './component/inventory/CreatePurchaseOrder.jsx'
 
-import Manageproduct from './component/Manageproduct.jsx'
+import Manageproduct from './component/inventory/Manageproduct.jsx'
 
 const router = createBrowserRouter([
   {
