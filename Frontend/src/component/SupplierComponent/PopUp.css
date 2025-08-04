@@ -1,0 +1,142 @@
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  width: 95%;
+  max-width: 800px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+  font-family: "Inter", sans-serif;
+  color: #262626;
+}
+
+.popup-top-bar {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.status-btn.stock-in {
+  background-color: #28c76f;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.status-select {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.popup-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.popup-section {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.popup-table-container {
+  overflow-x: auto;
+  margin-bottom: 20px;
+  border: 1px solid #e6e6e6;
+  border-radius: 8px;
+}
+
+.popup-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.popup-table th,
+.popup-table td {
+  padding: 10px;
+  text-align: left;
+  font-size: 14px;
+}
+.popup-summary-table {
+  font-size: 14px;
+  margin-bottom: 5px;
+  padding: 0; /* no inner padding */
+  border-top: 1px solid #e6e6e6;
+  width: 100%;
+}
+
+.popup-summary-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.popup-summary-table td {
+  padding: 10px 15px;
+  text-align: right;
+}
+
+.popup-summary-table td:first-child {
+  text-align: right;
+}
+
+.border-top-row td {
+  border-top: 1px solid #e6e6e6;
+}
+
+.summary-total-row td {
+  font-weight: bold;
+}
+
+.popup-other-info {
+  background-color: white;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  margin-bottom: 20px;
+  border: 1px solid #e6e6e6;
+  margin-top: 20px;
+}
+
+.other-info-heading {
+  font-weight: 600;
+  color: #262626;
+  margin-bottom: 12px;
+}
+
+.popup-footer-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.popup-footer {
+  flex: 1;
+}
+
+.info-box {
+  margin-top: 5px;
+  border: 1px solid #e6e6e6;
+  padding: 8px 12px;
+  border-radius: 6px;
+  background-color: #ffffff;
+  color: #262626;
+}

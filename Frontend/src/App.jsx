@@ -24,6 +24,15 @@ import AddCategory from './component/inventory/AddCategory'
 import CreatePurchaseOrder from './component/inventory/CreatePurchaseOrder.jsx'
 import Manageproduct from './component/inventory/Manageproduct.jsx'
 
+import AddSupplier from "./component/SupplierComponent/AddSupplier";
+import AllSupplier from "./component/SupplierComponent/AllSuppliers";
+import SupplierHistory from "./component/SupplierComponent/SupplierHistory";
+import AddCustomer from "./component/CustomerComponent/AddCustomer";
+import AllCustomer from "./component/CustomerComponent/AllCustomers";
+
+import AllWarehouse from './component/Warehouse/AllWarehouse.jsx';
+import StockInOutHistory from './component/Warehouse/StockInOutHistory.jsx'
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -104,6 +113,34 @@ const router = createBrowserRouter([
       {
         path:'/AddCategory',
         element:<AddCategory/>
+      },
+      {
+        path: "/AllSupplier",
+        element: <AllSupplier />
+      },
+      {
+        path: "/AddSupplier",
+        element:<AddSupplier />,
+      },
+      {
+        path: "/SupplierHistory",
+        element:<SupplierHistory />,
+      },
+      {
+        path: "/AllCustomer",
+        element: <AllCustomer />,
+      },
+      {
+        path: "/AddCustomer",
+        element: <AddCustomer />,
+      },
+      {
+        path: "/AllWarehouse",
+        element: <AllWarehouse/>
+      },
+      {
+        path: "/StockInOutHistory",
+        element: <StockInOutHistory/>
       }
     ]
   }
