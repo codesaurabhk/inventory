@@ -232,7 +232,7 @@ function AllSuppliers() {
         >
           <div className="overview">
             <div>
-              <div className="toolbars">
+              <div className="toolbars" style={{padding:'16px 16px'}}>
                 <div>
                   <h3>All Supplier</h3>
                 </div>
@@ -241,7 +241,7 @@ function AllSuppliers() {
                     style={{
                       border: "1px solid #e6e6e6",
                       borderRadius: "8px",
-                      padding: "10px 20px",
+                     padding:'8px',
                       outline: "none",
                       backgroundColor: "white",
                       color: "#333",
