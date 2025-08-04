@@ -55,11 +55,11 @@ const paginatedData = data.slice(startIndex, endIndex);
             <div className="top-section">
                 {/* Metrics */}
                 <div className="dashboard-metrics">
-                    <div className="metric-card" style={{ borderTopLeftRadius: "10px", borderEndStartRadius: "10px",padding:'15px' }}>
+                    <div className="metric-card" style={{ borderTopLeftRadius: "10px", borderEndStartRadius: "10px",padding:'15px 50px' }}>
                         <div className="metric-icon"><FaSackDollar /></div>
                         <div>
                             <p className="metric-title">Total Stock Value</p>
-                            <h2>
+                            <h2 style={{marginTop:'10px'}}>
                                 ₹12,75,987 <span className="metric-growth">↑ 23%</span>
                             </h2>
                         </div>
@@ -68,14 +68,14 @@ const paginatedData = data.slice(startIndex, endIndex);
                         <div className="metric-icon blue"><RiAlertFill /></div>
                         <div>
                             <p className="metric-title">Low Stock</p>
-                            <h2>12</h2>
+                            <h2 style={{marginTop:'10px'}}>12</h2>
                         </div>
                     </div>
                     <div className="metric-card" style={{ borderTopRightRadius: "10px", borderBottomRightRadius: "10px" }}>
                         <div className="metric-icon blue"><FaStopCircle /></div>
                         <div>
                             <p className="metric-title">Out Of Stock</p>
-                            <h2>18</h2>
+                            <h2 style={{marginTop:'10px'}}>18</h2>
                         </div>
                     </div>
                 </div>

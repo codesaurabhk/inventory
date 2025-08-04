@@ -40,7 +40,7 @@ const router = createBrowserRouter([
     children: [
       {
         index:true,
-        element:<Inventory />
+        element:<DashboardStart />
       },
       {
         path:'/DashboardStart',
