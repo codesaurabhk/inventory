@@ -21,6 +21,7 @@ import { FaChevronRight } from "react-icons/fa";
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Inventory from './Inventory';
+import Manageproduct from './Manageproduct';
 
 
 const Dashboard = () => {
@@ -48,7 +49,7 @@ const paginatedData = data.slice(startIndex, endIndex);
 
     return (
         <>
-        <Inventory/>
+        <Manageproduct/>
         <div className="dashboard-container">
             {/* Top Section */}
             <div className="top-section">

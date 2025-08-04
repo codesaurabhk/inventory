@@ -4,30 +4,24 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 import First from './First.jsx';
 
-import Inventory from './component/inventory/Inventory.jsx'
+import DashboardStart from './component/Dashboard/Dashboard.jsx';
 
+import Inventory from './component/inventory/Inventory.jsx'
 import Dashboard from './component/inventory/Dashboard'
 import AddProduct from './component/inventory/AddProduct'
-
 import Category from './component/inventory/Category.jsx';
 import CategoryDashbord from './component/inventory/CategoryDashbord.jsx'
-
 import PurchaseOrder from './component/inventory/PurchaseOrder.jsx'
 import PurchaseDashbord from './component/inventory/PurchaseDashbord.jsx'
-
 import Stocks from './component/inventory/Stocks.jsx'
 import StockDashbord from "./component/inventory/StockDashbord.jsx";
-
 import ExpiryItems from './component/inventory/ExpiryItems.jsx'
 import ExpiryItemsDashbord from './component/inventory/ExpiryItemsDashbord.jsx'
-
 import Damages from './component/inventory/Damages.jsx'
 import Damagesdashbord from './component/inventory/Damagesdashbord.jsx'
-
 import AboutProduct from './component/inventory/AboutProduct'
 import AddCategory from './component/inventory/AddCategory'
 import CreatePurchaseOrder from './component/inventory/CreatePurchaseOrder.jsx'
-
 import Manageproduct from './component/inventory/Manageproduct.jsx'
 
 const router = createBrowserRouter([
@@ -38,6 +32,10 @@ const router = createBrowserRouter([
       {
         index:true,
         element:<Inventory />
+      },
+      {
+        path:'/DashboardStart',
+        element:<DashboardStart />
       },
       {
         path:'/Inventory',

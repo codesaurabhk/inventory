@@ -51,7 +51,6 @@
 }
 
 .sidebar-list-all {
-  background-color: #ffffff;
   padding: 10px 40px;
   border-radius: 8px;
   margin-bottom: 8px;
@@ -67,8 +66,8 @@
 }
 
 .sidebar-list-all.active {
-  background-color: #1d4ed8;
-  color: white;
+  background-color: white;
+  color: black;
   font-weight: 500;
 }
 
