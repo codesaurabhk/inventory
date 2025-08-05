@@ -7,6 +7,9 @@ import 'react-quill/dist/quill.snow.css';
 import chair2 from '../images/chair2.png';
 import chair3 from '../images/chair3.jpg';
 import { Link } from 'react-router-dom';
+import axios from "axios";
+import { toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 function AddCategory() {
     
@@ -14,7 +17,13 @@ function AddCategory() {
     const inputRef = useRef(null);
     const [fileName, setFileName] = useState("");
 
+
   const quillRef = useRef(null);
+
+  // form state
+  const [category, setCategory] = useState("")
+  const [subcategory, setSubcategory] = useState("")
+  const [brand, setBrand] = useState("")
 
   // Toolbar options matching the screenshot
   const modules = {
@@ -57,6 +66,43 @@ function AddCategory() {
     }
   };
 
+  // fetch category here for no duplicate data enter
+  // state for that
+  const [allCategories, setAllCategories] = useState([]);
+  useEffect(() => {
+    const fetchCategories = async() => {
+      try {
+        const res = await axios.get("http://localhost:5245/api/category/get");
+        setAllCategories(res.data)
+      }catch(error) {
+        console.error("Error fetching categories", error)
+      }
+    }
+    fetchCategories();
+  }, [])
+  // handle Submit for category
+  const handleSubmit = async () => {
+    try {
+   const payload = {
+    category,
+    subcategory,
+    brand,
+    description:value
+   }
+   const res = await axios.post("http://localhost:5245/api/category/create", payload);
+   toast.success("🎉 Great! You have successfully created a category.");
+   setCategory("");
+   setSubcategory("");
+   setBrand("");
+   setValue("");
+   setFileName("")
+    }catch(error) {
+    toast.error("Failed to add category", {
+      position:'top-center'
+    })
+    }
+  }
+
   return (
     <div className='ac-container'>
     
@@ -80,7 +126,7 @@ function AddCategory() {
             <div style={{marginTop: '16px',width: '100%'}}>
                 <span>Category Name</span>
                 <br/>
-                <input type="text" style={{width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #C2C2C2', fontSize: '16px',marginTop: '5px',backgroundColor: '#FBFBFB',color: '#C2C2C2'}} placeholder='Enter Category Name'>
+                <input type="text" value={category} onChange={(e) => setCategory(e.target.value)} style={{width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #C2C2C2', fontSize: '16px',marginTop: '5px',backgroundColor: '#FBFBFB',color: 'black'}} placeholder='Enter Category Name'>
                 </input>
             </div>
             
@@ -88,7 +134,7 @@ function AddCategory() {
             <div style={{marginTop: '16px',width: '100%'}}>
                 <span>Sub Category</span>
                 <br/>
-                <input type="text" style={{width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #C2C2C2', fontSize: '16px',marginTop: '5px',backgroundColor: '#FBFBFB',color: '#C2C2C2'}} placeholder='Enter Sub category'>
+                <input type="text" value={subcategory} onChange={(e) => setSubcategory(e.target.value)} style={{width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #C2C2C2', fontSize: '16px',marginTop: '5px',backgroundColor: '#FBFBFB',color: 'black'}} placeholder='Enter Sub category'>
                 </input>
             </div>
             
@@ -96,7 +142,7 @@ function AddCategory() {
             <div style={{marginTop: '16px',width: '100%'}}>
                 <span>Brand</span>
                 <br/>
-                <input type="text" style={{width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #C2C2C2', fontSize: '16px',marginTop: '5px',backgroundColor: '#FBFBFB',color: '#C2C2C2'}} placeholder='Enter Brand'>
+                <input type="text" value={brand} onChange={(e) => setBrand(e.target.value)} style={{width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #C2C2C2', fontSize: '16px',marginTop: '5px',backgroundColor: '#FBFBFB',color: 'black'}} placeholder='Enter Brand'>
                 </input>
             </div>
 
@@ -118,7 +164,7 @@ function AddCategory() {
 
                     <div style={{width:'500px',height:'37px',display: 'flex', alignItems: 'center', border: '1px solid #C2C2C2', borderRadius: '4px',padding:'0px 8px',backgroundColor: '#FBFBFB'}}>
                         <IoMdSearch style={{fontSize:'20px'}}/>
-                        <input type='text' style={{outline:'none',border: 'none',backgroundColor: '#FBFBFB',color: '#C2C2C2',width:'100%'}} />
+                        <input type='text' style={{outline:'none',border: 'none',backgroundColor: '#FBFBFB',color: 'black',width:'100%'}} />
                     </div>
                     
                     <div
@@ -182,7 +228,7 @@ function AddCategory() {
                   </table>
                 </div>
                 <div style={{display: 'flex', justifyContent: 'end', marginTop: '16px'}}>
-                    <span style={{border:'1px solid black',backgroundColor:'black',padding:'5px 8px',color:'white',borderRadius:'5px'}}>Save</span>
+                    <button onClick={handleSubmit} style={{border:'1px solid black',backgroundColor:'black',padding:'5px 8px',color:'white',borderRadius:'5px'}}>Save</button>
                 </div>
                 <div style={{textAlign:'center',border: '1px solid #C2C2C2', borderRadius: '4px', padding: '32px 16px', backgroundColor: '#FBFBFB', color: '#C2C2C2', cursor: 'pointer',marginTop: '15px'}}>
                     <AiFillProduct style={{fontSize: '50px', marginBottom: '10px'}} />
@@ -205,4 +251,4 @@ function AddCategory() {
   )
 }
 
-export default AddCategory
+export default AddCategory;

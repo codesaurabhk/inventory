@@ -7,6 +7,7 @@ import { FaPlusSquare } from "react-icons/fa";
 import Chair2 from '../images/chair2.png';
 import Chair2r from '../images/chair2r.png';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const AddProduct = () => {
     const [product, setProduct] = useState({
@@ -33,6 +34,7 @@ const AddProduct = () => {
         variantName: '',
         variantValue: '',
     });
+
 
 
    const [value, setValue] = useState("");
@@ -82,6 +84,22 @@ const AddProduct = () => {
     }
   };
 
+//   fetch category
+// category state
+const [categoryData, setCategoryData] = useState([])
+useEffect(()=> {
+    const fetchCategories = async()=> {
+        try {
+            const res = await axios.get("http://localhost:5245/api/category/get");
+            setCategoryData(res.data);
+        }
+        catch(error) {
+            console.error("Error fetching categories", error)
+        }
+    }
+    fetchCategories();
+},[]);
+
     return (
         <div className="add-product-container">
 
@@ -116,17 +134,26 @@ const AddProduct = () => {
 
                 <label>Category</label>
                 <select name="category" onChange={handleChange} style={{color:'#999797ff',backgroundColor:'#F1F1F1'}}>
-                    <option style={{color:'#999797ff',backgroundColor:'#F1F1F1'}}>Select a product category</option>
+                    <option value="" style={{color:'#999797ff',backgroundColor:'#F1F1F1'}}>Select a product category</option>
+                    {categoryData.map((item, index) => (
+                        <option key={index} value={item.category}>{item.category}</option>
+                    ))}
                 </select>
                 
                 <label>Sub Category</label>
-                <select name="category" onChange={handleChange} style={{color:'#999797ff',backgroundColor:'#F1F1F1'}}>
-                    <option style={{color:'#999797ff',backgroundColor:'#F1F1F1'}}>Select a product sub category</option>
+                <select name="subcategory" onChange={handleChange} style={{color:'#999797ff',backgroundColor:'#F1F1F1'}}>
+                    <option value="" style={{color:'#999797ff',backgroundColor:'#F1F1F1'}}>Select a product sub category</option>
+                    {categoryData.map((item, index) => (
+                        <option key={index} value={item.subcategory}>{item.subcategory}</option>
+                    ))}
                 </select>
                 
                 <label>Brand</label>
                 <select name="category" onChange={handleChange} style={{color:'#999797ff',backgroundColor:'#F1F1F1'}}>
-                    <option style={{color:'#999797ff',backgroundColor:'#F1F1F1'}}>Select a product category</option>
+                    <option value="" style={{color:'#999797ff',backgroundColor:'#F1F1F1'}}>Select a product category</option>
+                    {categoryData.map((item, index) => (
+                        <option key={index} value={item.brand}>{item.brand}</option>
+                    ))}
                 </select>
 
                 <br/>
