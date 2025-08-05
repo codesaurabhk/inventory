@@ -7,7 +7,7 @@ const Manageproduct = () => {
     return (
         <div className="mp-main">
             <div className="mp-upnav">
-                You currently have no products in inventory. Please <Link to="/AddProduct" className="link"><u>add a product</u></Link> to start managing items.
+                You currently have no products in inventory. Please <Link to="/ChooseToAddProduct" className="link"><u>add a product</u></Link> to start managing items.
             </div>
             <div className="mp-box">
                 <div className="mp-boxx">
@@ -18,8 +18,7 @@ const Manageproduct = () => {
                     <h4>Manage your Inventory</h4>
                     <p>Track, update, and organize all your inventory in one place.</p>
                     <div className="buttons">
-                        <button className="import-btn">Import</button>
-                        <Link to="/AddProduct" className="add-btn">Add Product</Link>
+                        <Link to="/ChooseToAddProduct" className="add-btn">Add Product</Link>
                     </div>
                 </div>
             </div>

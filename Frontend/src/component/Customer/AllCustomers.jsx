@@ -305,16 +305,18 @@ function AllCustomers() {
               <div className="profile-box">
                 <h4>User Profile</h4>
                 <p>
-                  <strong>Name:<FaUser /></strong> {selectedCustomer.name}
+                  <strong>Name</strong>
+                  <br/>
+                  <div style={{display:'flex',gap:'6px',alignItems:'center'}}><FaUser style={{backgroundColor:'#D9D9D9',padding:'5px',fontSize:'30px'}} /> {selectedCustomer.name}</div>
                 </p>
-
+                
                 <div style={{display: 'flex', justifyContent: 'space-between'}}>
-                  <p>
+                <div>
                   <strong>Address:</strong> {selectedCustomer.address}
-                </p>
-                <p>
+                </div>
+                <div>
                   <strong>Phone No.:</strong> {selectedCustomer.contact}
-                </p>
+                </div>
                 </div>
               </div>
 

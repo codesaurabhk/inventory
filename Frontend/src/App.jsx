@@ -10,6 +10,7 @@ import DashboardStart from './component/Dashboard/Dashboard.jsx';
 //inventory
 import Inventory from './component/inventory/Inventory.jsx'
 import Dashboard from './component/inventory/Dashboard'
+import ChooseToAddProduct from './component/inventory/ChooseToAddProduct.jsx'
 import AddProduct from './component/inventory/AddProduct'
 import Category from './component/inventory/Category.jsx';
 import CategoryDashbord from './component/inventory/CategoryDashbord.jsx'
@@ -27,13 +28,13 @@ import CreatePurchaseOrder from './component/inventory/CreatePurchaseOrder.jsx'
 import Manageproduct from './component/inventory/Manageproduct.jsx'
 
 //suppliers
-import AddSupplier from "./component/SupplierComponent/AddSupplier";
-import AllSupplier from "./component/SupplierComponent/AllSuppliers";
-import SupplierHistory from "./component/SupplierComponent/SupplierHistory";
+import AddSupplier from "./component/Supplier/AddSupplier.jsx";
+import AllSupplier from "./component/Supplier/AllSuppliers.jsx";
+import SupplierHistory from "./component/Supplier/SupplierHistory.jsx";
 
 //customers
-import AddCustomer from "./component/CustomerComponent/AddCustomer";
-import AllCustomer from "./component/CustomerComponent/AllCustomers";
+import AddCustomer from "./component/Customer/AddCustomer.jsx";
+import AllCustomer from "./component/Customer/AllCustomers.jsx";
 
 //warehouse
 import AllWarehouse from './component/Warehouse/AllWarehouse.jsx';
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
       {
         path:'/Inventory',
         element:<Inventory />
+      },
+      {
+        path:'/ChooseToAddProduct',
+        element:<ChooseToAddProduct/>
       },
       {
         path:'/AddProduct',

@@ -10,7 +10,7 @@ const Inventory = () => {
         <>
         <div className="in-main">
             <div className="in-upnav">
-                You currently have no inventory. <Link to="/AddProduct" className="link"><u>Add products</u></Link> to start managing your stock.
+                You currently have no inventory. <Link to="/ChooseToAddProduct" className="link"><u>Add products</u></Link> to start managing your stock.
             </div>
             <div className="in-box">
                 <div className="in-boxx">
@@ -21,8 +21,7 @@ const Inventory = () => {
                     <h4>Manage your Inventory</h4>
                     <p>Track, update, and organize all your inventory in one place.</p>
                     <div className="buttons">
-                        <button className="import-btn">Import</button>
-                        <Link to="/AddProduct" className="add-btn">Add Product</Link>
+                        <Link to="/ChooseToAddProduct" className="add-btn">Add Product</Link>
                     </div>
                 </div>
             </div>

@@ -88,9 +88,8 @@ const paginatedData = data.slice(startIndex, endIndex);
                             <h3>All Products</h3>
                         </div>
                         <div className="toolbar-actions">
-                            <button className="btn btn-light">Import</button>
                             <button className="btn btn-light">Export</button>
-                            <Link to="/AddProduct" className="btn btn-primary">Add Product</Link>
+                            <Link to="/ChooseToAddProduct" className="btn btn-primary">Add Product</Link>
                         </div>
                     </div>
 
