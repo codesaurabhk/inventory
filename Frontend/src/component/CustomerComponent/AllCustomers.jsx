@@ -299,6 +299,7 @@ function AllCustomers() {
               </div>
             </div>
 
+            
             {/* User Profile */}
             <div className="modal-details">
               <div className="profile-box">
