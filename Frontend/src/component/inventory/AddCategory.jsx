@@ -88,20 +88,16 @@ function AddCategory() {
             <div style={{marginTop: '16px',width: '100%'}}>
                 <span>Sub Category</span>
                 <br/>
-                <select style={{width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #C2C2C2', fontSize: '16px',marginTop: '5px',backgroundColor: '#FBFBFB',color: '#C2C2C2'}}>
-                    <option value="" style={{color:'#C2C2C2'}}>Select Sub Category</option>
-                    <option value="chair" style={{color:'#C2C2C2'}}>Wheel Chair</option>
-                </select>
+                <input type="text" style={{width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #C2C2C2', fontSize: '16px',marginTop: '5px',backgroundColor: '#FBFBFB',color: '#C2C2C2'}} placeholder='Enter Sub category'>
+                </input>
             </div>
             
             {/* brand */}
             <div style={{marginTop: '16px',width: '100%'}}>
                 <span>Brand</span>
                 <br/>
-                <select style={{width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #C2C2C2', fontSize: '16px',marginTop: '5px',backgroundColor: '#FBFBFB',color: '#C2C2C2'}}>
-                    <option value="" style={{color:'#C2C2C2'}}>Select Brand</option>
-                    <option value="chair" style={{color:'#C2C2C2'}}>ABC Wheel Chair Company</option>
-                </select>
+                <input type="text" style={{width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #C2C2C2', fontSize: '16px',marginTop: '5px',backgroundColor: '#FBFBFB',color: '#C2C2C2'}} placeholder='Enter Brand'>
+                </input>
             </div>
 
             {/* description */}
