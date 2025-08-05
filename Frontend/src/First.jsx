@@ -49,7 +49,7 @@ function First() {
           <div className={`sidebar-header ${location.pathname === "/DashboardStart" ? "active" : ""}`} onClick={handleImageClick1}>
             <div className="sidebar-logo-text">
               <AiFillProduct style={{fontSize:'25px'}} />
-              <div to="/DashboardStart" className="fr-supplier-title link">Dashboard</div>
+              <div className="fr-supplier-title link">Dashboard</div>
             </div>
             <IoIosArrowForward className={showDropdown1 ? "arrow-icon rotate" : "arrow-icon"} />
           </div>
