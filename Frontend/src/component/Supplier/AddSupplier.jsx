@@ -267,13 +267,13 @@ function AddSupplier() {
           <div
             className="banking-details"
             style={{
-              backgroundColor: "#fbfbfb",
-              padding: "20px",
+              backgroundColor: "white",
+              padding: "8px",
               borderRadius: "10px",
               marginTop: "20px",
             }}
           >
-            <span style={{ fontWeight: "500", fontSize: "16px"}}>
+            <span style={{fontSize: "16px"}}>
               Banking Details
             </span>
 

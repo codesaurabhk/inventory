@@ -6,7 +6,7 @@ const PurchaseOrder = () => {
     return (
         <div className="po-main">
             <div className="po-upnav">
-                You haven't cretaed any <a href="#" className="link">purchase orders</a> yet. Start by placing your first one.
+                You haven't cretaed any<Link to="/CreatePurchaseOrder" className="link"><u>purchase orders</u></Link> yet. Start by placing your first one.
             </div>
             <div className="po-box">
                 <div className="po-boxx">

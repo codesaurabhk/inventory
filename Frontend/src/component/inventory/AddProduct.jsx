@@ -263,8 +263,35 @@ useEffect(()=> {
                 <label className="section-title">Media</label>
                 <div className="media-box">
                     <p>
-                        <i className="media-icon" /> Drag your image here, or{" "}
-                        <span className="browse">browse</span>
+
+                <i className="media-icon" /> Drag your image here, or
+
+                <button
+                  onClick={handleClick}
+                  style={{
+                    padding: "8px 8px",
+                    borderRadius: "4px",
+                    color: "#007bff",
+                    backgroundColor:'#FAFAFA',
+                    fontSize: "16px",
+                    cursor: "pointer",
+                    border:'none'
+                  }}
+                >
+                  browse
+                </button>
+                <input
+                  type="file"
+                  ref={inputRef}
+                  onChange={handleFileChange}
+                  style={{ display: "none" }}
+                />
+                {fileName && (
+                  <span style={{ fontSize: "14px", color: "#666" }}>
+                    {fileName}
+                  </span>
+                )}
+
                     </p>
                     <small>Supports JPEG, PNG, JPG</small>
                 </div>
