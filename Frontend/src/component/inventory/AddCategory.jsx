@@ -121,7 +121,7 @@ function AddCategory() {
                         <input type='text' style={{outline:'none',border: 'none',backgroundColor: '#FBFBFB',color: '#C2C2C2',width:'100%'}} />
                     </div>
                     
-                    <div
+              <div
                 style={{ display: "flex", alignItems: "center", gap: "10px" }}
               >
                 <button

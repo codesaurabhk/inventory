@@ -11,6 +11,7 @@ import CircleLogo from "../images/Circlelogo.png";
 import { FaUser } from "react-icons/fa";
 import "./AllCustomers.css";
 import { Link } from "react-router-dom";
+import chair from '../images/chair2r.png';
 
 const customers = [
   {
@@ -304,60 +305,60 @@ function AllCustomers() {
             <div className="modal-details">
               <div className="profile-box">
                 <h4>User Profile</h4>
+                <br/>
                 <p>
                   <strong>Name</strong>
                   <br/>
-                  <div style={{display:'flex',gap:'6px',alignItems:'center'}}><FaUser style={{backgroundColor:'#D9D9D9',padding:'5px',fontSize:'30px'}} /> {selectedCustomer.name}</div>
+                  <div style={{display:'flex',gap:'6px',alignItems:'center'}}><FaUser style={{backgroundColor:'#D9D9D9',padding:'5px',fontSize:'30px'}} /> <span style={{color:'#676767'}}>{selectedCustomer.name}</span></div>
                 </p>
                 
                 <div style={{display: 'flex', justifyContent: 'space-between'}}>
                 <div>
-                  <strong>Address:</strong> {selectedCustomer.address}
+                  <strong>Address:</strong>
+                  <br/>
+                  <span style={{color:'#676767'}}>{selectedCustomer.address}</span>
                 </div>
                 <div>
-                  <strong>Phone No.:</strong> {selectedCustomer.contact}
+                  <strong>Phone No.</strong>
+                  <br/>
+                  <span style={{color:'#676767'}}>{selectedCustomer.contact}</span>
                 </div>
                 </div>
               </div>
 
               <div className="orders-box">
-                <h4
+                <div
                   style={{ display: "flex", justifyContent: "space-between", color: '#676767'}}
                 >
-                  Recent Orders <span>12/09/2025</span>
-                </h4>
-                <table>
-                  <thead>
+                  <span>Recent Orders</span>
+                  <span>12/09/2025</span>
+                </div>
+                <div style={{borderRadius: '8px', overflow: 'hidden', marginBottom: '16px',border:'1px solid #E1E1E1',marginTop:'15px'}}>
+                  <table style={{width: '100%', borderCollapse: 'collapse',borderRadius: '8px', overflow: 'hidden',fontSize: '14px'}}>
+                  <thead style={{backgroundColor: '#E6E6E6', borderRadius: '8px',borderCollapse: 'collapse'}}>
                     <tr style={{ backgroundColor: "#e6e6e6" }}>
                       <th>
                         <input type="checkbox" />
                       </th>
                       <th>Product</th>
-                      <th>Quantity</th>
+                      <th style={{textAlign:'center'}}>Quantity</th>
                       <th>Total</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>
-                        <input type="checkbox" />
-                      </td>
-                      <td>🦽 Wheel Chair</td>
-                      <td>10</td>
-                      <td>₹ 50,000.00</td>
-                    </tr>
                     {[...Array(5)].map((_, i) => (
                       <tr key={i}>
                         <td>
                           <input type="checkbox" />
                         </td>
-                        <td>💺 Office Chair</td>
-                        <td>5</td>
+                        <td><img src={chair} style={{width:'25px'}} /> Office Chair</td>
+                        <td style={{textAlign:'center'}}>5</td>
                         <td>₹ 25,000.00</td>
                       </tr>
                     ))}
                   </tbody>
                 </table>
+                </div>
               </div>
             </div>
 
