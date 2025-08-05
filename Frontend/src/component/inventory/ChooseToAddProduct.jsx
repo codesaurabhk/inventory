@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import add1 from '../images/add1.png';
 import add2 from '../images/add2.png';
 import add3 from '../images/add3.png';
@@ -7,26 +7,23 @@ import { Link } from 'react-router-dom';
 function ChooseToAddProduct() {
   const [selectedOption, setSelectedOption] = useState('');
   const [selectedFile, setSelectedFile] = useState(null);
+  const inputRef = useRef(null);
+  const [fileName, setFileName] = useState("");
 
   const handleOptionClick = (option) => {
     setSelectedOption(option);
     setSelectedFile(null); // Reset file when changing options
   };
 
-  const handleFileChange = (event) => {
-    setSelectedFile(event.target.files[0]);
+  
+  const handleClick = () => {
+    inputRef.current.click(); 
   };
 
-  const getLinkPath = () => {
-    switch (selectedOption) {
-      case 'manual':
-        return '/AddProduct';
-      case 'bulk':
-        return '/import-bulk-product';
-      case 'scan':
-        return '/scan-to-add';
-      default:
-        return '/';
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setFileName(file.name);
     }
   };
 
@@ -88,21 +85,9 @@ function ChooseToAddProduct() {
       </div>
       <div style={{ marginTop: '32px', textAlign: 'center' }}>
         {selectedOption === 'bulk' || selectedOption === 'scan' ? (
-          <input 
-            type="file" 
-            onChange={handleFileChange}
-            style={{
-              padding: '6px 16px',
-              border: 'none',
-              borderRadius: '4px',
-              cursor: 'pointer',
-              fontSize: '14px'
-            }}
-            accept={selectedOption === 'bulk' ? '.csv,.xlsx' : 'image/*'}
-          />
-        ) : (
-          <Link 
-            to={getLinkPath()} 
+          <div>
+            <button 
+            onClick={handleClick} 
             style={{ 
               padding: '6px 16px', 
               backgroundColor: selectedOption ? '#007bff' : '#E6E6E6', 
@@ -112,10 +97,37 @@ function ChooseToAddProduct() {
               cursor: 'pointer', 
               fontSize: '14px', 
               textDecoration: 'none' 
+            }}>
+                Continue
+            </button>
+            <input 
+            type="file" 
+            ref={inputRef}
+            onChange={handleFileChange}
+            style={{
+              display:'none',
+            }}
+            accept={selectedOption === 'bulk' ? '.csv,.xlsx' : 'image/*'}
+          />
+          </div>
+        ) : (
+          <div>
+          <Link 
+            to="/AddProduct" 
+            style={{ 
+              padding: '7px 16px', 
+              backgroundColor: selectedOption ? '#007bff' : '#E6E6E6', 
+              color: 'white', 
+              border: 'none', 
+              borderRadius: '4px', 
+              cursor: 'pointer', 
+              fontSize: '14px', 
+              textDecoration: 'none',
             }}
           >
             Continue
           </Link>
+          </div>
         )}
       </div>
     </div>
