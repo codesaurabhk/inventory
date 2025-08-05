@@ -80,10 +80,8 @@ function AddCategory() {
             <div style={{marginTop: '16px',width: '100%'}}>
                 <span>Category Name</span>
                 <br/>
-                <select style={{width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #C2C2C2', fontSize: '16px',marginTop: '5px',backgroundColor: '#FBFBFB',color: '#C2C2C2'}}>
-                    <option value="" style={{color:'#C2C2C2'}}>Select Category</option>
-                    <option value="chair" style={{color:'#C2C2C2'}}>Chair</option>
-                </select>
+                <input type="text" style={{width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #C2C2C2', fontSize: '16px',marginTop: '5px',backgroundColor: '#FBFBFB',color: '#C2C2C2'}} placeholder='Enter Category Name'>
+                </input>
             </div>
             
             {/* sub category */}

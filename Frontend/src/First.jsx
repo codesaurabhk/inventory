@@ -78,11 +78,11 @@ function First() {
           </div>
           {showDropdown1 && (
             <ul className="sidebar-unorder-list">
-              <li
+              <NavLink to="/DashboardStart" className="link"><li
                 className={`sidebar-list-all ${location.pathname === "/DashboardStart" ? "active" : ""}` }
               >
-                <NavLink to="/DashboardStart" className="link">Dashboard</NavLink> 
-              </li>
+                Dashboard 
+              </li></NavLink>
             </ul>
           )}
 
@@ -96,36 +96,36 @@ function First() {
           </div>
           {showDropdown2 && (
             <ul className="sidebar-unorder-list">
-              <li
+              <NavLink to="/Dashboard" className="link"><li
                 className={`sidebar-list-all ${location.pathname === "/Dashboard" ? "active" : ""}` }
               >
-                <NavLink to="/Dashboard" className="link">All Products</NavLink> 
-              </li>
-              <li
+                All Products
+              </li></NavLink>
+              <NavLink to="/CategoryDashbord" className="link"><li
                 className={`sidebar-list-all ${location.pathname === "/CategoryDashbord" ? "active" : ""}`}
               >
-               <NavLink to="/CategoryDashbord" className="link">Category</NavLink>
-              </li>
-              <li
+               Category
+              </li></NavLink>
+              <NavLink to="/PurchaseDashbord" className="link"><li
                 className={`sidebar-list-all ${location.pathname === "/PurchaseDashbord" ? "active" : ""}`}
               >
-               <NavLink to="/PurchaseDashbord" className="link">Purchase Order</NavLink>
-              </li>
-              <li
+               Purchase Order
+              </li></NavLink>
+              <NavLink to="/StockDashbord" className="link"><li
                 className={`sidebar-list-all ${location.pathname === "/StockDashbord" ? "active" : ""}`}
               >
-               <NavLink to="/StockDashbord" className="link">Stock In / Out</NavLink>
-              </li>
-              <li
+               Stock In / Out
+              </li></NavLink>
+              <NavLink to="/ExpiryItemsDashbord" className="link"><li
                 className={`sidebar-list-all ${location.pathname === "/ExpiryItemsDashbord" ? "active" : ""}`}
               >
-               <NavLink to="/ExpiryItemsDashbord" className="link">Expiry Items</NavLink>
-              </li>
-              <li
+               Expiry Items
+              </li></NavLink>
+              <NavLink to="/Damagesdashbord" className="link"><li
                 className={`sidebar-list-all ${location.pathname === "/Damagesdashbord" ? "active" : ""}`}
               >
-               <NavLink to="/Damagesdashbord" className="link">Damage & Returns</NavLink>
-              </li>
+               Damage & Returns
+              </li></NavLink>
             </ul>
           )}
           
@@ -139,16 +139,16 @@ function First() {
           </div>
           {showDropdown21 && (
             <ul className="sidebar-unorder-list">
-              <li
+              <NavLink to="/AllWarehouse" className="link"><li
                 className={`sidebar-list-all ${location.pathname === "/AllWarehouse" ? "active" : ""}` }
               >
-                <NavLink to="/AllWarehouse" className="link">All Warehouse</NavLink> 
-              </li>
-              <li
+                All Warehouse
+              </li></NavLink> 
+              <NavLink to="/StockInOutHistory" className="link"><li
                 className={`sidebar-list-all ${location.pathname === "/StockInOutHistory" ? "active" : ""}`}
               >
-               <NavLink to="/StockInOutHistory" className="link">Stock In / Out History</NavLink>
-              </li>
+               Stock In / Out History
+              </li></NavLink>
             </ul>
           )}
 
@@ -162,16 +162,16 @@ function First() {
           </div>
           {showDropdown3 && (
             <ul className="sidebar-unorder-list">
-              <li
+              <NavLink to="/AllSupplier" className="link"><li
                 className={`sidebar-list-all ${location.pathname === "/AllSupplier" ? "active" : ""}` }
               >
-                <NavLink to="/AllSupplier" className="link">All Suppliers</NavLink>
-              </li>
-              <li
+                All Suppliers
+              </li></NavLink>
+              <NavLink to="/SupplierHistory" className="link"><li
                 className={`sidebar-list-all ${location.pathname === "/SupplierHistory" ? "active" : ""}`}
               >
-               <NavLink to="/SupplierHistory" className="link">Suppliers History</NavLink>
-              </li>
+               Suppliers History
+              </li></NavLink>
             </ul>
           )}
 
@@ -185,11 +185,11 @@ function First() {
           </div>
           {showDropdown4 && (
             <ul className="sidebar-unorder-list">
-              <li
+              <NavLink to="/AllCustomer" className="link"><li
                 className={`sidebar-list-all ${location.pathname === "/AllCustomer" ? "active" : ""}` }
               >
-                <NavLink to="/AllCustomer" className="link">All Customers</NavLink> 
-              </li>
+                All Customers
+              </li></NavLink> 
             </ul>
           )}
           
@@ -203,21 +203,21 @@ function First() {
           </div>
           {showDropdown5 && (
             <ul className="sidebar-unorder-list">
-              <li
+              <NavLink to="/" className="link"><li
                 className={`sidebar-list-all ${location.pathname === "/" ? "active" : ""}` }
               >
-                <NavLink to="/" className="link">All Sales</NavLink> 
-              </li>
-              <li
+                All Sales
+              </li></NavLink> 
+              <NavLink to="/" className="link"><li
                 className={`sidebar-list-all ${location.pathname === "/" ? "active" : ""}` }
               >
-                <NavLink to="/" className="link">Quotation</NavLink> 
-              </li>
-              <li
+                Quotation
+              </li></NavLink> 
+              <NavLink to="/" className="link"><li
                 className={`sidebar-list-all ${location.pathname === "/" ? "active" : ""}` }
               >
-                <NavLink to="/" className="link">Invoices & Bills</NavLink> 
-              </li>
+                Invoices & Bills 
+              </li></NavLink>
             </ul>
           )}
           
@@ -231,36 +231,36 @@ function First() {
           </div>
           {showDropdown6 && (
             <ul className="sidebar-unorder-list">
-              <li
+              <NavLink to="/" className="link"><li
                 className={`sidebar-list-all ${location.pathname === "/" ? "active" : ""}` }
               >
-                <NavLink to="/" className="link">Sales Report</NavLink> 
-              </li>
-              <li
+                Sales Report 
+              </li></NavLink>
+              <NavLink to="/" className="link"><li
                 className={`sidebar-list-all ${location.pathname === "/" ? "active" : ""}` }
               >
-                <NavLink to="/" className="link">Purchase Report</NavLink> 
-              </li>
-              <li
+                Purchase Report
+              </li></NavLink> 
+              <NavLink to="/" className="link"><li
                 className={`sidebar-list-all ${location.pathname === "/" ? "active" : ""}` }
               >
-                <NavLink to="/" className="link">Inventory Report</NavLink> 
-              </li>
-              <li
+                Inventory Report 
+              </li></NavLink>
+              <NavLink to="/" className="link"><li
                 className={`sidebar-list-all ${location.pathname === "/" ? "active" : ""}` }
               >
-                <NavLink to="/" className="link">Supplier Report</NavLink> 
-              </li>
-              <li
+                Supplier Report 
+              </li></NavLink>
+              <NavLink to="/" className="link"><li
                 className={`sidebar-list-all ${location.pathname === "/" ? "active" : ""}` }
               >
-                <NavLink to="/" className="link">Return & Damages</NavLink> 
-              </li>
-              <li
+                Return & Damages 
+              </li></NavLink>
+              <NavLink to="/" className="link"><li
                 className={`sidebar-list-all ${location.pathname === "/" ? "active" : ""}` }
               >
-                <NavLink to="/" className="link">Expiry Report</NavLink> 
-              </li>
+                Expiry Report 
+              </li></NavLink>
             </ul>
           )}
           
@@ -274,46 +274,46 @@ function First() {
           </div>
           {showDropdown7 && (
             <ul className="sidebar-unorder-list">
-              <li
+              <NavLink to="/" className="link"><li
                 className={`sidebar-list-all ${location.pathname === "/" ? "active" : ""}` }
               >
-                <NavLink to="/" className="link">Balance Sheet</NavLink> 
-              </li>
-              <li
+                Balance Sheet 
+              </li></NavLink>
+              <NavLink to="/" className="link"><li
                 className={`sidebar-list-all ${location.pathname === "/" ? "active" : ""}` }
               >
-                <NavLink to="/" className="link">Profite & Loss</NavLink> 
-              </li>
-              <li
+                Profite & Loss 
+              </li></NavLink>
+              <NavLink to="/" className="link"><li
                 className={`sidebar-list-all ${location.pathname === "/" ? "active" : ""}` }
               >
-                <NavLink to="/" className="link">Overdue Report</NavLink> 
-              </li>
-              <li
+                Overdue Report 
+              </li></NavLink>
+              <NavLink to="/" className="link"><li
                 className={`sidebar-list-all ${location.pathname === "/" ? "active" : ""}` }
               >
-                <NavLink to="/" className="link">Expense Report</NavLink> 
-              </li>
-              <li
+                Expense Report
+              </li></NavLink> 
+              <NavLink to="/" className="link"><li
                 className={`sidebar-list-all ${location.pathname === "/" ? "active" : ""}` }
               >
-                <NavLink to="/" className="link">B2B & B2C</NavLink> 
-              </li>
-              <li
+                B2B & B2C 
+              </li></NavLink>
+              <NavLink to="/" className="link"><li
                 className={`sidebar-list-all ${location.pathname === "/" ? "active" : ""}` }
               >
-                <NavLink to="/" className="link">Payment History</NavLink> 
-              </li>
-              <li
+                Payment History 
+              </li></NavLink>
+              <NavLink to="/" className="link"><li
                 className={`sidebar-list-all ${location.pathname === "/" ? "active" : ""}` }
               >
-                <NavLink to="/" className="link">Credit & Debit Notes</NavLink> 
-              </li>
-              <li
+                Credit & Debit Notes 
+              </li></NavLink>
+              <NavLink to="/" className="link"><li
                 className={`sidebar-list-all ${location.pathname === "/" ? "active" : ""}` }
               >
-                <NavLink to="/" className="link">Document Issues</NavLink> 
-              </li>
+                Document Issues 
+              </li></NavLink>
             </ul>
           )}
 
