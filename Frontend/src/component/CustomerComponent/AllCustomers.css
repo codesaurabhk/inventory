@@ -151,7 +151,7 @@
 .modal-details {
   display: flex;
   gap: 24px;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   background-color: #f7f7f7;
 }
 
