@@ -134,18 +134,18 @@ const AddProduct = () => {
 
                 <span>This Product have :-</span>
 
-                <div className="checkbox-group" style={{display:'flex',marginTop:'10px'}}>
-                    <div style={{display:'flex',alignContent:'center',gap:'5px'}}>
-                        <input type="radio" name="number" onChange={handleChange} />
+                <div className="checkbox-group" style={{display:'flex',alignItems:'center'}}>
+                    <div style={{display:'flex',alignItems:'center',gap:'5px'}}>
+                        <input type="radio" name="number" onChange={handleChange} style={{marginTop:'15px'}} />
                         <span>Serial number</span>
                     </div>
                     <div style={{display:'flex',alignItems:'center',gap:'5px'}}>
-                        <input type="radio" name="number" onChange={handleChange} />
+                        <input type="radio" name="number" onChange={handleChange} style={{marginTop:'15px'}} />
                         <span>Batch number</span>
                     </div>
                 </div>
 
-                <input id='serialno' type="text" name="serialNumber" placeholder="Enter Serial No" onChange={handleChange} style={{color:'#999797ff',backgroundColor:'#F1F1F1'}} />
+                <input id='serialno' type="text" name="serialNumber" placeholder="Enter Number" onChange={handleChange} style={{color:'#999797ff',backgroundColor:'#F1F1F1'}} />
 
                 <label className='divider-line'>HSN/SAC</label>
                 <input id='hsn' type="text" name="hsn" placeholder="HSN Code" onChange={handleChange} style={{color:'#999797ff',backgroundColor:'#F1F1F1'}} />
