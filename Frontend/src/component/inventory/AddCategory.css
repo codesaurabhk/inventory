@@ -1,34 +1,48 @@
-.ac-container{
-    padding: 20px;
-    font-family: sans-serif;
-    background: #f8f9fa;
-    margin: 0px;
+.ac-container {
+  padding: 20px;
+  font-family: sans-serif;
+  background: #f8f9fa;
+  margin: 0px;
 }
 
-.gray-color{
-    color:#828486;
+.gray-color {
+  color: #828486;
 }
 
-.ac-path{
-    display: flex;
-    align-items: center;
-    font-size: large;
+.ac-path {
+  display: flex;
+  align-items: center;
+  font-size: large;
 }
 
-.ac-name{
-    font-weight: 550;
+.ac-name {
+  font-weight: 550;
 }
 
-.ac-details{
-    max-width: 645px;
-    margin: auto;
-    margin-top: 80px;
-    margin-bottom: 80px;
-    padding: 32px;
-    padding: 0px 16px 18px 18px;
-    font-family: 'Segoe UI', sans-serif;
-    background: #fff;
-    gap: 24px;
-    border: 1px solid #E1E1E1;
-    border-radius: 8px;
+.ac-details {
+  max-width: 645px;
+  margin: auto;
+  margin-top: 80px;
+  margin-bottom: 80px;
+  padding: 32px;
+  padding: 0px 16px 18px 18px;
+  font-family: "Segoe UI", sans-serif;
+  background: #fff;
+  gap: 24px;
+  border: 1px solid #e1e1e1;
+  border-radius: 8px;
+}
+
+.custom-success-toast {
+  background-color: #baffdf !important; /* light green */
+  border: 1px solid #007b42;
+  color: #000;
+  font-weight: 500;
+  padding: 10px 10px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: none;
+  width: 420px;
 }

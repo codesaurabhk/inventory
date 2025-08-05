@@ -3,19 +3,23 @@ exports.createCategory = async(req, res) => {
     try {
         const {category, subcategory, brand, description} = req.body;
 
+        const normalizedCategory = String(category || '').trim().toLowerCase();
+        const normalizedSubcategory = String(subcategory || '').trim().toLowerCase();
+        const normalizedBrand = String(brand || '').trim().toLowerCase();
         const existing = await categoryModal.findOne({
-            category:req.body.category.trim().toLowerCase(),
-            subcategory:req.body.subcategory.trim().toLowerCase(),
-            brand:req.body.brand.trim().toLowerCase()
+            category:normalizedCategory,
+            subcategory: normalizedSubcategory,
+            brand:normalizedBrand
+    
         });
         if(existing) {
             return res.status(409).json({message:"Category already exists!"})
         }
 
         const newCategory = new categoryModal({
-            category:category.trim.toLowerCase(), 
-            subcategory:subcategory.trim.toLowerCase(), 
-            brand:brand.trim.toLowerCase(), 
+            category: normalizedCategory,
+            subcategory:normalizedSubcategory, 
+            brand:normalizedBrand,
             description
         });
 
