@@ -104,7 +104,7 @@
 }
 
 .modal-popup {
-  background-color: white;
+  background-color: #f7f7f7;
   width: 90%;
   max-width: 1000px;
   padding: 24px;
@@ -155,10 +155,21 @@
   background-color: #f7f7f7;
 }
 
-.profile-box,
+.profile-box{
+  flex: 1;
+  min-width: 300px;
+  height: 150px;
+  background: #ffffff;
+  padding: 16px;
+  border-radius: 8px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
 .orders-box {
   flex: 1;
   min-width: 300px;
+  height: auto;
   background: #ffffff;
   padding: 16px;
   border-radius: 8px;

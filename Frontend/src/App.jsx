@@ -4,8 +4,10 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 import First from './First.jsx';
 
+//dashboard
 import DashboardStart from './component/Dashboard/Dashboard.jsx';
 
+//inventory
 import Inventory from './component/inventory/Inventory.jsx'
 import Dashboard from './component/inventory/Dashboard'
 import AddProduct from './component/inventory/AddProduct'
@@ -24,12 +26,16 @@ import AddCategory from './component/inventory/AddCategory'
 import CreatePurchaseOrder from './component/inventory/CreatePurchaseOrder.jsx'
 import Manageproduct from './component/inventory/Manageproduct.jsx'
 
+//suppliers
 import AddSupplier from "./component/SupplierComponent/AddSupplier";
 import AllSupplier from "./component/SupplierComponent/AllSuppliers";
 import SupplierHistory from "./component/SupplierComponent/SupplierHistory";
+
+//customers
 import AddCustomer from "./component/CustomerComponent/AddCustomer";
 import AllCustomer from "./component/CustomerComponent/AllCustomers";
 
+//warehouse
 import AllWarehouse from './component/Warehouse/AllWarehouse.jsx';
 import StockInOutHistory from './component/Warehouse/StockInOutHistory.jsx'
 

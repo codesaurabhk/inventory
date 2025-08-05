@@ -19,7 +19,7 @@ const Manageproduct = () => {
                     <p>Track, update, and organize all your inventory in one place.</p>
                     <div className="buttons">
                         <button className="import-btn">Import</button>
-                        <button className="add-btn">Add Product</button>
+                        <Link to="/AddProduct" className="add-btn">Add Product</Link>
                     </div>
                 </div>
             </div>

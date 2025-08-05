@@ -4,10 +4,11 @@
 }
 
 .sidebar {
-  width: 300px;
+  width: 340px;
   background-color: #f1f1f1;
   padding: 10px;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
+  overflow-y: auto;
 }
 
 .sidebar-header {
@@ -16,6 +17,30 @@
   justify-content: space-between;
   padding: 10px;
   cursor: pointer;
+}
+
+.sidebar-header.active {
+  color: black;
+  font-weight: 500;
+  border-radius: 8px;
+}
+
+.icon.active{
+  color: #1368EC;
+  background-color: #BBE1FF;
+  border-radius: 4px;
+  padding: 2px 4px;
+  font-size: 28px !important;
+  margin-left: -5px !important;
+}
+
+.iconi.active{
+  color: #1368EC;
+  background-color: #BBE1FF;
+  border-radius: 4px;
+  padding: 2px 4px;
+  font-size: 25px !important;
+  margin-left: -3px !important;
 }
 
 .sidebar-logo-text {
@@ -51,9 +76,9 @@
 }
 
 .sidebar-list-all {
-  padding: 10px 40px;
+  padding: 10px 50px;
   border-radius: 8px;
-  margin-bottom: 8px;
+  margin-bottom: 2px;
   text-align: left;
   color: #676767;
   cursor: pointer;

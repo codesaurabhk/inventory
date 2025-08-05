@@ -226,7 +226,6 @@ function AllCustomers() {
             </div>
 
             {/* pop up */}
-
             <div className="three-box">
               {/*total spent */}
               <div className="radio-active">
@@ -277,7 +276,7 @@ function AllCustomers() {
               </div>
 
               {/*Dues Amount */}
-              <div className="radio-activs" style={{display:'flex', gap: '16px'}}>
+              <div className="" style={{display:'flex', gap: '16px',flex:'1',alignItems:'center',justifyContent:'center'}}>
                 <div>
                   <img src={RadioActive} alt="money" />
                 </div>
@@ -299,13 +298,13 @@ function AllCustomers() {
                 </div>
               </div>
             </div>
+
             {/* User Profile */}
             <div className="modal-details">
               <div className="profile-box">
                 <h4>User Profile</h4>
                 <p>
-                  <strong>Name:<FaUser />
-</strong> {selectedCustomer.name}
+                  <strong>Name:<FaUser /></strong> {selectedCustomer.name}
                 </p>
 
                 <div style={{display: 'flex', justifyContent: 'space-between'}}>
