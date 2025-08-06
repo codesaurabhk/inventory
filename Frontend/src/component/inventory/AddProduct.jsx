@@ -168,6 +168,36 @@ const generateQRCode = async() => {
     }
 }
 
+
+  const [formData, setFormData] = useState({
+    includesTax: false,
+  });
+
+  const handleTaxChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value,
+    }));
+  };
+
+  const [variants, setVariants] = useState([
+    { variantName: '', variantValue: '' }, // Initial row
+  ]);
+
+  const handleVariantChange = (index, e) => {
+    const { name, value } = e.target;
+    setVariants((prev) =>
+      prev.map((variant, i) =>
+        i === index ? { ...variant, [name]: value } : variant
+      )
+    );
+  };
+
+  const handleAddVariant = () => {
+    setVariants((prev) => [...prev, { variantName: '', variantValue: '' }]);
+  };
+
   return (
     <div className="add-product-container">
       {/* path */}
@@ -650,47 +680,43 @@ const generateQRCode = async() => {
             />
           </div>
 
-          <div className="checkbox-group">
-            <label htmlFor="includesTax">
-              <input
-                type="checkbox"
-                name="includesTax"
-                onChange={handleChange}
-                id="includesTax"
-                style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
-              />
-              It Includes Tax?
-            </label>
-          </div>
+        <div className="checkbox-group">
+        <label htmlFor="includesTax">
+          <input
+            type="checkbox"
+            name="includesTax"
+            onChange={handleTaxChange}
+            id="includesTax"
+            checked={formData.includesTax}
+            style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
+          />
+          It Includes Tax?
+        </label>
+      </div>
 
-          <div className="tax">
-            <select
-              name="tax"
-              onChange={handleChange}
-              style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
-            >
-              <option
-                style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
-              >
-                5%
-              </option>
-              <option
-                style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
-              >
-                10%
-              </option>
-              <option
-                style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
-              >
-                20%
-              </option>
-              <option
-                style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
-              >
-                25%
-              </option>
-            </select>
-          </div>
+{formData.includesTax && (
+        <div className="tax">
+          <select
+            name="tax"
+            onChange={handleChange}
+            value={formData.tax}
+            style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
+          >
+            <option style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}>
+              5%
+            </option>
+            <option style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}>
+              10%
+            </option>
+            <option style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}>
+              20%
+            </option>
+            <option style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}>
+              25%
+            </option>
+          </select>
+        </div>
+      )}
 
           {/* <hr /> */}
 
@@ -735,33 +761,40 @@ const generateQRCode = async() => {
         <div className="section">
           <label className="section-title">Add Variants</label>
 
-          <div className="variant-row">
-            <div className="variant-field">
-              <label>Variant Name</label>
-              <input
-                type="text"
-                name="variantName"
-                placeholder="Color"
-                onChange={handleChange}
-                style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
-              />
-            </div>
-
-            <div className="variant-field">
-              <label>Variant Value</label>
-              <input
-                type="text"
-                name="variantValue"
-                placeholder="Red"
-                onChange={handleChange}
-                style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
-              />
-            </div>
+          {variants.map((variant, index) => (
+        <div className="variant-row" key={index}>
+          <div className="variant-field">
+            <label>Variant Name</label>
+            <input
+              type="text"
+              name="variantName"
+              placeholder=""
+              value={variant.variantName}
+              onChange={(e) => handleVariantChange(index, e)}
+              style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
+            />
           </div>
 
-          <button className="done-btn">Done</button>
+          <div className="variant-field">
+            <label>Variant Value</label>
+            <input
+              type="text"
+              name="variantValue"
+              placeholder=""
+              value={variant.variantValue}
+              onChange={(e) => handleVariantChange(index, e)}
+              style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
+            />
+          </div>
+        </div>
+      ))}
+
+      <button className="add-variant" onClick={handleAddVariant}>
+        + Add another variants
+      </button>
+
           <br />
-          <button className="add-variant">+ Add another variants</button>
+          <button className="done-btn">Done</button>
         </div>
 
         {/* Footer */}
