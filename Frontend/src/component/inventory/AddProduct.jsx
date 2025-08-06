@@ -1,429 +1,711 @@
-import React, { useEffect, useRef, useState } from 'react';
-import './AddProduct.css';
+import React, { useEffect, useRef, useState } from "react";
+import "./AddProduct.css";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { IoIosArrowForward } from "react-icons/io";
 import { FaPlusSquare } from "react-icons/fa";
-import Chair2 from '../images/chair2.png';
-import Chair2r from '../images/chair2r.png';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+import Chair2 from "../images/chair2.png";
+import Chair2r from "../images/chair2r.png";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
 const AddProduct = () => {
-    const [product, setProduct] = useState({
-        name: '',
-        sku: '',
-        quantity: '',
-        category: '',
-        serial: false,
-        batch: false,
-        serialNumber: '',
-        hsn: '',
-        supplier: '',
-        warehouse: '',
-        reorder: '',
-        leadTime: '',
-        returnable: false,
-        description: '',
-        mrp: '',
-        includesTax: false,
-        tax: '',
-        cost: '',
-        profit: '',
-        margin: '',
-        variantName: '',
-        variantValue: '',
-    });
+  const [product, setProduct] = useState({
+    name: "",
+    sku: "",
+    quantity: "",
+    category: "",
+    serial: false,
+    batch: false,
+    serialNumber: "",
+    hsn: "",
+    supplier: "",
+    warehouse: "",
+    reorder: "",
+    leadTime: "",
+    returnable: false,
+    description: "",
+    mrp: "",
+    includesTax: false,
+    tax: "",
+    cost: "",
+    profit: "",
+    margin: "",
+    variantName: "",
+    variantValue: "",
+  });
 
+  const [value, setValue] = useState("");
+  const inputRef = useRef(null);
+  const [fileName, setFileName] = useState("");
 
+  const quillRef = useRef(null);
 
-    const [value, setValue] = useState("");
-    const inputRef = useRef(null);
-    const [fileName, setFileName] = useState("");
+  // Toolbar options matching the screenshot
+  const modules = {
+    toolbar: [
+      [{ font: [] }],
+      ["bold", "italic", "underline"],
+      [{ color: [] }, { background: [] }],
+      [{ list: "ordered" }, { list: "bullet" }],
+      [{ indent: "-1" }, { indent: "+1" }],
+      ["link", "image", "video"],
+      ["code-block"],
+      ["clean"],
+    ],
+  };
 
-    const quillRef = useRef(null);
+  // Word count logic
+  const handleChange = (content) => {
+    const text = content.replace(/(<([^>]+)>)/gi, ""); // Strip HTML tags
+    const wordCount = text
+      .trim()
+      .split(/\s+/)
+      .filter((word) => word.length > 0).length;
+    if (wordCount <= 60) {
+      setValue(content);
+    }
+  };
 
-    // Toolbar options matching the screenshot
-    const modules = {
-        toolbar: [
-            [{ 'font': [] }],
-            ['bold', 'italic', 'underline'],
-            [{ 'color': [] }, { 'background': [] }],
-            [{ 'list': 'ordered' }, { 'list': 'bullet' }],
-            [{ 'indent': '-1' }, { 'indent': '+1' }],
-            ['link', 'image', 'video'],
-            ['code-block'],
-            ['clean']
-        ],
+  // Workaround for findDOMNode issue
+  useEffect(() => {
+    if (quillRef.current) {
+      const editor = quillRef.current.getEditor();
+      editor.root.setAttribute("data-placeholder", "Type the message");
+    }
+  }, []);
+  const handleClick = () => {
+    inputRef.current.click();
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setFileName(file.name);
+    }
+  };
+
+  //   fetch category
+  // category state
+  const [categoryData, setCategoryData] = useState([]);
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const res = await axios.get("http://localhost:5245/api/category/get");
+        setCategoryData(res.data);
+      } catch (error) {
+        console.error("Error fetching categories", error);
+      }
     };
+    fetchCategories();
+  }, []);
 
-    // Word count logic
-    const handleChange = (content) => {
-        const text = content.replace(/(<([^>]+)>)/gi, ''); // Strip HTML tags
-        const wordCount = text.trim().split(/\s+/).filter(word => word.length > 0).length;
-        if (wordCount <= 60) {
-            setValue(content);
-        }
-    };
+  // filter category, subcategory, brand
+  const uniqueCategories = [
+    ...new Set(categoryData.map((item) => item.category.toLowerCase())),
+  ];
+  const uniqueSubcategories = [
+    ...new Set(categoryData.map((item) => item.subcategory.toLowerCase())),
+  ];
+  const uniqueBrands = [
+    ...new Set(categoryData.map((item) => item.brand.toLowerCase())),
+  ];
+//  to generate sku i.e, stock keeping unit based on category
+  const generateSKU = () => {
+    const category = product.category || "GEN";
+    const name = product.name || "PRD";
+    const randomNum = Math.floor(Math.random() * 9000) + 1000;
+    const sku = `${category.toUpperCase().slice(0,3)}-${name.toUpperCase().slice(0,3)}-${randomNum}`
+    setProduct((prevProduct) => ({
+        ...prevProduct,
+        sku,
+    }))
+  }
 
-    // Workaround for findDOMNode issue
-    useEffect(() => {
-        if (quillRef.current) {
-            const editor = quillRef.current.getEditor();
-            editor.root.setAttribute('data-placeholder', 'Type the message');
-        }
-    }, []);
-    const handleClick = () => {
-        inputRef.current.click();
-    };
+//   to auto change sku based on changes in product name or category
+useEffect(() => {
+    if(product.name || product.category) {
+        generateSKU();
+    }
+}, [product.name, product.category])
 
-    const handleFileChange = (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            setFileName(file.name);
-        }
-    };
+  return (
+    <div className="add-product-container">
+      {/* path */}
+      <div className="add-product-path">
+        <Link to="/Dashboard" style={{ textDecoration: "none" }}>
+          <span className="gray-color">
+            Inventory <IoIosArrowForward />
+          </span>
+        </Link>
+        <span className="ap-name">Add Product</span>
+      </div>
 
-    //   fetch category
-    // category state
-    const [categoryData, setCategoryData] = useState([])
-    useEffect(() => {
-        const fetchCategories = async () => {
-            try {
-                const res = await axios.get("http://localhost:5245/api/category/get");
-                setCategoryData(res.data);
-            }
-            catch (error) {
-                console.error("Error fetching categories", error)
-            }
-        }
-        fetchCategories();
-    }, []);
+      <div
+        style={{
+          marginTop: "20px",
+          width: "100%",
+          border: "1px solid #007B42",
+          backgroundColor: "#BAFFDF",
+          borderRadius: "4px",
+          padding: "3px 5px",
+          maxWidth: "930px",
+          margin: "auto",
+        }}
+      >
+        <span>🎉 Great! You have successfully created a category.</span>
+      </div>
 
-    // filter category, subcategory, brand
-    const uniqueCategories = [...new Set(categoryData.map((item) => item.category.toLowerCase()))];
-    const uniqueSubcategories = [...new Set(categoryData.map((item) => item.subcategory.toLowerCase()))]
-    const uniqueBrands = [...new Set(categoryData.map((item) => item.brand.toLowerCase()))]
+      <div className="add-product-wrapper">
+        {/* Product Info */}
+        <div className="section">
+          <label>Product Name</label>
+          <input
+            type="text"
+            name="name"
+            placeholder="Product name"
+            onChange={handleChange}
+            style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
+          />
 
+          <div className="row-2">
+            <div>
+              <label>SKU</label>
+              <input
+                type="text"
+                name="sku"
+                value={product.sku}
+                placeholder="SKU No"
+                onChange={(e) => setProduct({...product, sku:e.target.value})}
+                style={{
+                  color: "#999797ff",
+                  backgroundColor: "#F1F1F1",
+                }}
+              />
+              <button
+                type="button"
+                onClick={generateSKU}
+                 style={{
+              padding: "4px 10px",
+              border: "1px solid #ccc",
+              background: "#f9f9f9",
+              fontsize: "12px",
+              borderRadius:"8px",
+              cursor: "pointer",
+            }}
+              >
+                Generate
+              </button>
+            </div>
+            <div>
+              <label>Quantity</label>
+              <input
+                type="number"
+                name="quantity"
+                placeholder="21"
+                onChange={handleChange}
+                style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
+              />
+            </div>
+          </div>
+          {/* barcode */}
+          <label>Item Barcode </label>
 
-    return (
-        <div className="add-product-container">
+          <input
+            type="number"
+            name="generate"
+            onChange={handleChange}
+            style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
+          />
+          <button
+            style={{
+              padding: "4px 10px",
+              border: "1px solid #ccc",
+              background: "#f9f9f9",
+              fontsize: "12px",
+              borderRadius:"8px",
+              cursor: "pointer",
+            }}
+          >
+            Generate
+          </button>
 
-            {/* path */}
-            <div className='add-product-path'>
-                <Link to="/Dashboard" style={{ textDecoration: 'none' }}><span className='gray-color'>Inventory <IoIosArrowForward /></span></Link>
-                <span className='ap-name'>Add Product</span>
+          <label>Category</label>
+          <select
+            name="category"
+            onChange={handleChange}
+            style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
+          >
+            <option
+              value=""
+              style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
+            >
+              Select a product category
+            </option>
+            {uniqueCategories.map((categ, index) => (
+              <option key={index} value={categ}>
+                {categ}
+              </option>
+            ))}
+          </select>
+
+          <label>Sub Category</label>
+          <select
+            name="subcategory"
+            onChange={handleChange}
+            style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
+          >
+            <option
+              value=""
+              style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
+            >
+              Select a product sub category
+            </option>
+            {uniqueSubcategories.map((subcateg, index) => (
+              <option key={index} value={subcateg}>
+                {subcateg}
+              </option>
+            ))}
+          </select>
+
+          <label>Brand</label>
+          <select
+            name="category"
+            onChange={handleChange}
+            style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
+          >
+            <option
+              value=""
+              style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
+            >
+              Select a product category
+            </option>
+            {uniqueBrands.map((brand, index) => (
+              <option key={index} value={brand}>
+                {brand}
+              </option>
+            ))}
+          </select>
+
+          <br />
+
+          <span>This Product have :-</span>
+
+          <div
+            className="checkbox-group"
+            style={{ display: "flex", alignItems: "center" }}
+          >
+            <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
+              <input
+                type="radio"
+                name="number"
+                onChange={handleChange}
+                style={{ marginTop: "15px" }}
+              />
+              <span>Serial number</span>
+            </div>
+            <div style={{ display: "flex", alignItems: "center", gap: "5px" }}>
+              <input
+                type="radio"
+                name="number"
+                onChange={handleChange}
+                style={{ marginTop: "15px" }}
+              />
+              <span>Batch number</span>
+            </div>
+          </div>
+
+          <input
+            id="serialno"
+            type="text"
+            name="serialNumber"
+            placeholder="Enter Number"
+            onChange={handleChange}
+            style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
+          />
+
+          <label className="divider-line">HSN/SAC</label>
+          <input
+            id="hsn"
+            type="text"
+            name="hsn"
+            placeholder="HSN Code"
+            onChange={handleChange}
+            style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
+          />
+        </div>
+
+        {/* Source & Stock */}
+        <div className="section">
+          <span>Source & Storage</span>
+          <div className="row-2">
+            <div>
+              <label>Select Supplier</label>
+              <select
+                name="supplier"
+                onChange={handleChange}
+                style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
+              >
+                <option
+                  style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
+                >
+                  Supplier name
+                </option>
+                <option
+                  style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
+                >
+                  Supplier A
+                </option>
+                <option
+                  style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
+                >
+                  Supplier B
+                </option>
+              </select>
+            </div>
+            <div>
+              <label>Select Warehouse</label>
+              <select
+                name="warehouse"
+                onChange={handleChange}
+                style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
+              >
+                <option
+                  style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
+                >
+                  Warehouse name
+                </option>
+                <option
+                  style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
+                >
+                  Warehouse 1
+                </option>
+                <option
+                  style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
+                >
+                  Warehouse 2
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+        {/* stock control */}
+        <div className="section">
+          <span>Stock Control</span>
+          <div className="row-2">
+            <div>
+              <label>Reorder</label>
+              <input
+                type="number"
+                name="reorder"
+                placeholder="15"
+                onChange={handleChange}
+                style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
+              />
+            </div>
+            <div>
+              <label>Lead time</label>
+              <select
+                name="leadTime"
+                onChange={handleChange}
+                style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
+              >
+                <option
+                  style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
+                >
+                  15 days
+                </option>
+                <option
+                  style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
+                >
+                  10 days
+                </option>
+                <option
+                  style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
+                >
+                  20 days
+                </option>
+              </select>
+            </div>
+          </div>
+          <div className="checkbox-group" style={{ marginBottom: "-10px" }}>
+            <label>
+              <input
+                type="checkbox"
+                name="returnable"
+                onChange={handleChange}
+              />{" "}
+              Return option is available for this product.
+            </label>
+          </div>
+        </div>
+
+        {/* Description & Media */}
+
+        <div className="section">
+          <div>
+            <span className="section-title">Description & Media</span>
+            <div className="variant-field">
+              <label className="section-title">Description</label>
+              <ReactQuill
+                ref={quillRef}
+                theme="snow"
+                value={value}
+                onChange={handleChange}
+                modules={modules}
+                placeholder="Text Here"
+                style={{ height: "150px" }}
+              />
+            </div>
+          </div>
+
+          <div
+            style={{
+              borderBottom: "1px solid #D9D9D9",
+              marginBottom: "16px",
+              marginTop: "50px",
+            }}
+          >
+            <span>Description</span>
+
+            <div
+              style={{
+                padding: "16px",
+                backgroundColor: "#f8f9fa",
+                borderRadius: "8px",
+                marginBottom: "24px",
+                marginTop: "8px",
+                fontSize: "14px",
+              }}
+              className="gray-color"
+            >
+              <span>Key Features</span>
+              <ul>
+                <li>Foldable & Portable</li>
+                <li>Confortable Padded Seat</li>
+                <li>Detachable Footrests</li>
+                <li>Strong, lightweight build</li>
+                <li>Support upto 100 Kg</li>
+              </ul>
+              <br />
+              <span>Ideal for personal or medical use.</span>
+            </div>
+          </div>
+
+          <div>
+            <label className="section-title">Media</label>
+            <div className="media-box">
+              <div
+                style={{
+                  display: "flex",
+                  gap: "8px",
+                  marginTop: "16px",
+                  alignItems: "center",
+                }}
+              >
+                <img
+                  src={Chair2}
+                  style={{
+                    width: "68px",
+                    border: "2px solid #d1d1d1ff",
+                    borderRadius: "10px",
+                  }}
+                ></img>
+                <img
+                  src={Chair2r}
+                  style={{
+                    width: "68px",
+                    border: "2px solid #d1d1d1ff",
+                    borderRadius: "10px",
+                  }}
+                ></img>
+                <div className="ap-add-media">
+                  <FaPlusSquare
+                    style={{
+                      fontSize: "32px",
+                      color: "#d1d1d1ff",
+                      borderRadius: "12px",
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <label className="section-title">Media</label>
+            <div className="media-box">
+              <p>
+                <i className="media-icon" /> Drag your image here, or
+                <button
+                  onClick={handleClick}
+                  style={{
+                    padding: "8px 8px",
+                    borderRadius: "4px",
+                    color: "#007bff",
+                    backgroundColor: "#FAFAFA",
+                    fontSize: "16px",
+                    cursor: "pointer",
+                    border: "none",
+                  }}
+                >
+                  browse
+                </button>
+                <input
+                  type="file"
+                  ref={inputRef}
+                  onChange={handleFileChange}
+                  style={{ display: "none" }}
+                />
+                {fileName && (
+                  <span style={{ fontSize: "14px", color: "#666" }}>
+                    {fileName}
+                  </span>
+                )}
+              </p>
+              <small>Supports JPEG, PNG, JPG</small>
+            </div>
+          </div>
+        </div>
+
+        {/* Pricing & Tax */}
+        <div className="section pricing-section">
+          <h4>Pricing & Tax</h4>
+
+          <div className="mrp">
+            <label>MRP</label>
+            <input
+              className="mrp"
+              type="number"
+              name="mrp"
+              placeholder="₹ 0.00"
+              onChange={handleChange}
+              style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
+            />
+          </div>
+
+          <div className="checkbox-group">
+            <label htmlFor="includesTax">
+              <input
+                type="checkbox"
+                name="includesTax"
+                onChange={handleChange}
+                id="includesTax"
+                style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
+              />
+              It Includes Tax?
+            </label>
+          </div>
+
+          <div className="tax">
+            <select
+              name="tax"
+              onChange={handleChange}
+              style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
+            >
+              <option
+                style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
+              >
+                5%
+              </option>
+              <option
+                style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
+              >
+                10%
+              </option>
+              <option
+                style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
+              >
+                20%
+              </option>
+              <option
+                style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
+              >
+                25%
+              </option>
+            </select>
+          </div>
+
+          {/* <hr /> */}
+
+          <div className="row-3">
+            <div>
+              <label>Cost per item</label>
+              <input
+                type="number"
+                name="cost"
+                placeholder="₹ 0.00"
+                onChange={handleChange}
+                style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
+              />
+            </div>
+            <div>
+              <label>Profit</label>
+              <input
+                type="number"
+                name="profit"
+                placeholder="₹ 0.00"
+                onChange={handleChange}
+                style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
+              />
+            </div>
+            <div>
+              <label>Margin</label>
+              <div className="margin-group">
+                <input
+                  type="number"
+                  name="margin"
+                  placeholder="0.00                                 %"
+                  onChange={handleChange}
+                  style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
+                />
+                {/* <span>%</span> */}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Variants */}
+        <div className="section">
+          <label className="section-title">Add Variants</label>
+
+          <div className="variant-row">
+            <div className="variant-field">
+              <label>Variant Name</label>
+              <input
+                type="text"
+                name="variantName"
+                placeholder="Color"
+                onChange={handleChange}
+                style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
+              />
             </div>
 
-
-            <div style={{ marginTop: '20px', width: '100%', border: '1px solid #007B42', backgroundColor: '#BAFFDF', borderRadius: '4px', padding: '3px 5px', maxWidth: '930px', margin: 'auto' }}>
-                <span>🎉 Great! You have successfully created a category.</span>
+            <div className="variant-field">
+              <label>Variant Value</label>
+              <input
+                type="text"
+                name="variantValue"
+                placeholder="Red"
+                onChange={handleChange}
+                style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
+              />
             </div>
+          </div>
 
-            <div className='add-product-wrapper'>
+          <button className="done-btn">Done</button>
+          <br />
+          <button className="add-variant">+ Add another variants</button>
+        </div>
 
-                {/* Product Info */}
-                <div className="section">
-                    <label>Product Name</label>
-                    <input type="text" name="name" placeholder="Product name" onChange={handleChange} style={{ color: '#999797ff', backgroundColor: '#F1F1F1' }} />
-
-                    <div className="row-2">
-                        <div>
-                            <label>SKU</label>
-                            <input type="text" name="sku" placeholder="SKU No" onChange={handleChange} style={{ color: '#999797ff', backgroundColor: '#F1F1F1' }} />
-                        </div>
-                        <div>
-                            <label>Quantity</label>
-                            <input type="number" name="quantity" placeholder="21" onChange={handleChange} style={{ color: '#999797ff', backgroundColor: '#F1F1F1' }} />
-                        </div>
-                    </div>
-
-                    <label>Category</label>
-                    <select name="category" onChange={handleChange} style={{ color: '#999797ff', backgroundColor: '#F1F1F1' }}>
-                        <option value="" style={{ color: '#999797ff', backgroundColor: '#F1F1F1' }}>Select a product category</option>
-                        {uniqueCategories.map((categ, index) => (
-                            <option key={index} value={categ}>{categ}</option>
-                        ))}
-                    </select>
-
-                    <label>Sub Category</label>
-                    <select name="subcategory" onChange={handleChange} style={{ color: '#999797ff', backgroundColor: '#F1F1F1' }}>
-                        <option value="" style={{ color: '#999797ff', backgroundColor: '#F1F1F1' }}>Select a product sub category</option>
-                        {uniqueSubcategories.map((subcateg, index) => (
-                            <option key={index} value={subcateg}>{subcateg}</option>
-                        ))}
-                    </select>
-
-                    <label>Brand</label>
-                    <select name="category" onChange={handleChange} style={{ color: '#999797ff', backgroundColor: '#F1F1F1' }}>
-                        <option value="" style={{ color: '#999797ff', backgroundColor: '#F1F1F1' }}>Select a product category</option>
-                        {uniqueBrands.map((brand, index) => (
-                            <option key={index} value={brand}>{brand}</option>
-                        ))}
-                    </select>
-
-                    <br />
-
-
-                    <span>This Product have :-</span>
-
-                    <div className="checkbox-group" style={{ display: 'flex', alignItems: 'center' }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-                            <input type="radio" name="number" onChange={handleChange} style={{ marginTop: '15px' }} />
-                            <span>Serial number</span>
-                        </div>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '5px' }}>
-                            <input type="radio" name="number" onChange={handleChange} style={{ marginTop: '15px' }} />
-                            <span>Batch number</span>
-                        </div>
-                    </div>
-
-                    <input id='serialno' type="text" name="serialNumber" placeholder="Enter Number" onChange={handleChange} style={{ color: '#999797ff', backgroundColor: '#F1F1F1' }} />
-
-                    <label className='divider-line'>HSN/SAC</label>
-                    <input id='hsn' type="text" name="hsn" placeholder="HSN Code" onChange={handleChange} style={{ color: '#999797ff', backgroundColor: '#F1F1F1' }} />
-                </div>
-
-                {/* Source & Stock */}
-                <div className="section">
-                    <span>Source & Storage</span>
-                    <div className="row-2">
-                        <div>
-                            <label>Select Supplier</label>
-                            <select name="supplier" onChange={handleChange} style={{ color: '#999797ff', backgroundColor: '#F1F1F1' }}>
-                                <option style={{ color: '#999797ff', backgroundColor: '#F1F1F1' }}>Supplier name</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label>Select Warehouse</label>
-                            <select name="warehouse" onChange={handleChange} style={{ color: '#999797ff', backgroundColor: '#F1F1F1' }}>
-                                <option style={{ color: '#999797ff', backgroundColor: '#F1F1F1' }}>Warehouse name</option>
-                            </select>
-                        </div>
-                    </div>
-
-                </div>
-                {/* stock control */}
-                <div className='section'>
-                    <span >Stock Control</span>
-                    <div className="row-2" >
-                        <div>
-                            <label>Reorder</label>
-                            <input type="number" name="reorder" placeholder="15" onChange={handleChange} style={{ color: '#999797ff', backgroundColor: '#F1F1F1' }} />
-                        </div>
-                        <div>
-                            <label>Lead time</label>
-                            <select name="leadTime" onChange={handleChange} style={{ color: '#999797ff', backgroundColor: '#F1F1F1' }}>
-                                <option style={{ color: '#999797ff', backgroundColor: '#F1F1F1' }}>15 days</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div className="checkbox-group" style={{ marginBottom: '-10px' }}>
-                        <label ><input type="checkbox" name="returnable" onChange={handleChange} /> Return option is available for this product.</label>
-                    </div>
-                </div>
-
-                {/* Description & Media */}
-
-                <div className="section">
-
-                    <div>
-                        <span className="section-title">Description & Media</span>
-                        <div className="variant-field">
-                            <label className="section-title">Description</label>
-                            <ReactQuill ref={quillRef} theme="snow" value={value} onChange={handleChange} modules={modules} placeholder="Text Here" style={{ height: '150px' }} />
-                        </div>
-                    </div>
-
-                    <div style={{ borderBottom: '1px solid #D9D9D9', marginBottom: '16px', marginTop: '50px' }}>
-                        <span>Description</span>
-
-                        <div style={{ padding: '16px', backgroundColor: '#f8f9fa', borderRadius: '8px', marginBottom: '24px', marginTop: '8px', fontSize: '14px', }} className='gray-color'>
-                            <span>Key Features</span>
-                            <ul>
-                                <li>Foldable & Portable</li>
-                                <li>Confortable Padded Seat</li>
-                                <li>Detachable Footrests</li>
-                                <li>Strong, lightweight build</li>
-                                <li>Support upto 100 Kg</li>
-                            </ul>
-                            <br />
-                            <span>Ideal for personal or medical use.</span>
-                        </div>
-                    </div>
-
-                    <div>
-                        <label className="section-title">Media</label>
-                        <div className='media-box'>
-                            <div style={{ display: 'flex', gap: '8px', marginTop: '16px', alignItems: 'center' }}>
-                                <img src={Chair2} style={{ width: '68px', border: '2px solid #d1d1d1ff', borderRadius: '10px' }}></img>
-                                <img src={Chair2r} style={{ width: '68px', border: '2px solid #d1d1d1ff', borderRadius: '10px' }}></img>
-                                <div className='ap-add-media'>
-                                    <FaPlusSquare style={{ fontSize: '32px', color: '#d1d1d1ff', borderRadius: '12px' }} />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <label className="section-title">Media</label>
-                        <div className="media-box">
-                            <p>
-
-                                <i className="media-icon" /> Drag your image here, or
-
-                                <button
-                                    onClick={handleClick}
-                                    style={{
-                                        padding: "8px 8px",
-                                        borderRadius: "4px",
-                                        color: "#007bff",
-                                        backgroundColor: '#FAFAFA',
-                                        fontSize: "16px",
-                                        cursor: "pointer",
-                                        border: 'none'
-                                    }}
-                                >
-                                    browse
-                                </button>
-                                <input
-                                    type="file"
-                                    ref={inputRef}
-                                    onChange={handleFileChange}
-                                    style={{ display: "none" }}
-                                />
-                                {fileName && (
-                                    <span style={{ fontSize: "14px", color: "#666" }}>
-                                        {fileName}
-                                    </span>
-                                )}
-
-                            </p>
-                            <small>Supports JPEG, PNG, JPG</small>
-                        </div>
-                    </div>
-
-                </div>
-
-
-                {/* Pricing & Tax */}
-                <div className="section pricing-section">
-                    <h4>Pricing & Tax</h4>
-
-                    <div className="mrp">
-                        <label>MRP</label>
-                        <input
-                            className='mrp'
-                            type="number"
-                            name="mrp"
-                            placeholder="₹ 0.00"
-                            onChange={handleChange} style={{ color: '#999797ff', backgroundColor: '#F1F1F1' }}
-                        />
-                    </div>
-
-                    <div className="checkbox-group">
-                        <label htmlFor="includesTax">
-                            <input
-                                type="checkbox"
-                                name="includesTax"
-                                onChange={handleChange}
-                                id="includesTax"
-                                style={{ color: '#999797ff', backgroundColor: '#F1F1F1' }}
-                            />
-                            It Includes Tax?</label>
-                    </div>
-
-                    <div className="tax">
-                        <select name="tax" onChange={handleChange} style={{ color: '#999797ff', backgroundColor: '#F1F1F1' }}>
-                            <option style={{ color: '#999797ff', backgroundColor: '#F1F1F1' }}>5%</option>
-                            <option style={{ color: '#999797ff', backgroundColor: '#F1F1F1' }}>12%</option>
-                            <option style={{ color: '#999797ff', backgroundColor: '#F1F1F1' }}>18%</option>
-                            <option style={{ color: '#999797ff', backgroundColor: '#F1F1F1' }}>28%</option>
-                        </select>
-                    </div>
-
-                    {/* <hr /> */}
-
-                    <div className="row-3">
-                        <div>
-                            <label>Cost per item</label>
-                            <input
-                                type="number"
-                                name="cost"
-                                placeholder="₹ 0.00"
-                                onChange={handleChange}
-                                style={{ color: '#999797ff', backgroundColor: '#F1F1F1' }}
-                            />
-                        </div>
-                        <div>
-                            <label>Profit</label>
-                            <input
-                                type="number"
-                                name="profit"
-                                placeholder="₹ 0.00"
-                                onChange={handleChange}
-                                style={{ color: '#999797ff', backgroundColor: '#F1F1F1' }}
-                            />
-                        </div>
-                        <div>
-                            <label>Margin</label>
-                            <div className="margin-group">
-                                <input
-                                    type="number"
-                                    name="margin"
-                                    placeholder="0.00                                 %"
-                                    onChange={handleChange}
-                                    style={{ color: '#999797ff', backgroundColor: '#F1F1F1' }}
-                                />
-                                {/* <span>%</span> */}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-                {/* Variants */}
-                <div className="section">
-                    <label className="section-title">Add Variants</label>
-
-                    <div className="variant-row">
-                        <div className="variant-field">
-                            <label>Variant Name</label>
-                            <input
-                                type="text"
-                                name="variantName"
-                                placeholder="Color"
-                                onChange={handleChange}
-                                style={{ color: '#999797ff', backgroundColor: '#F1F1F1' }}
-                            />
-                        </div>
-
-                        <div className="variant-field">
-                            <label>Variant Value</label>
-                            <input
-                                type="text"
-                                name="variantValue"
-                                placeholder="Red"
-                                onChange={handleChange}
-                                style={{ color: '#999797ff', backgroundColor: '#F1F1F1' }}
-                            />
-                        </div>
-                    </div>
-
-                    <button className="done-btn">Done</button>
-                    <br />
-                    <button className="add-variant">+ Add another variants</button>
-                </div>
-
-                {/* Footer */}
-                <div className="footer-actions">
-                    <button className="btn-draft">Draft</button>
-                    <button className="btn-save">Save</button>
-                </div>
-            </div>
-
-        </div >
-    );
+        {/* Footer */}
+        <div className="footer-actions">
+          <button className="btn-draft">Draft</button>
+          <button className="btn-save">Save</button>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default AddProduct;
