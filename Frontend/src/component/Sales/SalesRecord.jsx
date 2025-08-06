@@ -178,11 +178,9 @@ const SalesRecord = () => {
 
               <div className="toolbar-action" style={{ marginTop: "4px" }}>
                 <button className="icon-btn ">
-                  <IoSearch />
+                  <IoSearch /><CgSortAz style={{fontSize:"26px"}} />
                 </button>
-                <button className="icon-btn">
-                  <CgSortAz />
-                </button>
+                
                 <button className="icon-btn">
                   <TbArrowsSort />
                 </button>
