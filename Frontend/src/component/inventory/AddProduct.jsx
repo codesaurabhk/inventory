@@ -185,7 +185,14 @@ useEffect(() => {
               <button
                 type="button"
                 onClick={generateSKU}
-                style={{ border:'none', outline:'none' , marginBottom:'4px'}} 
+                 style={{
+              padding: "4px 10px",
+              border: "1px solid #ccc",
+              background: "#f9f9f9",
+              fontsize: "12px",
+              borderRadius:"8px",
+              cursor: "pointer",
+            }}
               >
                 Generate
               </button>
@@ -201,6 +208,27 @@ useEffect(() => {
               />
             </div>
           </div>
+          {/* barcode */}
+          <label>Item Barcode </label>
+
+          <input
+            type="number"
+            name="generate"
+            onChange={handleChange}
+            style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
+          />
+          <button
+            style={{
+              padding: "4px 10px",
+              border: "1px solid #ccc",
+              background: "#f9f9f9",
+              fontsize: "12px",
+              borderRadius:"8px",
+              cursor: "pointer",
+            }}
+          >
+            Generate
+          </button>
 
           <label>Category</label>
           <select
