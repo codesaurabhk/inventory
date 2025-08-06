@@ -7,12 +7,30 @@ import { AiFillProduct } from "react-icons/ai";
 function PrintBarCode() {
 
 const [product, setProduct] = useState({
-  barcode: "",
+    productName: "",
+    sku: "",
+    price: "",
+    expiryDate: "",
+    quantity: "",
+    barcode: "",
+    showProductName: false,
+    showSku: false,
+    showPrice: false,
+    showExpiryDate: false,
+    showQuantity: false,
 });
 
   const [isFormOpen, setIsFormOpen] = useState(false);
 
   const formRef = useRef(null);
+
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setProduct((prev) => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value,
+    }));
+  };
 
 const generateBarcode = () => {
    setIsFormOpen(true);
@@ -70,7 +88,12 @@ useEffect(() => {
                 <div>Products</div>
                 <div style={{border:'1px solid #ccc',color: "#999797ff", backgroundColor: "#FBFBFB",padding:'6px',borderRadius:'8px' }}>
                     <IoIosSearch style={{fontSize:'25px'}}/>
-                    <input type="text" style={{border:'none',outline:'none',color: "#999797ff", backgroundColor: "#FBFBFB" }} />
+                    <input 
+                    type="text" 
+                    name="productName"
+                    value={product.productName}
+                    onChange={handleChange}
+                    style={{border:'none',outline:'none',color: "#999797ff", backgroundColor: "#FBFBFB" }} />
                 </div>
             </div>
 
@@ -78,7 +101,12 @@ useEffect(() => {
                 <div>SKU</div>
                 <div style={{border:'1px solid #ccc',color: "#999797ff", backgroundColor: "#FBFBFB",padding:'6px',borderRadius:'8px' }}>
                     <IoIosSearch style={{fontSize:'25px'}}/>
-                    <input type="text" style={{border:'none',outline:'none',color: "#999797ff", backgroundColor: "#FBFBFB" }} />
+                    <input 
+                    type="text" 
+                    name="sku"
+                    value={product.sku}
+                    onChange={handleChange}
+                    style={{border:'none',outline:'none',color: "#999797ff", backgroundColor: "#FBFBFB" }} />
                 </div>
             </div>
 
@@ -123,19 +151,31 @@ useEffect(() => {
                 <div>Barcode Content Options</div>
                 <div style={{display:'flex',justifyContent:'space-between',gap:'16px'}}>
                     <div style={{display:'flex',gap:'6px'}}>
-                        <input type='checkbox'/>
+                        <input type='checkbox' 
+                        name="showProductName"
+                        checked={product.showProductName}
+                        onChange={handleChange} />
                         <span>Product Name</span>
                     </div>
                     <div style={{display:'flex',gap:'6px'}}>
-                        <input type='checkbox'/>
+                        <input type='checkbox' 
+                        name="showSku"
+                        checked={product.showSku}
+                        onChange={handleChange} />
                         <span>SKU</span>
                     </div>
                     <div style={{display:'flex',gap:'6px'}}>
-                        <input type='checkbox'/>
+                        <input type='checkbox' 
+                        name="showPrice"
+                        checked={product.showPrice}
+                        onChange={handleChange} />
                         <span>Price</span>
                     </div>
                     <div style={{display:'flex',gap:'6px'}}>
-                        <input type='checkbox'/>
+                        <input type='checkbox' 
+                        name="showExpiryDate"
+                        checked={product.showExpiryDate}
+                        onChange={handleChange} />
                         <span>Expiry Date</span>
                     </div>
                 </div>
@@ -214,49 +254,40 @@ useEffect(() => {
                     <div className='row'>
                         <div className='col-6'>
                             <div style={{ marginTop: "10px",border:'1px solid #E6E6E6',borderRadius:'8px',width:'320px',padding:'12px 24px',height:'250px' }}>
-                                <span>Product Name: </span>
+                                {product.showProductName && product.productName && (
+                                    <>
+                                        <span>Product: {product.productName}</span>
+                                    </>
+                                )}
                                 <br/>
-                                <span>SKU: </span>
+                                {product.showSku && product.showSku && (
+                                    <>
+                                        <span>SKU: {product.sku}</span>
+                                    </>
+                                )}
                                 <br/><br/>
-                                <span>MRP: /-</span>
+                                {product.showPrice && product.showPrice && (
+                                    <>
+                                        <span>MRP: {product.price}</span>
+                                    </>
+                                )}
                                 <br/>
                                 <div style={{display:'flex',justifyContent:'space-between'}}>
-                                    <span>Expiry: </span>
-                                    <span>QTY: 000</span>
+                                    {product.showExpiryDate && product.showExpiryDate && (
+                                    <>
+                                        <span>Expiry: {product.expiryDate}</span>
+                                    </>
+                                    )}
+                                    {product.showQuantity && product.showQuantity && (
+                                    <>
+                                        <span>QTY: {product.quantity}</span>
+                                    </>
+                                    )}
                                 </div>
                                 <svg id="barcode-svg"></svg>
                             </div>
                         </div>
-                        <div className='col-6'>
-                            <div style={{ marginTop: "10px",border:'1px solid #E6E6E6',borderRadius:'8px',width:'320px',padding:'12px 24px',height:'250px' }}>
-                                <span>Product Name: </span>
-                                <br/>
-                                <span>SKU: </span>
-                                <br/><br/>
-                                <span>MRP: /-</span>
-                                <br/>
-                                <div style={{display:'flex',justifyContent:'space-between'}}>
-                                    <span>Expiry: </span>
-                                    <span>QTY: 000</span>
-                                </div>
-                                <svg id="barcode-svg"></svg>
-                            </div>
-                        </div>
-                        <div className='col-6'>
-                            <div style={{ marginTop: "10px",border:'1px solid #E6E6E6',borderRadius:'8px',width:'320px',padding:'12px 24px',height:'250px' }}>
-                                <span>Product Name: </span>
-                                <br/>
-                                <span>SKU: </span>
-                                <br/><br/>
-                                <span>MRP: /-</span>
-                                <br/>
-                                <div style={{display:'flex',justifyContent:'space-between'}}>
-                                    <span>Expiry: </span>
-                                    <span>QTY: 000</span>
-                                </div>
-                                <svg id="barcode-svg"></svg>
-                            </div>
-                        </div>
+
                     </div>
                     
                     
