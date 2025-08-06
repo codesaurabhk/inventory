@@ -196,25 +196,25 @@ function First() {
           {/* sales */}
           <div className={`sidebar-header`} onClick={handleImageClick5}>
             <div className="sidebar-logo-text">
-              <AiFillProduct className={`icon ${location.pathname === "/" || location.pathname === "/" || location.pathname === "/" ? "active" : ""}`} style={{fontSize:'20px'}} />
+              <AiFillProduct className={`icon ${location.pathname === "/SalesRecord" || location.pathname === "/Quotation" || location.pathname === "/Invoices" ? "active" : ""}`} style={{fontSize:'20px'}} />
               <div className="fr-supplier-title link">Sales</div>
             </div>
             <IoIosArrowForward className={showDropdown5 ? "arrow-icon rotate" : "arrow-icon"} />
           </div>
           {showDropdown5 && (
             <ul className="sidebar-unorder-list">
-              <NavLink to="/" className="link"><li
-                className={`sidebar-list-all ${location.pathname === "/" ? "active" : ""}` }
+              <NavLink to="/SalesRecord" className="link"><li
+                className={`sidebar-list-all ${location.pathname === "/SalesRecord" ? "active" : ""}` }
               >
                 All Sales
               </li></NavLink> 
-              <NavLink to="/" className="link"><li
-                className={`sidebar-list-all ${location.pathname === "/" ? "active" : ""}` }
+              <NavLink to="/Quotation" className="link"><li
+                className={`sidebar-list-all ${location.pathname === "/Quotation" ? "active" : ""}` }
               >
                 Quotation
               </li></NavLink> 
-              <NavLink to="/" className="link"><li
-                className={`sidebar-list-all ${location.pathname === "/" ? "active" : ""}` }
+              <NavLink to="/Invoices" className="link"><li
+                className={`sidebar-list-all ${location.pathname === "/Invoices" ? "active" : ""}` }
               >
                 Invoices & Bills 
               </li></NavLink>
