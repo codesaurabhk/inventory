@@ -132,7 +132,7 @@ const handleClear = () => {
                             <></> ) : (<>
                             <button className="icon-btn " value={searchdrop} onClick={handleSearchDropChange}><IoSearch /> <CgSortAz style={{fontSize:'30px'}} /></button>
                             </>) }
-                            <button className="icon-btn"><TbArrowsSort /></button>
+                            <button className="icon-btn" onClick={handleClear}><TbArrowsSort /></button>
                         </div>
                     </div>
 
@@ -188,7 +188,7 @@ const handleClear = () => {
                         </div>
 
                         <div className="toolbar-action" style={{ marginTop: "4px" }}>
-                            <button className="icon-btn " onClick={handleClear}>Clear</button>
+                            <button className="icon-btn ">Clear</button>
                         </div>
 
                     </div>
