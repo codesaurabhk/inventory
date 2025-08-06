@@ -1,0 +1,60 @@
+.ac-containers {
+    padding: 20px;
+    font-family: sans-serif;
+    background: #f7f7f7;
+    margin: 0px;
+}
+
+.gray-color {
+    color: #828486;
+}
+
+.ac-paths {
+    display: flex;
+    align-items: center;
+    font-size: large;
+    margin-left: 5px;
+    text-align: center;
+}
+
+.ac-name {
+    font-weight: 550;
+}
+
+.ac-details {
+    max-width: 645px;
+    margin: auto;
+    margin-top: 25px;
+    /* margin-bottom: 80px; */
+    padding: 32px;
+    padding: 0px 16px 18px 18px;
+    font-family: 'Segoe UI', sans-serif;
+    background: #FFFFFF;
+
+    gap: 24px;
+    border: 1px solid #E1E1E1;
+    border-radius: 10px;
+        box-shadow:0px 0px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* CreateInvoices.css */
+
+.custom-quill-editor .ql-toolbar {
+  border-radius: 8px 8px 0 0;
+  border: 1px solid #C2C2C2;
+  background-color: #f9f9f9;
+}
+
+.custom-quill-editor .ql-container {
+  border-radius: 0 0 8px 8px;
+  border: 1px solid #C2C2C2;
+  border-top: none;
+  background-color: #fff;
+  min-height: 100px;
+}
+
+.custom-quill-editor .ql-editor {
+  padding: 10px;
+  font-size: 14px;
+  color: #333;
+}

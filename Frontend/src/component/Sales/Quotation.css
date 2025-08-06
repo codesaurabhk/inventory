@@ -23,7 +23,7 @@
     flex: 1;
     background: white;
 
-    padding-left: 45px;
+    padding-left: 35px;
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.05);
 }
 
@@ -70,15 +70,11 @@
 
 
 /* new */
-.toolbarsa {
+.toolbars {
     display: flex;
     justify-content: space-between;
-    padding: 0px 25px;
-    margin-bottom: 0px;
-    /* background-color: #007bff; */
-}
-.toolbarsa h3{
-    padding-top: 25px;
+    padding: 0px 20px;
+    margin-bottom: -8px;
 }
 
 .toolbar-titles {
@@ -90,7 +86,6 @@
     display: flex;
     justify-content: space-between;
     border-top: 2px solid #E6E6E6;
-    align-items: center;
 }
 
 
@@ -186,10 +181,7 @@
   object-fit: cover;
 }
 
-.product-cell {
-  display: flex;
-  align-items: center;
-}
+
 .status {
     padding: 4px 10px;
     border-radius: 5px;
@@ -198,14 +190,19 @@
     text-transform: capitalize;
 }
 
-.status.active {
-    background-color: #d1f7dc;
-    color: #1b8e3e;
+.status.approved {
+    background-color: #DFFFE0;
+    color: #1E4921;
+    
 }
 
-.status.inactive {
-    background-color: #f7d1d1;
-    color: #c0392b;
+.status.rejected{
+    background-color: #FCE4E6;
+    color: #491E1F;
+}
+.status.open{
+    background-color: #FDFFE4;
+    color: #636D1D;
 }
 
 .pagination {

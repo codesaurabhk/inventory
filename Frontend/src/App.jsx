@@ -42,6 +42,16 @@ import AllCustomer from "./component/Customer/AllCustomers.jsx";
 import AllWarehouse from './component/Warehouse/AllWarehouse.jsx';
 import StockInOutHistory from './component/Warehouse/StockInOutHistory.jsx'
 
+//sales
+import SalesRecord from './component/Sales/SalesRecord'
+import Quotation from './component/Sales/Quotation'
+import Invoices from './component/Sales/Invoices'
+import CreateSales from './component/Sales/CreateSales'
+import CreateInvoices from './component/Sales/CreateInvoices'
+import CreateInvoiceSuccess from './component/Sales/CreateInvoiceSuccess'
+import CreateQuatations from './component/Sales/CreateQuatations'
+import CreateQuatationsSuccess from './component/Sales/CreateQuatationsSuccess'
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -154,6 +164,38 @@ const router = createBrowserRouter([
       {
         path: "/StockInOutHistory",
         element: <StockInOutHistory/>
+      },
+      {
+        path: "/SalesRecord",
+        element: <SalesRecord/>
+      },
+      {
+        path: "/Quotation",
+        element: <Quotation/>
+      },
+      {
+        path: "/Invoices",
+        element: <Invoices/>
+      },
+      {
+        path: "/CreateSales",
+        element: <CreateSales/>
+      },
+      {
+        path: "/CreateInvoices",
+        element: <CreateInvoices/>
+      },
+      {
+        path: "/CreateInvoiceSuccess",
+        element: <CreateInvoiceSuccess/>
+      },
+      {
+        path: "/CreateQuatations",
+        element: <CreateQuatations/>
+      },
+      {
+        path: "/CreateQuatationsSuccess",
+        element: <CreateQuatationsSuccess/>
       }
     ]
   }
