@@ -8,6 +8,9 @@ import Chair2 from "../images/chair2.png";
 import Chair2r from "../images/chair2r.png";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import JsBarcode from "jsbarcode";
+import QRCode from "qrcode";
+
 
 const AddProduct = () => {
   const [product, setProduct] = useState({
@@ -33,6 +36,7 @@ const AddProduct = () => {
     margin: "",
     variantName: "",
     variantValue: "",
+    barcode:"",
   });
 
   const [value, setValue] = useState("");
@@ -88,6 +92,7 @@ const AddProduct = () => {
   //   fetch category
   // category state
   const [categoryData, setCategoryData] = useState([]);
+
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -127,7 +132,71 @@ useEffect(() => {
     if(product.name || product.category) {
         generateSKU();
     }
-}, [product.name, product.category])
+}, [product.name, product.category]);
+
+// const generateBarcode = () => {
+//     const randomBarcode = Math.floor(100000000000 + Math.random() * 900000000000).toString();
+//     setProduct((prev) => ({
+//         ...prev,
+//         barcode:randomBarcode
+//     }));
+//     setTimeout(() => {
+//         JsBarcode("#barcode-svg", randomBarcode, {
+//             format:"EAN13",
+//             lineColor:"#000",
+//             width:2,
+//             height:60,
+//             displayValue:true,
+//         })
+//     },100)
+// }
+
+const [qrCodeUrl, setQrCodeUrl] = useState("");
+const generateQRCode = async() => {
+    const randomCode = Math.floor(100000000000 + Math.random() * 900000000000).toString() || "BR";
+    const qrText = JSON.stringify({
+        barcode:randomCode,
+        product:product.name,
+        sku:product.sku,
+    })
+    try {
+        const url = await QRCode.toDataURL(qrText);
+        setProduct((prev) => ({...prev, barcode:randomCode}))
+        setQrCodeUrl(url);
+    }catch(error) {
+        console.error("QR Code generation failed", error)
+    }
+}
+
+
+  const [formData, setFormData] = useState({
+    includesTax: false,
+  });
+
+  const handleTaxChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value,
+    }));
+  };
+
+  const [variants, setVariants] = useState([
+    { variantName: '', variantValue: '' }, // Initial row
+  ]);
+
+  const handleVariantChange = (index, e) => {
+    const { name, value } = e.target;
+    setVariants((prev) =>
+      prev.map((variant, i) =>
+        i === index ? { ...variant, [name]: value } : variant
+      )
+    );
+  };
+
+  const handleAddVariant = () => {
+    setVariants((prev) => [...prev, { variantName: '', variantValue: '' }]);
+  };
 
   return (
     <div className="add-product-container">
@@ -163,8 +232,9 @@ useEffect(() => {
           <input
             type="text"
             name="name"
+            value={product.name}
             placeholder="Product name"
-            onChange={handleChange}
+            onChange={(e) => setProduct({...product, name:e.target.value})}
             style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
           />
 
@@ -194,7 +264,7 @@ useEffect(() => {
               cursor: "pointer",
             }}
               >
-                Generate
+                Generate SKU
               </button>
             </div>
             <div>
@@ -209,15 +279,19 @@ useEffect(() => {
             </div>
           </div>
           {/* barcode */}
-          <label>Item Barcode </label>
-
+          <label>Item QR Code </label>
+           {/* <div style={{display:"flex", gap:"8px", alignItems:"center"}}> */}
           <input
-            type="number"
-            name="generate"
-            onChange={handleChange}
-            style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
+            type="text"
+            name="barcode"
+            value={product.barcode}
+            onChange={(e) => setProduct({...product, barcode:e.target.value})}
+            placeholder="Enter or generate QR code"
+            style={{ color: "#999797ff", backgroundColor: "#F1F1F1", flex:1 }}
           />
           <button
+          type="button"
+          onClick={generateQRCode}
             style={{
               padding: "4px 10px",
               border: "1px solid #ccc",
@@ -227,8 +301,30 @@ useEffect(() => {
               cursor: "pointer",
             }}
           >
-            Generate
+            Generate QR
           </button>
+          {/* </div> */}
+          {/* Show Q Code */}
+          {qrCodeUrl && (
+            <div style={{ marginTop:"20px", padding:"16px", border:"1px solid #ccc", borderRadius:"12px",}}>
+             <h4>Generated QR Code</h4>
+                <div style={{display:'flex', alignItems:'center'}}>
+             <img src={qrCodeUrl} alt="QR Code" style={{width:"180px"}}
+             />
+             <div >
+                <p><strong>Barcode:</strong>{product.barcode}</p>
+                <p><strong>Product:</strong>{product.name}</p>
+                <p><strong>SKU:</strong>{product.sku}</p>
+             </div>
+             </div>
+             <div style={{marginTop:"10px", display:"flex", gap:"10px"}}>
+                <a href={qrCodeUrl} download="product-qr.png" style={{padding:"6px 12px", fontSize:"12px", backgroundColor:"#007BFF", color:"white", borderRadius:"6px", textDecoration:"none"}}>
+                  ⬇️  Download QR
+                </a>
+             </div>
+            </div>
+          )}
+        
 
           <label>Category</label>
           <select
@@ -584,47 +680,43 @@ useEffect(() => {
             />
           </div>
 
-          <div className="checkbox-group">
-            <label htmlFor="includesTax">
-              <input
-                type="checkbox"
-                name="includesTax"
-                onChange={handleChange}
-                id="includesTax"
-                style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
-              />
-              It Includes Tax?
-            </label>
-          </div>
+        <div className="checkbox-group">
+        <label htmlFor="includesTax">
+          <input
+            type="checkbox"
+            name="includesTax"
+            onChange={handleTaxChange}
+            id="includesTax"
+            checked={formData.includesTax}
+            style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
+          />
+          It Includes Tax?
+        </label>
+      </div>
 
-          <div className="tax">
-            <select
-              name="tax"
-              onChange={handleChange}
-              style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
-            >
-              <option
-                style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
-              >
-                5%
-              </option>
-              <option
-                style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
-              >
-                10%
-              </option>
-              <option
-                style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
-              >
-                20%
-              </option>
-              <option
-                style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
-              >
-                25%
-              </option>
-            </select>
-          </div>
+{formData.includesTax && (
+        <div className="tax">
+          <select
+            name="tax"
+            onChange={handleChange}
+            value={formData.tax}
+            style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
+          >
+            <option style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}>
+              5%
+            </option>
+            <option style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}>
+              10%
+            </option>
+            <option style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}>
+              20%
+            </option>
+            <option style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}>
+              25%
+            </option>
+          </select>
+        </div>
+      )}
 
           {/* <hr /> */}
 
@@ -669,33 +761,40 @@ useEffect(() => {
         <div className="section">
           <label className="section-title">Add Variants</label>
 
-          <div className="variant-row">
-            <div className="variant-field">
-              <label>Variant Name</label>
-              <input
-                type="text"
-                name="variantName"
-                placeholder="Color"
-                onChange={handleChange}
-                style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
-              />
-            </div>
-
-            <div className="variant-field">
-              <label>Variant Value</label>
-              <input
-                type="text"
-                name="variantValue"
-                placeholder="Red"
-                onChange={handleChange}
-                style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
-              />
-            </div>
+          {variants.map((variant, index) => (
+        <div className="variant-row" key={index}>
+          <div className="variant-field">
+            <label>Variant Name</label>
+            <input
+              type="text"
+              name="variantName"
+              placeholder=""
+              value={variant.variantName}
+              onChange={(e) => handleVariantChange(index, e)}
+              style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
+            />
           </div>
 
-          <button className="done-btn">Done</button>
+          <div className="variant-field">
+            <label>Variant Value</label>
+            <input
+              type="text"
+              name="variantValue"
+              placeholder=""
+              value={variant.variantValue}
+              onChange={(e) => handleVariantChange(index, e)}
+              style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
+            />
+          </div>
+        </div>
+      ))}
+
+      <button className="add-variant" onClick={handleAddVariant}>
+        + Add another variants
+      </button>
+
           <br />
-          <button className="add-variant">+ Add another variants</button>
+          <button className="done-btn">Done</button>
         </div>
 
         {/* Footer */}
