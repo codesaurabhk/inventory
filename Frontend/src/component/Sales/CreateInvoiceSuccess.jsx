@@ -54,7 +54,7 @@ const CreateInvoiceSuccess = () => {
             <div className="invoice-header">INVOICE</div>
           </div>
 
-          <div className="section ">
+          <div className="sections ">
             <div>
               <div>
                 <span className="label">INVOICE NO:</span> 01234
@@ -67,7 +67,7 @@ const CreateInvoiceSuccess = () => {
             </div>
           </div>
 
-          <div className="section">
+          <div className="sections">
             <div className="label">ISSUED FROM:</div>
             <div>Your Company Name</div>
             <div>123 Anywhere St., Any City</div>
@@ -75,7 +75,7 @@ const CreateInvoiceSuccess = () => {
             <div>GSTIN - 27XXXXXXXXX125</div>
           </div>
 
-          <div className="section">
+          <div className="sections">
             <div className="label">ISSUED TO:</div>
             <div>Client Name</div>
             <div>456 Client Street, Commercial Zone, City, PIN - 111111</div>

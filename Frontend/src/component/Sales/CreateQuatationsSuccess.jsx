@@ -54,7 +54,7 @@ const CreateQuatationsSuccess = () => {
             <div className="invoice-header">QUOTATION</div>
           </div>
 
-          <div className="section ">
+          <div className="sections ">
             <div>
               <div>
                 <span className="label">INVOICE NO: 01234</span> 
@@ -67,7 +67,7 @@ const CreateQuatationsSuccess = () => {
             </div>
           </div>
 
-          <div className="section">
+          <div className="sections">
             <div className="label">ISSUED FROM:</div>
             <div>Your Company Name</div>
             <div>123 Anywhere St., Any City</div>
@@ -75,7 +75,7 @@ const CreateQuatationsSuccess = () => {
             <div>GSTIN - 27XXXXXXXXX125</div>
           </div>
 
-          <div className="section">
+          <div className="sections">
             <div className="label">ISSUED TO:</div>
             <div>Client Name</div>
             <div>456 Client Street, Commercial Zone, City, PIN - 111111</div>
