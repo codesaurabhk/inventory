@@ -104,8 +104,8 @@ const paginatedData = data.slice(startIndex, endIndex);
 
 
                         <div className="toolbar-actionsz" style={{ marginTop: "4px" }}>
-                            <button className="icon-btn "><IoSearch /></button>
-                            <button className="icon-btn"><CgSortAz /></button>
+                            <button className="icon-btn "><IoSearch /><CgSortAz style={{fontSize:"26px"}} /></button>
+                           
                             <button className="icon-btn"><TbArrowsSort /></button>
                         </div>
                     </div>
