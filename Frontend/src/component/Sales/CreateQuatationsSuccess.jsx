@@ -75,7 +75,7 @@ const CreateQuatationsSuccess = () => {
             <div>GSTIN - 27XXXXXXXXX125</div>
           </div>
 
-          <div className="sections">
+          <div className="section">
             <div className="label">ISSUED TO:</div>
             <div>Client Name</div>
             <div>456 Client Street, Commercial Zone, City, PIN - 111111</div>

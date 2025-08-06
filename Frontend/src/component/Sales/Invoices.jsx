@@ -42,37 +42,43 @@ const paginatedData = data.slice(startIndex, endIndex);
     return (
         <div className="dashboard-container">
             {/* Top Section */}
-            <div className="top-section">
+            <div className="top-sectionz">
                 {/* Metrics */}
-                <div className="dashboard-metrics">
-                    <div className="metric-card" style={{ borderTopLeftRadius: "10px", borderEndStartRadius: "10px" }}>
+                <div className="dashboard-metricsz">
+                    <div className="metric-cardz" style={{ borderTopLeftRadius: "10px", borderEndStartRadius: "10px" }}>
                         <div className="metric-icon"><FaSackDollar /></div>
                         <div>
-                            <p className="metric-title">Total Invoices</p>
-                            <h2>
+                            <p className="metric-titlez">Total Invoices</p>
+                            <span style={{fontSize:"20px", fontWeight:"600"}}>
                                 120
-                            </h2>
+                            </span>
                         </div>
                     </div>
-                    <div className="metric-card" >
-                        <div className="metric-icon blue"><FaStopCircle /></div>
+                    <div  className="metric-cardz"  >
+                        <div style={{marginLeft:"42px"}} className="metric-icon blue"><FaStopCircle /></div>
                         <div>
-                            <p className="metric-title">paid</p>
-                            <h2>47</h2>
+                            <p className="metric-titlez">paid</p>
+                            <span style={{fontSize:"20px", fontWeight:"600"}}>
+                                47
+                            </span>
                         </div>
                     </div>
-                    <div className="metric-card" >
-                        <div className="metric-icon blue"><FaStopCircle /></div>
+                    <div className="metric-cardz" >
+                        <div style={{marginLeft:"35px"}} className="metric-icon blue"><FaStopCircle /></div>
                         <div>
-                            <p className="metric-title">Pending</p>
-                            <h2>32</h2>
+                            <p className="metric-titlez">Pending</p>
+                            <span style={{fontSize:"20px", fontWeight:"600"}}>
+                                32
+                            </span>
                         </div>
                     </div>
-                    <div className="metric-card" style={{ borderTopRightRadius: "10px", borderBottomRightRadius: "10px" }}>
-                        <div className="metric-icon blue"><RiAlertFill /></div>
+                    <div className="metric-cardz" style={{ borderTopRightRadius: "10px", borderBottomRightRadius: "10px" }}>
+                        <div style={{marginLeft:"35px"}} className="metric-icon blue"><RiAlertFill /></div>
                         <div>
-                            <p className="metric-title">Overdue</p>
-                            <h2>41</h2>
+                            <p className="metric-titlez">Overdue</p>
+                            <span style={{fontSize:"20px", fontWeight:"600"}}>
+                                41
+                            </span>
                         </div>
                     </div>
                     
@@ -81,7 +87,7 @@ const paginatedData = data.slice(startIndex, endIndex);
             {/* Toolbar */}
             <div className='overview'>
                 <div >
-                    <div className='toolbars' >
+                    <div className='toolbarsz' >
                         <div >
                             <h3>All Invoices</h3>
                         </div>
@@ -97,7 +103,7 @@ const paginatedData = data.slice(startIndex, endIndex);
                         </div>
 
 
-                        <div className="toolbar-action" style={{ marginTop: "4px" }}>
+                        <div className="toolbar-actionsz" style={{ marginTop: "4px" }}>
                             <button className="icon-btn "><IoSearch /></button>
                             <button className="icon-btn"><CgSortAz /></button>
                             <button className="icon-btn"><TbArrowsSort /></button>

@@ -44,35 +44,41 @@ const paginatedData = data.slice(startIndex, endIndex);
             {/* Top Section */}
             <div className="top-section">
                 {/* Metrics */}
-                <div className="dashboard-metrics">
-                    <div className="metric-card" style={{ borderTopLeftRadius: "10px", borderEndStartRadius: "10px" }}>
+                <div className="dashboard-metricsz">
+                    <div className="metric-cardz" style={{ borderTopLeftRadius: "10px", borderEndStartRadius: "10px" }}>
                         <div className="metric-icon"><FaSackDollar /></div>
                         <div>
-                            <p className="metric-title">Total Quotations</p>
-                            <h2>
+                            <p className="metric-titlez">Total Quotations</p>
+                           <span style={{fontSize:"20px", fontWeight:"600"}}>
                                 12
-                            </h2>
+                            </span>
                         </div>
                     </div>
-                    <div className="metric-card" >
-                        <div className="metric-icon blue"><FaStopCircle /></div>
+                    <div className="metric-cardz" >
+                        <div style={{marginLeft:"40px"}} className="metric-icon blue"><FaStopCircle /></div>
                         <div>
-                            <p className="metric-title">Open</p>
-                            <h2>6</h2>
+                            <p className="metric-titlez">Open</p>
+                            <span style={{fontSize:"20px", fontWeight:"600"}}>
+                                6
+                            </span>
                         </div>
                     </div>
-                    <div className="metric-card" >
-                        <div className="metric-icon blue"><FaStopCircle /></div>
+                    <div className="metric-cardz" >
+                        <div style={{marginLeft:"35px"}} className="metric-icon blue"><FaStopCircle /></div>
                         <div>
-                            <p className="metric-title">Approved</p>
-                            <h2>2</h2>
+                            <p className="metric-titlez">Approved</p>
+                            <span style={{fontSize:"20px", fontWeight:"600"}}>
+                                2
+                            </span>
                         </div>
                     </div>
-                    <div className="metric-card" style={{ borderTopRightRadius: "10px", borderBottomRightRadius: "10px" }}>
-                        <div className="metric-icon blue"><RiAlertFill /></div>
+                    <div className="metric-cardz" style={{ borderTopRightRadius: "10px", borderBottomRightRadius: "10px" }}>
+                        <div style={{marginLeft:"35px"}}  className="metric-icon blue"><RiAlertFill /></div>
                         <div>
-                            <p className="metric-title">Rejected</p>
-                            <h2>4</h2>
+                            <p className="metric-titlez">Rejected</p>
+                            <span style={{fontSize:"20px", fontWeight:"600"}}>
+                                4
+                            </span>
                         </div>
                     </div>
                     
@@ -81,7 +87,7 @@ const paginatedData = data.slice(startIndex, endIndex);
             {/* Toolbar */}
             <div className='overview'>
                 <div >
-                    <div className='toolbars' >
+                    <div className='toolbarsz' >
                         <div >
                             <h3>Quotations</h3>
                         </div>
@@ -97,7 +103,7 @@ const paginatedData = data.slice(startIndex, endIndex);
                         </div>
 
 
-                        <div className="toolbar-action" style={{ marginTop: "4px" }}>
+                        <div className="toolbar-action" >
                             <button className="icon-btn "><IoSearch /></button>
                             <button className="icon-btn"><CgSortAz /></button>
                             <button className="icon-btn"><TbArrowsSort /></button>
