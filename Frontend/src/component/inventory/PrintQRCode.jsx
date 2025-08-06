@@ -51,7 +51,7 @@ function PrintQRCode() {
                     <div style={{display:'flex',justifyContent:'space-between',gap:'16px' }}>
                         <div style={{width:'100%'}}>
                             <div>Number of QRcode to print</div>
-                            <input type="number" style={{border:'1px solid #ccc',color: "#999797ff", backgroundColor: "#FBFBFB",padding:'6px',borderRadius:'8px',width:'100%'  }} />
+                            <input type="number" style={{border:'1px solid #ccc',color: "#999797ff", backgroundColor: "#FBFBFB",padding:'6px',borderRadius:'8px',width:'100%'  }} placeholder='01' />
                         </div>
     
                         <div style={{width:'100%'}}>
