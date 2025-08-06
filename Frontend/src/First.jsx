@@ -89,7 +89,7 @@ function First() {
           {/* inventory */}
           <div className={`sidebar-header ${location.pathname === "/Inventory" ? "active" : ""}`} onClick={handleImageClick2}>
             <div className="sidebar-logo-text">
-              <FaBoxArchive className={`iconi ${location.pathname === "/Inventory" || location.pathname === "/Dashboard" || location.pathname === "/CategoryDashbord" || location.pathname === "/PurchaseDashbord" || location.pathname === "/StockDashbord" || location.pathname === "/ExpiryItemsDashbord" || location.pathname === "/Damagesdashbord" || location.pathname === "/PrintBarCode"  ? "active" : ""}`} style={{fontSize:'19px'}} />
+              <FaBoxArchive className={`iconi ${location.pathname === "/Inventory" || location.pathname === "/Dashboard" || location.pathname === "/CategoryDashbord" || location.pathname === "/PurchaseDashbord" || location.pathname === "/StockDashbord" || location.pathname === "/ExpiryItemsDashbord" || location.pathname === "/Damagesdashbord" || location.pathname === "/PrintBarCode" || location.pathname === "/PrintQRCode"  ? "active" : ""}`} style={{fontSize:'19px'}} />
               <NavLink to="/Inventory" className="fr-supplier-title link">Inventory</NavLink>
             </div>
             <IoIosArrowForward className={showDropdown2 ? "arrow-icon rotate" : "arrow-icon"} />
@@ -130,6 +130,11 @@ function First() {
                 className={`sidebar-list-all ${location.pathname === "/PrintBarCode" ? "active" : ""}`}
               >
                Print Barcode
+              </li></NavLink>
+              <NavLink to="/PrintQRCode" className="link"><li
+                className={`sidebar-list-all ${location.pathname === "/PrintQRCode" ? "active" : ""}`}
+              >
+               Print QRcode
               </li></NavLink>
             </ul>
           )}

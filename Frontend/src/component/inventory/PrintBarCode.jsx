@@ -1,20 +1,21 @@
 import React from 'react'
-import './PrintBarCode.css'
 import { IoIosSearch } from "react-icons/io";
 import { AiFillProduct } from "react-icons/ai";
 
 function PrintBarCode() {
   return (
-    <div className="pbc-container">
+    <div style={{margine:'0px',padding:'20px',backgroundColor:'#f8f9fa',fontFamily:'sans-serif'}}>
 
       {/* path */}
-      <div className="pbc-path">
+      <div style={{fontSize:'large'}}>
         <span className="ap-name">Print Barcode</span>
       </div>
 
-      <div className="pbc-wrapper">
+      <div style={{maxWidth:'750px',margin:'auto',padding:'16px 32px',fontFamily:'sans-serif',backgroundColor:'#F7F7F7'
+      }}>
         
-        <div className="pbc-section">
+        <div className="" style={{backgroundColor:'#fff',border:'1px solid #E1E1E1',borderRadius:'8px',padding:'20px',marginBottom:'24px'
+        }}>
             <strong>Estimate Amount</strong>
             
             <div style={{marginTop:'16px'}}>
@@ -40,7 +41,8 @@ function PrintBarCode() {
             </div>
         </div>
 
-        <div className="pbc-section">
+        <div style={{backgroundColor:'#fff',border:'1px solid #E1E1E1',borderRadius:'8px',padding:'20px',marginBottom:'24px'
+        }} >
             <strong>Set Barcode Details</strong>
             
             <div style={{marginTop:'16px'}}>

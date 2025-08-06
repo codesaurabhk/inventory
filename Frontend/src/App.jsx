@@ -29,6 +29,7 @@ import AddCategory from './component/inventory/AddCategory'
 import CreatePurchaseOrder from './component/inventory/CreatePurchaseOrder.jsx'
 import Manageproduct from './component/inventory/Manageproduct.jsx'
 import PrintBarCode from './component/inventory/PrintBarCode.jsx';
+import PrintQRCode from './component/inventory/PrintQRCode.jsx';
 
 //suppliers
 import AddSupplier from "./component/Supplier/AddSupplier.jsx";
@@ -129,6 +130,10 @@ const router = createBrowserRouter([
       {
         path: '/PrintBarCode',
         element: <PrintBarCode/>
+      },
+      {
+        path: '/PrintQRCode',
+        element:<PrintQRCode/>
       },
       {
         path:'/CreatePurchaseOrder',
