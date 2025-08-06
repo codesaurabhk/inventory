@@ -120,7 +120,7 @@ const SalesRecord = () => {
     
     border-radius: 8px;
      padding: 0px 20px; */}
-      <div style={{ background: "#FFFFFF", borderRadius: "8px", padding: "0px 20px", paddingBottom: "2px" }} >
+      <div style={{ background: "#FFFFFF", borderRadius: "8px", padding: "25px 20px", paddingBottom: "2px" }} >
         <div className="dashboard-metricss">
           <div >
             <h3>Sales Record</h3>
@@ -169,10 +169,10 @@ const SalesRecord = () => {
             <div className="toolbar-actions-ths" style={{ border: '1px solid #ccc', borderRadius: '6px', padding: '4px 11px', }}>
               <div className="toolbar-titles">
                 <button className="toolbar-filter-btn">All</button>
-                <button className="btn btn-light">Recents</button>
-                <button className="btn btn-light">Paid</button>
-                <button className="btn btn-light">Due</button>
-                <button className="btn btn-light"><FaPlus /></button>
+                <button className="btnz btn-light">Recents</button>
+                <button className="btnz btn-light">Paid</button>
+                <button className="btnz btn-light">Due</button>
+                <button className="btnz btn-light"><FaPlus /></button>
 
               </div>
 
