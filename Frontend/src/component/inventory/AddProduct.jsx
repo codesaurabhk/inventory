@@ -8,6 +8,9 @@ import Chair2 from "../images/chair2.png";
 import Chair2r from "../images/chair2r.png";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import JsBarcode from "jsbarcode";
+import QRCode from "qrcode";
+
 
 const AddProduct = () => {
   const [product, setProduct] = useState({
@@ -33,6 +36,7 @@ const AddProduct = () => {
     margin: "",
     variantName: "",
     variantValue: "",
+    barcode:"",
   });
 
   const [value, setValue] = useState("");
@@ -88,6 +92,7 @@ const AddProduct = () => {
   //   fetch category
   // category state
   const [categoryData, setCategoryData] = useState([]);
+
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -127,7 +132,41 @@ useEffect(() => {
     if(product.name || product.category) {
         generateSKU();
     }
-}, [product.name, product.category])
+}, [product.name, product.category]);
+
+// const generateBarcode = () => {
+//     const randomBarcode = Math.floor(100000000000 + Math.random() * 900000000000).toString();
+//     setProduct((prev) => ({
+//         ...prev,
+//         barcode:randomBarcode
+//     }));
+//     setTimeout(() => {
+//         JsBarcode("#barcode-svg", randomBarcode, {
+//             format:"EAN13",
+//             lineColor:"#000",
+//             width:2,
+//             height:60,
+//             displayValue:true,
+//         })
+//     },100)
+// }
+
+const [qrCodeUrl, setQrCodeUrl] = useState("");
+const generateQRCode = async() => {
+    const randomCode = Math.floor(100000000000 + Math.random() * 900000000000).toString() || "BR";
+    const qrText = JSON.stringify({
+        barcode:randomCode,
+        product:product.name,
+        sku:product.sku,
+    })
+    try {
+        const url = await QRCode.toDataURL(qrText);
+        setProduct((prev) => ({...prev, barcode:randomCode}))
+        setQrCodeUrl(url);
+    }catch(error) {
+        console.error("QR Code generation failed", error)
+    }
+}
 
   return (
     <div className="add-product-container">
@@ -163,8 +202,9 @@ useEffect(() => {
           <input
             type="text"
             name="name"
+            value={product.name}
             placeholder="Product name"
-            onChange={handleChange}
+            onChange={(e) => setProduct({...product, name:e.target.value})}
             style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
           />
 
@@ -194,7 +234,7 @@ useEffect(() => {
               cursor: "pointer",
             }}
               >
-                Generate
+                Generate SKU
               </button>
             </div>
             <div>
@@ -209,15 +249,19 @@ useEffect(() => {
             </div>
           </div>
           {/* barcode */}
-          <label>Item Barcode </label>
-
+          <label>Item QR Code </label>
+           {/* <div style={{display:"flex", gap:"8px", alignItems:"center"}}> */}
           <input
-            type="number"
-            name="generate"
-            onChange={handleChange}
-            style={{ color: "#999797ff", backgroundColor: "#F1F1F1" }}
+            type="text"
+            name="barcode"
+            value={product.barcode}
+            onChange={(e) => setProduct({...product, barcode:e.target.value})}
+            placeholder="Enter or generate QR code"
+            style={{ color: "#999797ff", backgroundColor: "#F1F1F1", flex:1 }}
           />
           <button
+          type="button"
+          onClick={generateQRCode}
             style={{
               padding: "4px 10px",
               border: "1px solid #ccc",
@@ -227,8 +271,30 @@ useEffect(() => {
               cursor: "pointer",
             }}
           >
-            Generate
+            Generate QR
           </button>
+          {/* </div> */}
+          {/* Show Q Code */}
+          {qrCodeUrl && (
+            <div style={{ marginTop:"20px", padding:"16px", border:"1px solid #ccc", borderRadius:"12px",}}>
+             <h4>Generated QR Code</h4>
+                <div style={{display:'flex', alignItems:'center'}}>
+             <img src={qrCodeUrl} alt="QR Code" style={{width:"180px"}}
+             />
+             <div >
+                <p><strong>Barcode:</strong>{product.barcode}</p>
+                <p><strong>Product:</strong>{product.name}</p>
+                <p><strong>SKU:</strong>{product.sku}</p>
+             </div>
+             </div>
+             <div style={{marginTop:"10px", display:"flex", gap:"10px"}}>
+                <a href={qrCodeUrl} download="product-qr.png" style={{padding:"6px 12px", fontSize:"12px", backgroundColor:"#007BFF", color:"white", borderRadius:"6px", textDecoration:"none"}}>
+                  ⬇️  Download QR
+                </a>
+             </div>
+            </div>
+          )}
+        
 
           <label>Category</label>
           <select
