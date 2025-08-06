@@ -1,10 +1,58 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
+import JsBarcode from "jsbarcode";
 import { IoIosSearch } from "react-icons/io";
 import { AiFillProduct } from "react-icons/ai";
 
+
 function PrintBarCode() {
+
+const [product, setProduct] = useState({
+  barcode: "",
+});
+
+  const [isFormOpen, setIsFormOpen] = useState(false);
+
+  const formRef = useRef(null);
+
+const generateBarcode = () => {
+   setIsFormOpen(true);
+  const randomBarcode = Math.floor(100000000000 + Math.random() * 900000000000).toString(); // 12-digit
+  setProduct((prev) => ({
+    ...prev,
+    barcode: randomBarcode,
+  }));
+
+  setTimeout(() => {
+    JsBarcode("#barcode-svg", randomBarcode, {
+      format: "EAN13",
+      lineColor: "#000",
+      width: 2,
+      height: 60,
+      displayValue: true,
+    });
+  }, 100); // allow barcode to render
+};
+
+const closeForm = () => {
+  setIsFormOpen(false);
+  setProduct((prev) => ({ ...prev, barcode: "" }));
+};
+
+useEffect(() => {
+  const handleClickOutside = (event) => {
+    if (formRef.current && !formRef.current.contains(event.target)) {
+      closeForm();
+    }
+  };
+
+  document.addEventListener('mousedown', handleClickOutside);
+  return () => {
+    document.removeEventListener('mousedown', handleClickOutside);
+  };
+}, []);
+
   return (
-    <div style={{margine:'0px',padding:'20px',backgroundColor:'#f8f9fa',fontFamily:'sans-serif'}}>
+    <div style={{margin:'0px',padding:'20px',backgroundColor:'#f8f9fa',fontFamily:'sans-serif'}}>
 
       {/* path */}
       <div style={{fontSize:'large'}}>
@@ -50,7 +98,7 @@ function PrintBarCode() {
                 <div style={{display:'flex',justifyContent:'space-between',gap:'16px' }}>
                     <div style={{width:'100%'}}>
                         <div>Number of Barcode to print</div>
-                        <input type="number" style={{border:'1px solid #ccc',color: "#999797ff", backgroundColor: "#FBFBFB",padding:'6px',borderRadius:'8px',width:'100%'  }} />
+                        <input type="number" style={{border:'1px solid #ccc',color: "#999797ff", backgroundColor: "#FBFBFB",padding:'6px',borderRadius:'8px',width:'100%'  }} placeholder='01' />
                     </div>
 
                     <div style={{width:'100%'}}>
@@ -117,7 +165,7 @@ function PrintBarCode() {
         >
           Cancel
         </button>
-        <button
+        <button onClick={generateBarcode}
           style={{
             padding: "6px 12px",
             borderRadius: "5px",
@@ -144,7 +192,77 @@ function PrintBarCode() {
         >
           Print
         </button>
-      </div>
+        </div>
+
+        {/* Show Barcode SVG */}
+        {product.barcode && (
+            <div style={{
+            position: 'fixed',
+            top: '0',
+            left: '0',
+            width: '100%',
+            height: '100%',
+            backgroundColor: 'rgba(199, 197, 197, 0.4)',
+            backdropFilter: 'blur(1px)',
+            display: 'flex',
+            justifyContent: 'center',
+            zIndex: '10',
+            overflowY: 'auto',
+          }}>
+                <div ref={formRef} style={{width:'700px',height:'auto',margin:'auto',marginTop:'80px',marginBottom:'80px',backgroundColor:'white',border:'1px solid #E1E1E1',borderRadius:'8px',padding:'10px 16px',display:'flex',overflowY:'auto'}}>
+                    
+                    <div className='row'>
+                        <div className='col-6'>
+                            <div style={{ marginTop: "10px",border:'1px solid #E6E6E6',borderRadius:'8px',width:'320px',padding:'12px 24px',height:'250px' }}>
+                                <span>Product Name: </span>
+                                <br/>
+                                <span>SKU: </span>
+                                <br/><br/>
+                                <span>MRP: /-</span>
+                                <br/>
+                                <div style={{display:'flex',justifyContent:'space-between'}}>
+                                    <span>Expiry: </span>
+                                    <span>QTY: 000</span>
+                                </div>
+                                <svg id="barcode-svg"></svg>
+                            </div>
+                        </div>
+                        <div className='col-6'>
+                            <div style={{ marginTop: "10px",border:'1px solid #E6E6E6',borderRadius:'8px',width:'320px',padding:'12px 24px',height:'250px' }}>
+                                <span>Product Name: </span>
+                                <br/>
+                                <span>SKU: </span>
+                                <br/><br/>
+                                <span>MRP: /-</span>
+                                <br/>
+                                <div style={{display:'flex',justifyContent:'space-between'}}>
+                                    <span>Expiry: </span>
+                                    <span>QTY: 000</span>
+                                </div>
+                                <svg id="barcode-svg"></svg>
+                            </div>
+                        </div>
+                        <div className='col-6'>
+                            <div style={{ marginTop: "10px",border:'1px solid #E6E6E6',borderRadius:'8px',width:'320px',padding:'12px 24px',height:'250px' }}>
+                                <span>Product Name: </span>
+                                <br/>
+                                <span>SKU: </span>
+                                <br/><br/>
+                                <span>MRP: /-</span>
+                                <br/>
+                                <div style={{display:'flex',justifyContent:'space-between'}}>
+                                    <span>Expiry: </span>
+                                    <span>QTY: 000</span>
+                                </div>
+                                <svg id="barcode-svg"></svg>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+        )}
           
       </div>
     </div>

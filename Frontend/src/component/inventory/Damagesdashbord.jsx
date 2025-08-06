@@ -418,6 +418,7 @@ const handleClear = () => {
             </div>
         </div>
       )}
+      
     </div>
     </>
   );
