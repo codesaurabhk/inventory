@@ -53,6 +53,7 @@ import CreateInvoices from './component/Sales/CreateInvoices'
 import CreateInvoiceSuccess from './component/Sales/CreateInvoiceSuccess'
 import CreateQuatations from './component/Sales/CreateQuatations'
 import CreateQuatationsSuccess from './component/Sales/CreateQuatationsSuccess'
+import AddWarehouse from './component/Warehouse/AddWarehouse.jsx';
 
 const router = createBrowserRouter([
   {
@@ -169,7 +170,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/AllWarehouse",
-        element: <AllWarehouse/>
+        element: <AllWarehouse />
+      },
+      {
+        path: "/AddWarehouse",
+        element: <AddWarehouse />
       },
       {
         path: "/StockInOutHistory",
