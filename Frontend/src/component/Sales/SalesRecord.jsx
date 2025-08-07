@@ -116,10 +116,6 @@ const SalesRecord = () => {
 
   return (
     <div className="dashboard-container">
-      {/* Top Section   background: #FFFFFF;
-    
-    border-radius: 8px;
-     padding: 0px 20px; */}
       <div style={{ background: "#FFFFFF", borderRadius: "8px", padding: "25px 20px", paddingBottom: "2px" }} >
         <div className="dashboard-metricss">
           <div >
@@ -159,9 +155,7 @@ const SalesRecord = () => {
 
       </div>
       {/* Toolbar */}
-      <div
-      // style={{ padding: "5px 5px", backgroundColor: "blue" }}
-      >
+      <div>
         <div className="overview">
           <div>
 
