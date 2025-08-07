@@ -178,7 +178,6 @@ function AddWarehouse() {
                   border: "2px solid #c2c2c2",
                   padding: "10px 16px",
                   backgroundColor: " #FBFBFB",
-                  width: "100%",
                 }}
               ></select>
             </div>
@@ -203,7 +202,6 @@ function AddWarehouse() {
                   border: "2px solid #c2c2c2",
                   padding: "10px 16px",
                   backgroundColor: " #FBFBFB",
-                  width: "100%",
                 }}
               ></select>
             </div>
@@ -228,7 +226,6 @@ function AddWarehouse() {
                   border: "2px solid #c2c2c2",
                   padding: "10px 16px",
                   backgroundColor: " #FBFBFB",
-                  width: "100%",
                 }}
               ></select>
             </div>
@@ -253,7 +250,6 @@ function AddWarehouse() {
                   border: "2px solid #c2c2c2",
                   padding: "10px 16px",
                   backgroundColor: " #FBFBFB",
-                  width: "100%",
                 }}
               ></select>
             </div>
@@ -264,7 +260,6 @@ function AddWarehouse() {
       <div
         style={{
           margin: "0 auto",
-          marginTop: "50px",
           width: "900px",
           gap: "16px",
           backgroundColor: "#ffffff",
@@ -277,8 +272,7 @@ function AddWarehouse() {
         {/* Layout */}
         <div
           style={{
-            margin: "0 auto",
-            marginTop: "50px",
+            margin: "0px auto",
             width: "500px",
             gap: "16px",
             backgroundColor: "#ffffff",
@@ -298,7 +292,7 @@ function AddWarehouse() {
               <div
                 style={{
                   backgroundColor: "#BBE1FF",
-                  padding: "10px",
+                  
                   marginBottom: "10px",
                   padding:'20px'
                 }}
