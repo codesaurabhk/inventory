@@ -1,59 +1,51 @@
 .ac-containers {
-    padding: 20px;
-    font-family: sans-serif;
-    background: #f7f7f7;
-    margin: auto;
-    max-width: 1296px;
+  padding: 20px;
+  font-family: sans-serif;
+  background: #f7f7f7;
+  margin: auto;
+  max-width: 1296px;
 }
 
 .gray-color {
-    color: #828486;
+  color: #828486;
 }
 
 .ac-path {
-    display: flex;
-    align-items: center;
-    font-size: large;
-    margin-left: 5px;
+  display: flex;
+  align-items: center;
+  font-size: large;
+  margin-left: 5px;
 }
 
 .ac-name {
-    font-weight: 500;
+  font-weight: 500;
 }
 
 .ac-details {
-    max-width: 645px;
-    margin: auto;
-    margin-top: 25px;
-    /* margin-bottom: 80px; */
-    padding: 32px;
-    padding: 0px 16px 18px 18px;
-    font-family: 'Segoe UI', sans-serif;
-    background: #FFFFFF;
+  max-width: 645px;
+  margin: auto;
+  margin-top: 25px;
+  padding: 32px;
+  padding: 0px 16px 18px 18px;
+  font-family: 'Segoe UI', sans-serif;
+  background: #FFFFFF;
 
-    gap: 24px;
-    border: 1px solid #E1E1E1;
-    border-radius: 10px;
-      box-shadow:0px 0px 5px rgba(0, 0, 0, 0.3);
-}
-.ac-detailss {
-    /* max-width: 645px; */
-    /* margin: auto; */
-    margin-top: 25px;
-    /* margin-bottom: 80px; */
-    /* padding: 32px; */
-    padding: 0px 16px 18px 18px;
-    font-family: 'Segoe UI', sans-serif;
-    background: #FFFFFF;
-    height: 150px;
-
-    /* gap: 24px; */
-    border: 1px solid #E1E1E1;
-    border-radius: 10px;
-      box-shadow:0px 0px 5px rgba(0, 0, 0, 0.3);
+  gap: 24px;
+  border: 1px solid #E1E1E1;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
 }
 
-/* CreateInvoices.css */
+.ac-detailsz {
+  margin-top: 25px;
+  padding: 0px 16px 18px 18px;
+  font-family: 'Segoe UI', sans-serif;
+  background: #FFFFFF;
+  height: 170px;
+  border: 1px solid #E1E1E1;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+}
 
 .custom-quill-editor .ql-toolbar {
   border-radius: 8px 8px 0 0;
