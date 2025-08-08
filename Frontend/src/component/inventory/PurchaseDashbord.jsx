@@ -93,8 +93,8 @@ const handleClear = () => {
                             <span style={{color:"#676767", fontWeight:"600"}}>Inventory</span>  <span style={{color:"#676767"}} ><FaAngleRight style={{marginTop:"4px"}} /></span> <span>Purchase Order</span>
                         </div>
                         <div className="toolbar-actions">
-                            <button className="btn btn-light">Import</button>
-                            <button className="btn btn-light">Export</button>
+                            <button className="btn btn-light" style={{marginTop:'-10px'}}>Import</button>
+                            <button className="btn btn-light" style={{marginTop:'-10px'}}>Export</button>
                             <Link to="/CreatePurchaseOrder" className="btn btn-primary">Create Purchase Order</Link>
                         </div>
                     </div>

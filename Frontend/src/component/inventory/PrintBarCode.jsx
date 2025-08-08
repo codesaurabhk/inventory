@@ -20,17 +20,23 @@ const [product, setProduct] = useState({
     showQuantity: false,
 });
 
+const [numberOfBarcodes, setNumberOfBarcodes] = useState('');
+
   const [isFormOpen, setIsFormOpen] = useState(false);
 
   const formRef = useRef(null);
 
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
+const handleChange = (e) => {
+  const { name, value, type, checked } = e.target;
+  if (name === 'numberOfBarcodes') {
+    setNumberOfBarcodes(parseInt(value)); // Update numberOfBarcodes
+  } else {
     setProduct((prev) => ({
       ...prev,
       [name]: type === 'checkbox' ? checked : value,
     }));
-  };
+  }
+};
 
 const generateBarcode = () => {
    setIsFormOpen(true);
@@ -126,7 +132,14 @@ useEffect(() => {
                 <div style={{display:'flex',justifyContent:'space-between',gap:'16px' }}>
                     <div style={{width:'100%'}}>
                         <div>Number of Barcode to print</div>
-                        <input type="number" style={{border:'1px solid #ccc',color: "#999797ff", backgroundColor: "#FBFBFB",padding:'6px',borderRadius:'8px',width:'100%'  }} placeholder='01' />
+                        <input 
+                        type="number" 
+                        name="numberOfBarcodes"
+                        value={numberOfBarcodes}
+                        onChange={handleChange} 
+                        min="1"
+                        placeholder='01'
+                        style={{border:'1px solid #ccc',color: "#999797ff", backgroundColor: "#FBFBFB",padding:'6px',borderRadius:'8px',width:'100%'  }} />
                     </div>
 
                     <div style={{width:'100%'}}>
@@ -249,26 +262,30 @@ useEffect(() => {
             zIndex: '10',
             overflowY: 'auto',
           }}>
-                <div ref={formRef} style={{width:'700px',height:'auto',margin:'auto',marginTop:'80px',marginBottom:'80px',backgroundColor:'white',border:'1px solid #E1E1E1',borderRadius:'8px',padding:'10px 16px',display:'flex',overflowY:'auto'}}>
-                    
+                <div ref={formRef} style={{width:'750px',height:'auto',margin:'auto',marginTop:'80px',marginBottom:'80px',backgroundColor:'white',border:'1px solid #E1E1E1',borderRadius:'8px',padding:'10px 16px',display:'flex',overflowY:'auto'}}>
                     <div className='row'>
-                        <div className='col-6'>
-                            <div style={{ marginTop: "10px",border:'1px solid #E6E6E6',borderRadius:'8px',width:'320px',padding:'12px 24px',height:'250px' }}>
+                          {Array.from({ length: numberOfBarcodes }).map((_, index) => (
+                            
+                            <div className='col-6' style={{height:'auto'}}>
+                            <div key={index} style={{ marginTop: "10px",border:'2px solid #E6E6E6',borderRadius:'8px',width:'320px',padding:'16px 24px',height:'auto',marginBottom:'10px' }}>
+                                
                                 {product.showProductName && product.productName && (
                                     <>
-                                        <span>Product: {product.productName}</span>
+                                      <span>Product: {product.productName}</span>
                                     </>
                                 )}
-                                <br/>
+                                
                                 {product.showSku && product.showSku && (
                                     <>
-                                        <span>SKU: {product.sku}</span>
+                                      <br/>
+                                      <span>SKU: {product.sku}</span>
                                     </>
                                 )}
-                                <br/><br/>
+                                
                                 {product.showPrice && product.showPrice && (
                                     <>
-                                        <span>MRP: {product.price}</span>
+                                      <br/><br/>
+                                      <span>MRP: {product.price}</span>
                                     </>
                                 )}
                                 <br/>
@@ -285,12 +302,12 @@ useEffect(() => {
                                     )}
                                 </div>
                                 <svg id="barcode-svg"></svg>
+                                
                             </div>
-                        </div>
-
+                            </div>
+                            
+                          ))}
                     </div>
-                    
-                    
                 </div>
             </div>
         )}

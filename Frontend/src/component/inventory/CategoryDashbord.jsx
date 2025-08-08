@@ -95,8 +95,8 @@ const handleClear = () => {
                             <span>Category</span>
                         </div>
                         <div className="toolbar-actions">
-                            <button className="btn btn-light">Import</button>
-                            <button className="btn btn-light">Export</button>
+                            <button className="btn btn-light"style={{marginTop:'-10px'}}>Import</button>
+                            <button className="btn btn-light"style={{marginTop:'-10px'}}>Export</button>
                             <Link to="/AddCategory" className="btn btn-primary">Add Category</Link>
                         </div>
                     </div>
