@@ -29,8 +29,7 @@ const SalesRecord = () => {
   const handleSearchDropChange = () => {
     setSearchDrop(true);
   }
-
-
+  
   const [categoryValue, setCategoryValue] = useState('');
   const handleCategoryChange = (e) => {
     setCategoryValue(e.target.value);
