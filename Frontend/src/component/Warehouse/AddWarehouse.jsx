@@ -14,25 +14,38 @@ function AddWarehouse() {
   // State for main layout (updated only on import)
   const [mainRows, setMainRows] = useState(4);
   const [mainColumns, setMainColumns] = useState(3);
-  const [mainWidth, setMainWidth] = useState(50);
+  const [mainWidth, setMainWidth] = useState(1); // Width in meters
   const [mainZones, setMainZones] = useState(1);
 
   // Handler for importing layout
   const handleImport = () => {
     setMainRows(rows === "" ? 4 : Math.max(1, parseInt(rows)));
     setMainColumns(columns === "" ? 3 : Math.max(1, parseInt(columns)));
-    setMainWidth(width === "" ? 50 : Math.max(20, parseInt(width)));
+    setMainWidth(width === "" ? 1 : Math.max(1, parseInt(width)));
     setMainZones(zones === "" ? 1 : Math.max(1, parseInt(zones)));
   };
 
   // Component for rendering a single grid
   const renderGrid = (gridRows, gridColumns, gridWidth, zoneIndex) => {
-    // Calculate the total width of the grid based on columns and cell width
-    const cellWidth = gridWidth || 50;
-    const totalGridWidth = (gridColumns || 3) * (cellWidth + 8) - 8 + 32; // Account for gap (8px) and padding (16px left + 16px right)
+    // Fixed cell width for both main grid and preview
+    const cellWidthPx = 50; // Equal width for all cells
+    // Calculate total grid content width: columns * (cell width + gap) - gap
+    const totalGridContentWidth = (gridColumns || 3) * (cellWidthPx + 8) - 8;
 
     return (
-      <div key={zoneIndex} style={{ marginBottom: "20px", width: `${totalGridWidth}px`, margin: "0 auto" }}>
+      <div
+        key={zoneIndex}
+        style={{
+          marginBottom: "20px",
+          // width: "100%",
+          // maxWidth: "900px",
+          margin: "0 auto",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          boxSizing: "border-box",
+        }}
+      >
         <div
           style={{
             backgroundColor: "#BBE1FF",
@@ -40,44 +53,58 @@ function AddWarehouse() {
             textAlign: "center",
             fontWeight: "500",
             fontSize: "16px",
-            borderRadius: "4px",
+            borderRadius: "8px",
             marginBottom: "10px",
-            width: "100%", // Ensure header takes full width of parent
+            width: "100%",
             boxSizing: "border-box",
           }}
         >
-          Zone {zoneIndex + 1}
+          
         </div>
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: `repeat(${gridColumns || 3}, 1fr)`,
+            gridTemplateColumns: `repeat(${gridColumns || 3}, ${cellWidthPx}px)`,
+            gridTemplateRows: `repeat(${gridRows || 4}, ${cellWidthPx}px)`, // Equal height
             gap: "8px",
             borderRadius: "8px",
-            padding: "10px 16px",
-            width: "100%", // Ensure grid container takes full width of parent
+            // padding: "10px 16px",
+            width: "100%",
             boxSizing: "border-box",
+            display: "flex",
+            marginTop:'15px',
+            justifyContent: "center",
           }}
         >
-          {Array.from({ length: (gridRows || 4) * (gridColumns || 3) }).map((_, index) => (
-            <div
-              key={index}
-              style={{
-                backgroundColor: "#D1E4FF",
-                width: `${cellWidth}px`,
-                height: `${cellWidth}px`, // Height equals width for square cells
-                border: "1px solid #B3C9E6",
-                borderRadius: "4px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                color: "#4A5A6B",
-                fontSize: "12px",
-              }}
-            >
-              {/* No numbering in grid cells */}
-            </div>
-          ))}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: `repeat(${gridColumns || 3}, ${cellWidthPx}px)`,
+              gridTemplateRows: `repeat(${gridRows || 4}, ${cellWidthPx}px)`,
+              gap: "8px",
+              width: `${totalGridContentWidth}px`,
+            }}
+          >
+            {Array.from({ length: (gridRows || 4) * (gridColumns || 3) }).map((_, index) => (
+              <div
+                key={index}
+                style={{
+                  backgroundColor: "#D1E4FF",
+                  width: `${cellWidthPx}px`,
+                  height: `${cellWidthPx}px`, // Equal width and height (square)
+                  border: "1px solid #B3C9E6",
+                  borderRadius: "8px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  color: "#4A5A6B",
+                  fontSize: "12px",
+                }}
+              >
+                {/* No numbering in grid cells */}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     );
@@ -99,6 +126,7 @@ function AddWarehouse() {
           display: "flex",
           gap: "12px",
           fontWeight: "500",
+          fontSize: "14px",
           marginBottom: "20px",
         }}
       >
@@ -230,32 +258,102 @@ function AddWarehouse() {
         </div>
 
         <div style={{ display: "flex", gap: "16px" }}>
-          {["Country", "State", "City", "Pin Code"].map((label) => (
-            <div key={label} style={{ flex: 1 }}>
-              <label
-                style={{
-                  color: "#1F2937",
-                  fontWeight: "500",
-                  fontSize: "18px",
-                  marginBottom: "8px",
-                  display: "block",
-                }}
-              >
-                {label}
-              </label>
-              <select
-                style={{
-                  width: "100%",
-                  padding: "12px",
-                  borderRadius: "8px",
-                  border: "1px solid #D1D5DB",
-                  backgroundColor: "#F9FAFB",
-                  color: "#6B7280",
-                  fontSize: "14px",
-                }}
-              ></select>
-            </div>
-          ))}
+          <div style={{ flex: 1 }}>
+            <label
+              style={{
+                color: "#1F2937",
+                fontWeight: "500",
+                fontSize: "18px",
+                marginBottom: "8px",
+                display: "block",
+              }}
+            >
+              Country
+            </label>
+            <select
+              style={{
+                width: "100%",
+                padding: "12px",
+                borderRadius: "8px",
+                border: "1px solid #D1D5DB",
+                backgroundColor: "#F9FAFB",
+                color: "#6B7280",
+                fontSize: "14px",
+              }}
+            ></select>
+          </div>
+          <div style={{ flex: 1 }}>
+            <label
+              style={{
+                color: "#1F2937",
+                fontWeight: "500",
+                fontSize: "18px",
+                marginBottom: "8px",
+                display: "block",
+              }}
+            >
+              State
+            </label>
+            <select
+              style={{
+                width: "100%",
+                padding: "12px",
+                borderRadius: "8px",
+                border: "1px solid #D1D5DB",
+                backgroundColor: "#F9FAFB",
+                color: "#6B7280",
+                fontSize: "14px",
+              }}
+            ></select>
+          </div>
+          <div style={{ flex: 1 }}>
+            <label
+              style={{
+                color: "#1F2937",
+                fontWeight: "500",
+                fontSize: "18px",
+                marginBottom: "8px",
+                display: "block",
+              }}
+            >
+              City
+            </label>
+            <select
+              style={{
+                width: "100%",
+                padding: "12px",
+                borderRadius: "8px",
+                border: "1px solid #D1D5DB",
+                backgroundColor: "#F9FAFB",
+                color: "#6B7280",
+                fontSize: "14px",
+              }}
+            ></select>
+          </div>
+          <div style={{ flex: 1 }}>
+            <label
+              style={{
+                color: "#1F2937",
+                fontWeight: "500",
+                fontSize: "18px",
+                marginBottom: "8px",
+                display: "block",
+              }}
+            >
+              Pin Code
+            </label>
+            <select
+              style={{
+                width: "100%",
+                padding: "12px",
+                borderRadius: "8px",
+                border: "1px solid #D1D5DB",
+                backgroundColor: "#F9FAFB",
+                color: "#6B7280",
+                fontSize: "14px",
+              }}
+            ></select>
+          </div>
         </div>
       </div>
 
@@ -272,13 +370,13 @@ function AddWarehouse() {
           boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
         }}
       >
-        <div style={{ width: "100%", maxWidth: "600px", margin: "0 auto" }}>
+        <div style={{ width: "100%", maxWidth: "900px", margin: "0 auto" }}>
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
             {Array.from({ length: mainZones }).map((_, zoneIndex) =>
               renderGrid(mainRows, mainColumns, mainWidth, zoneIndex)
             )}
           </div>
-          
+
           <div
             style={{
               display: "flex",
@@ -286,6 +384,7 @@ function AddWarehouse() {
               marginTop: "20px",
               color: "#6B7280",
               fontSize: "14px",
+              fontWeight: "400",
             }}
           >
             Click to define and assign racks using rows and columns.
@@ -351,10 +450,7 @@ function AddWarehouse() {
                     }}
                   >
                     <span>Layout Creator</span>
-                    <span
-                      style={{ cursor: "pointer" }}
-                      onClick={close}
-                    >
+                    <span style={{ cursor: "pointer" }} onClick={close}>
                       <IoMdClose />
                     </span>
                   </div>
@@ -499,7 +595,7 @@ function AddWarehouse() {
                               display: "block",
                             }}
                           >
-                            Size (px)
+                            Width (mtr)
                           </label>
                           <input
                             type="number"
@@ -573,7 +669,7 @@ function AddWarehouse() {
                           renderGrid(
                             parseInt(rows),
                             parseInt(columns),
-                            width === "" ? 50 : parseInt(width),
+                            width === "" ? 1 : parseInt(width),
                             zoneIndex
                           )
                         )
