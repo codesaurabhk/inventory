@@ -10,73 +10,78 @@ function AddWarehouse() {
   const [rows, setRows] = useState("");
   const [columns, setColumns] = useState("");
   const [width, setWidth] = useState("");
-  const [height, setHeight] = useState("");
-  const [zones, setZones] = useState("");
+  const [zones, setZones] = useState("0"); // Initial 0 for blank popup preview
   // State for main layout (updated only on import)
-  const [mainRows, setMainRows] = useState(1);
-  const [mainColumns, setMainColumns] = useState(1);
+  const [mainRows, setMainRows] = useState(4);
+  const [mainColumns, setMainColumns] = useState(3);
   const [mainWidth, setMainWidth] = useState(50);
-  const [mainHeight, setMainHeight] = useState(50);
   const [mainZones, setMainZones] = useState(1);
 
   // Handler for importing layout
   const handleImport = () => {
-    setMainRows(rows === "" ? 1 : Math.max(1, parseInt(rows)));
-    setMainColumns(columns === "" ? 1 : Math.max(1, parseInt(columns)));
-    setMainWidth(width === "" ? 20 : Math.max(20, parseInt(width)));
-    setMainHeight(height === "" ? 20 : Math.max(20, parseInt(height)));
+    setMainRows(rows === "" ? 4 : Math.max(1, parseInt(rows)));
+    setMainColumns(columns === "" ? 3 : Math.max(1, parseInt(columns)));
+    setMainWidth(width === "" ? 50 : Math.max(20, parseInt(width)));
     setMainZones(zones === "" ? 1 : Math.max(1, parseInt(zones)));
   };
 
   // Component for rendering a single grid
-  const renderGrid = (gridRows, gridColumns, gridWidth, gridHeight, zoneIndex) => (
-    <div key={zoneIndex} style={{ marginBottom: "20px", width: "100%" }}>
-      <div
-        style={{
-          backgroundColor: "#BBE1FF",
-          padding: "12px",
-          textAlign: "center",
-          color: "#262626",
-          fontWeight: "500",
-          fontSize: "16px",
-          borderRadius: "4px",
-        }}
-      >
-        Zone {zoneIndex + 1}
+  const renderGrid = (gridRows, gridColumns, gridWidth, zoneIndex) => {
+    // Calculate the total width of the grid based on columns and cell width
+    const cellWidth = gridWidth || 50;
+    const totalGridWidth = (gridColumns || 3) * (cellWidth + 8) - 8 + 32; // Account for gap (8px) and padding (16px left + 16px right)
+
+    return (
+      <div key={zoneIndex} style={{ marginBottom: "20px", width: `${totalGridWidth}px`, margin: "0 auto" }}>
+        <div
+          style={{
+            backgroundColor: "#BBE1FF",
+            padding: "16px",
+            textAlign: "center",
+            fontWeight: "500",
+            fontSize: "16px",
+            borderRadius: "4px",
+            marginBottom: "10px",
+            width: "100%", // Ensure header takes full width of parent
+            boxSizing: "border-box",
+          }}
+        >
+          Zone {zoneIndex + 1}
+        </div>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: `repeat(${gridColumns || 3}, 1fr)`,
+            gap: "8px",
+            borderRadius: "8px",
+            padding: "10px 16px",
+            width: "100%", // Ensure grid container takes full width of parent
+            boxSizing: "border-box",
+          }}
+        >
+          {Array.from({ length: (gridRows || 4) * (gridColumns || 3) }).map((_, index) => (
+            <div
+              key={index}
+              style={{
+                backgroundColor: "#D1E4FF",
+                width: `${cellWidth}px`,
+                height: `${cellWidth}px`, // Height equals width for square cells
+                border: "1px solid #B3C9E6",
+                borderRadius: "4px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                color: "#4A5A6B",
+                fontSize: "12px",
+              }}
+            >
+              {/* No numbering in grid cells */}
+            </div>
+          ))}
+        </div>
       </div>
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: `repeat(${gridColumns || 1}, 1fr)`,
-          gap: "8px",
-          padding: "12px",
-          backgroundColor: "#F5F9FF",
-          borderRadius: "8px",
-          border: "1px solid #E0E7FF",
-        }}
-      >
-        {Array.from({ length: (gridRows || 1) * (gridColumns || 1) }).map((_, index) => (
-          <div
-            key={index}
-            style={{
-              backgroundColor: "#D1E4FF",
-              width: `${gridWidth || 20}px`,
-              height: `${gridHeight || 20}px`,
-              border: "1px solid #B3C9E6",
-              borderRadius: "4px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              color: "#4A5A6B",
-              fontSize: "12px",
-            }}
-          >
-            {index + 1}
-          </div>
-        ))}
-      </div>
-    </div>
-  );
+    );
+  };
 
   return (
     <div
@@ -270,9 +275,10 @@ function AddWarehouse() {
         <div style={{ width: "100%", maxWidth: "600px", margin: "0 auto" }}>
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
             {Array.from({ length: mainZones }).map((_, zoneIndex) =>
-              renderGrid(mainRows, mainColumns, mainWidth, mainHeight, zoneIndex)
+              renderGrid(mainRows, mainColumns, mainWidth, zoneIndex)
             )}
           </div>
+          
           <div
             style={{
               display: "flex",
@@ -493,7 +499,7 @@ function AddWarehouse() {
                               display: "block",
                             }}
                           >
-                            Width (px)
+                            Size (px)
                           </label>
                           <input
                             type="number"
@@ -501,36 +507,6 @@ function AddWarehouse() {
                             value={width}
                             onChange={(e) =>
                               setWidth(e.target.value === "" ? "" : Math.max(0, parseInt(e.target.value)))
-                            }
-                            style={{
-                              width: "100%",
-                              padding: "12px",
-                              borderRadius: "8px",
-                              border: "1px solid #D1D5DB",
-                              backgroundColor: "#F9FAFB",
-                              color: "#6B7280",
-                              fontSize: "14px",
-                            }}
-                          />
-                        </div>
-                        <div style={{ flex: 1 }}>
-                          <label
-                            style={{
-                              color: "#1F2937",
-                              fontWeight: "500",
-                              fontSize: "16px",
-                              marginBottom: "8px",
-                              display: "block",
-                            }}
-                          >
-                            Height (px)
-                          </label>
-                          <input
-                            type="number"
-                            min="0"
-                            value={height}
-                            onChange={(e) =>
-                              setHeight(e.target.value === "" ? "" : Math.max(0, parseInt(e.target.value)))
                             }
                             style={{
                               width: "100%",
@@ -592,14 +568,25 @@ function AddWarehouse() {
                       >
                         Layout Preview
                       </span>
-                      {Array.from({ length: zones || 1 }).map((_, zoneIndex) =>
-                        renderGrid(
-                          rows === "" ? 1 : parseInt(rows),
-                          columns === "" ? 1 : parseInt(columns),
-                          width === "" ? 20 : parseInt(width),
-                          height === "" ? 20 : parseInt(height),
-                          zoneIndex
+                      {parseInt(zones) > 0 && rows !== "" && columns !== "" ? (
+                        Array.from({ length: parseInt(zones) }).map((_, zoneIndex) =>
+                          renderGrid(
+                            parseInt(rows),
+                            parseInt(columns),
+                            width === "" ? 50 : parseInt(width),
+                            zoneIndex
+                          )
                         )
+                      ) : (
+                        <div
+                          style={{
+                            color: "#6B7280",
+                            fontSize: "14px",
+                            textAlign: "center",
+                          }}
+                        >
+                          Please enter the number of zones, rows, and columns to preview the layout.
+                        </div>
                       )}
                     </div>
                   </div>
