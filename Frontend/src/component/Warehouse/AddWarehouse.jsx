@@ -17,12 +17,27 @@ function AddWarehouse() {
   const [mainWidth, setMainWidth] = useState(1); // Width in meters
   const [mainZones, setMainZones] = useState(1);
 
-  // Handler for importing layout
-  const handleImport = () => {
-    setMainRows(rows === "" ? 4 : Math.max(1, parseInt(rows)));
-    setMainColumns(columns === "" ? 3 : Math.max(1, parseInt(columns)));
-    setMainWidth(width === "" ? 1 : Math.max(1, parseInt(width)));
-    setMainZones(zones === "" ? 1 : Math.max(1, parseInt(zones)));
+  // Handler for importing layout and closing popup
+  const handleImport = (close) => {
+    // Validate inputs to ensure rows and columns are at least 1
+    const parsedRows = rows === "" ? 4 : Math.max(1, parseInt(rows));
+    const parsedColumns = columns === "" ? 3 : Math.max(1, parseInt(columns));
+    const parsedWidth = width === "" ? 1 : Math.max(1, parseInt(width));
+    const parsedZones = zones === "" ? 1 : Math.max(1, parseInt(zones));
+
+    // Update main layout states
+    setMainRows(parsedRows);
+    setMainColumns(parsedColumns);
+    setMainWidth(parsedWidth);
+    setMainZones(parsedZones);
+
+    // Reset popup inputs
+    setRows("");
+    setColumns("");
+    setWidth("");
+    setZones("0");
+
+    close(); // Close the popup after updating state
   };
 
   // Component for rendering a single grid
@@ -36,10 +51,10 @@ function AddWarehouse() {
       <div
         key={zoneIndex}
         style={{
+          marginTop: "5px",
           marginBottom: "20px",
-          // width: "100%",
-          // maxWidth: "900px",
-          margin: "0 auto",
+          marginLeft: "auto",
+          marginRight: "auto",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -53,57 +68,56 @@ function AddWarehouse() {
             textAlign: "center",
             fontWeight: "500",
             fontSize: "16px",
-            borderRadius: "8px",
+            borderRadius: "6px",
             marginBottom: "10px",
             width: "100%",
             boxSizing: "border-box",
           }}
         >
-          
+          Zone {zoneIndex + 1}
         </div>
         <div
           style={{
-            display: "grid",
-            gridTemplateColumns: `repeat(${gridColumns || 3}, ${cellWidthPx}px)`,
-            gridTemplateRows: `repeat(${gridRows || 4}, ${cellWidthPx}px)`, // Equal height
-            gap: "8px",
-            borderRadius: "8px",
-            // padding: "10px 16px",
+            display: "flex",
+            justifyContent: "center",
             width: "100%",
             boxSizing: "border-box",
-            display: "flex",
-            marginTop:'15px',
-            justifyContent: "center",
+            marginTop: "15px",
           }}
         >
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: `repeat(${gridColumns || 3}, ${cellWidthPx}px)`,
+              gridTemplateColumns: `repeat(${
+                gridColumns || 3
+              }, ${cellWidthPx}px)`,
               gridTemplateRows: `repeat(${gridRows || 4}, ${cellWidthPx}px)`,
               gap: "8px",
               width: `${totalGridContentWidth}px`,
+              borderRadius: "8px",
             }}
           >
-            {Array.from({ length: (gridRows || 4) * (gridColumns || 3) }).map((_, index) => (
-              <div
-                key={index}
-                style={{
-                  backgroundColor: "#D1E4FF",
-                  width: `${cellWidthPx}px`,
-                  height: `${cellWidthPx}px`, // Equal width and height (square)
-                  border: "1px solid #B3C9E6",
-                  borderRadius: "8px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  color: "#4A5A6B",
-                  fontSize: "12px",
-                }}
-              >
-                {/* No numbering in grid cells */}
-              </div>
-            ))}
+            {Array.from({ length: (gridRows || 4) * (gridColumns || 3) }).map(
+              (_, index) => (
+                <div
+                  key={index}
+                  style={{
+                    backgroundColor: "#D1E4FF",
+                    width: `${cellWidthPx}px`,
+                    height: `${cellWidthPx}px`,
+                    border: "1px solid #B3C9E6",
+                    borderRadius: "8px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    color: "#4A5A6B",
+                    fontSize: "12px",
+                  }}
+                >
+                  {/* No numbering in grid cells */}
+                </div>
+              )
+            )}
           </div>
         </div>
       </div>
@@ -371,7 +385,16 @@ function AddWarehouse() {
         }}
       >
         <div style={{ width: "100%", maxWidth: "900px", margin: "0 auto" }}>
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              flexWrap: "wrap",
+              gap: "20px",
+              justifyContent: "center",
+              alignItems: "flex-start",
+            }}
+          >
             {Array.from({ length: mainZones }).map((_, zoneIndex) =>
               renderGrid(mainRows, mainColumns, mainWidth, zoneIndex)
             )}
@@ -381,10 +404,11 @@ function AddWarehouse() {
             style={{
               display: "flex",
               justifyContent: "center",
-              marginTop: "20px",
+              marginTop: "10px",
               color: "#6B7280",
               fontSize: "14px",
               fontWeight: "400",
+              marginBottom: "10px",
             }}
           >
             Click to define and assign racks using rows and columns.
@@ -411,8 +435,12 @@ function AddWarehouse() {
                     boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
                     transition: "background-color 0.3s",
                   }}
-                  onMouseOver={(e) => (e.target.style.backgroundColor = "#2563EB")}
-                  onMouseOut={(e) => (e.target.style.backgroundColor = "#3B82F6")}
+                  onMouseOver={(e) =>
+                    (e.target.style.backgroundColor = "#2563EB")
+                  }
+                  onMouseOut={(e) =>
+                    (e.target.style.backgroundColor = "#3B82F6")
+                  }
                 >
                   Customize Layout
                 </button>
@@ -497,7 +525,11 @@ function AddWarehouse() {
                           min="0"
                           value={zones}
                           onChange={(e) =>
-                            setZones(e.target.value === "" ? "" : Math.max(0, parseInt(e.target.value)))
+                            setZones(
+                              e.target.value === ""
+                                ? ""
+                                : Math.max(0, parseInt(e.target.value))
+                            )
                           }
                           style={{
                             width: "120px",
@@ -531,10 +563,14 @@ function AddWarehouse() {
                           </label>
                           <input
                             type="number"
-                            min="0"
+                            min="1"
                             value={rows}
                             onChange={(e) =>
-                              setRows(e.target.value === "" ? "" : Math.max(0, parseInt(e.target.value)))
+                              setRows(
+                                e.target.value === ""
+                                  ? ""
+                                  : Math.max(1, parseInt(e.target.value))
+                              )
                             }
                             style={{
                               width: "100%",
@@ -561,10 +597,14 @@ function AddWarehouse() {
                           </label>
                           <input
                             type="number"
-                            min="0"
+                            min="1"
                             value={columns}
                             onChange={(e) =>
-                              setColumns(e.target.value === "" ? "" : Math.max(0, parseInt(e.target.value)))
+                              setColumns(
+                                e.target.value === ""
+                                  ? ""
+                                  : Math.max(1, parseInt(e.target.value))
+                              )
                             }
                             style={{
                               width: "100%",
@@ -599,10 +639,14 @@ function AddWarehouse() {
                           </label>
                           <input
                             type="number"
-                            min="0"
+                            min="1"
                             value={width}
                             onChange={(e) =>
-                              setWidth(e.target.value === "" ? "" : Math.max(0, parseInt(e.target.value)))
+                              setWidth(
+                                e.target.value === ""
+                                  ? ""
+                                  : Math.max(1, parseInt(e.target.value))
+                              )
                             }
                             style={{
                               width: "100%",
@@ -620,11 +664,36 @@ function AddWarehouse() {
                         style={{
                           display: "flex",
                           justifyContent: "flex-end",
+                          gap: "16px",
                         }}
                       >
+                        {/* <button
+                          type="button"
+                          onClick={close}
+                          style={{
+                            backgroundColor: "#6B7280",
+                            color: "#FFFFFF",
+                            border: "none",
+                            borderRadius: "8px",
+                            padding: "12px 24px",
+                            fontWeight: "500",
+                            fontSize: "16px",
+                            cursor: "pointer",
+                            boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+                            transition: "background-color 0.3s",
+                          }}
+                          onMouseOver={(e) =>
+                            (e.target.style.backgroundColor = "#4B5563")
+                          }
+                          onMouseOut={(e) =>
+                            (e.target.style.backgroundColor = "#6B7280")
+                          }
+                        >
+                          Cancel
+                        </button> */}
                         <button
                           type="button"
-                          onClick={handleImport}
+                          onClick={() => handleImport(close)}
                           style={{
                             backgroundColor: "#3B82F6",
                             color: "#FFFFFF",
@@ -637,8 +706,12 @@ function AddWarehouse() {
                             boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
                             transition: "background-color 0.3s",
                           }}
-                          onMouseOver={(e) => (e.target.style.backgroundColor = "#2563EB")}
-                          onMouseOut={(e) => (e.target.style.backgroundColor = "#3B82F6")}
+                          onMouseOver={(e) =>
+                            (e.target.style.backgroundColor = "#2563EB")
+                          }
+                          onMouseOut={(e) =>
+                            (e.target.style.backgroundColor = "#3B82F6")
+                          }
                         >
                           Import
                         </button>
@@ -665,14 +738,26 @@ function AddWarehouse() {
                         Layout Preview
                       </span>
                       {parseInt(zones) > 0 && rows !== "" && columns !== "" ? (
-                        Array.from({ length: parseInt(zones) }).map((_, zoneIndex) =>
-                          renderGrid(
-                            parseInt(rows),
-                            parseInt(columns),
-                            width === "" ? 1 : parseInt(width),
-                            zoneIndex
-                          )
-                        )
+                        <div
+                          style={{
+                            display: "flex",
+                            flexDirection: "row",
+                            flexWrap: "wrap",
+                            gap: "20px",
+                            justifyContent: "center",
+                            alignItems: "flex-start",
+                          }}
+                        >
+                          {Array.from({ length: parseInt(zones) }).map(
+                            (_, zoneIndex) =>
+                              renderGrid(
+                                parseInt(rows),
+                                parseInt(columns),
+                                width === "" ? 1 : parseInt(width),
+                                zoneIndex
+                              )
+                          )}
+                        </div>
                       ) : (
                         <div
                           style={{
@@ -681,7 +766,8 @@ function AddWarehouse() {
                             textAlign: "center",
                           }}
                         >
-                          Please enter the number of zones, rows, and columns to preview the layout.
+                          Please enter the number of zones, rows, and columns to
+                          preview the layout.
                         </div>
                       )}
                     </div>
@@ -691,6 +777,11 @@ function AddWarehouse() {
             </Popup>
           </div>
         </div>
+      </div>
+
+      {/* button draft & save */}
+      <div>
+        
       </div>
     </div>
   );
