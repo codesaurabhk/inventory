@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Popup from "reactjs-popup";
 import { MdArrowForwardIos } from "react-icons/md";
 import { IoMdClose } from "react-icons/io";
 import { LuLayoutDashboard } from "react-icons/lu";
-import { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 function AddWarehouse() {
   // State for popup inputs
@@ -16,6 +16,20 @@ function AddWarehouse() {
   const [mainColumns, setMainColumns] = useState(3);
   const [mainWidth, setMainWidth] = useState(1); // Width in meters
   const [mainZones, setMainZones] = useState(1);
+  // State for warehouse details form
+  const [warehouseName, setWarehouseName] = useState("");
+  const [warehouseCode, setWarehouseCode] = useState("");
+  const [warehouseOwner, setWarehouseOwner] = useState("");
+  const [address, setAddress] = useState("");
+  const [country, setCountry] = useState("");
+  const [state, setState] = useState("");
+  const [city, setCity] = useState("");
+  const [pinCode, setPinCode] = useState("");
+  // State for import status and message
+  const [isImported, setIsImported] = useState(false);
+  const [showMessage, setShowMessage] = useState(false);
+  // Navigation hook
+  const navigate = useNavigate();
 
   // Handler for importing layout and closing popup
   const handleImport = (close) => {
@@ -37,14 +51,91 @@ function AddWarehouse() {
     setWidth("");
     setZones("0");
 
+    // Set import status and show success message
+    setIsImported(true);
+    setShowMessage(true);
+
     close(); // Close the popup after updating state
   };
 
+  // Handler for Draft button
+  const handleDraft = () => {
+    const warehouseData = {
+      warehouseName,
+      warehouseCode,
+      warehouseOwner,
+      address,
+      country,
+      state,
+      city,
+      pinCode,
+      layout: {
+        rows: mainRows,
+        columns: mainColumns,
+        width: mainWidth,
+        zones: mainZones,
+      },
+    };
+    console.log("Draft saved:", warehouseData);
+    // TODO: Replace with API call or state persistence logic
+  };
+
+  // Handler for Save button
+  const handleSave = () => {
+    const warehouseData = {
+      warehouseName,
+      warehouseCode,
+      warehouseOwner,
+      address,
+      country,
+      state,
+      city,
+      pinCode,
+      layout: {
+        rows: mainRows,
+        columns: mainColumns,
+        width: mainWidth,
+        zones: mainZones,
+      },
+    };
+    console.log("Final save:", warehouseData);
+    // TODO: Replace with API call or state persistence logic
+  };
+
+  // Handler for Done button
+  const handleDone = () => {
+    // Reset all states to initial values
+    setWarehouseName("");
+    setWarehouseCode("");
+    setWarehouseOwner("");
+    setAddress("");
+    setCountry("");
+    setState("");
+    setCity("");
+    setPinCode("");
+    setMainRows(4);
+    setMainColumns(3);
+    setMainWidth(1);
+    setMainZones(1);
+    setIsImported(false);
+    setShowMessage(false);
+    // Navigate to AllWarehouse page
+    navigate("/AllWarehouse"); // Adjust route as needed
+  };
+
+  // Effect to auto-hide the success message after 3 seconds
+  useEffect(() => {
+    if (showMessage) {
+      const timer = setTimeout(() => {
+        setShowMessage(false);
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [showMessage]);
+
   // Component for rendering a single grid
   const renderGrid = (gridRows, gridColumns, gridWidth, zoneIndex) => {
-    // Fixed cell width for both main grid and preview
     const cellWidthPx = 50; // Equal width for all cells
-    // Calculate total grid content width: columns * (cell width + gap) - gap
     const totalGridContentWidth = (gridColumns || 3) * (cellWidthPx + 8) - 8;
 
     return (
@@ -88,9 +179,7 @@ function AddWarehouse() {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: `repeat(${
-                gridColumns || 3
-              }, ${cellWidthPx}px)`,
+              gridTemplateColumns: `repeat(${gridColumns || 3}, ${cellWidthPx}px)`,
               gridTemplateRows: `repeat(${gridRows || 4}, ${cellWidthPx}px)`,
               gap: "8px",
               width: `${totalGridContentWidth}px`,
@@ -133,6 +222,24 @@ function AddWarehouse() {
         minHeight: "100vh",
       }}
     >
+      {/* Success Message */}
+      {showMessage && (
+        <div
+          style={{
+            backgroundColor: "#10B981",
+            color: "#FFFFFF",
+            padding: "12px 24px",
+            borderRadius: "8px",
+            textAlign: "center",
+            marginBottom: "20px",
+            fontWeight: "500",
+            fontSize: "16px",
+          }}
+        >
+          Warehouse layout imported successfully!
+        </div>
+      )}
+
       {/* Breadcrumb Navigation */}
       <div
         style={{
@@ -177,6 +284,8 @@ function AddWarehouse() {
           </label>
           <select
             name="selectCustomer"
+            value={warehouseName}
+            onChange={(e) => setWarehouseName(e.target.value)}
             style={{
               width: "100%",
               padding: "12px",
@@ -187,7 +296,9 @@ function AddWarehouse() {
               fontSize: "14px",
             }}
           >
-            <option value="disable">Select Customer</option>
+            <option value="">Select Customer</option>
+            <option value="Customer1">Customer 1</option>
+            <option value="Customer2">Customer 2</option>
           </select>
         </div>
 
@@ -206,6 +317,8 @@ function AddWarehouse() {
             </label>
             <input
               type="text"
+              value={warehouseCode}
+              onChange={(e) => setWarehouseCode(e.target.value)}
               style={{
                 width: "100%",
                 padding: "12px",
@@ -231,6 +344,8 @@ function AddWarehouse() {
             </label>
             <input
               type="text"
+              value={warehouseOwner}
+              onChange={(e) => setWarehouseOwner(e.target.value)}
               style={{
                 width: "100%",
                 padding: "12px",
@@ -257,6 +372,8 @@ function AddWarehouse() {
             Address
           </label>
           <textarea
+            value={address}
+            onChange={(e) => setAddress(e.target.value)}
             style={{
               width: "100%",
               padding: "12px",
@@ -285,6 +402,8 @@ function AddWarehouse() {
               Country
             </label>
             <select
+              value={country}
+              onChange={(e) => setCountry(e.target.value)}
               style={{
                 width: "100%",
                 padding: "12px",
@@ -294,7 +413,11 @@ function AddWarehouse() {
                 color: "#6B7280",
                 fontSize: "14px",
               }}
-            ></select>
+            >
+              <option value="">Select Country</option>
+              <option value="USA">USA</option>
+              <option value="India">India</option>
+            </select>
           </div>
           <div style={{ flex: 1 }}>
             <label
@@ -309,6 +432,8 @@ function AddWarehouse() {
               State
             </label>
             <select
+              value={state}
+              onChange={(e) => setState(e.target.value)}
               style={{
                 width: "100%",
                 padding: "12px",
@@ -318,7 +443,11 @@ function AddWarehouse() {
                 color: "#6B7280",
                 fontSize: "14px",
               }}
-            ></select>
+            >
+              <option value="">Select State</option>
+              <option value="California">California</option>
+              <option value="Maharashtra">Maharashtra</option>
+            </select>
           </div>
           <div style={{ flex: 1 }}>
             <label
@@ -333,6 +462,8 @@ function AddWarehouse() {
               City
             </label>
             <select
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
               style={{
                 width: "100%",
                 padding: "12px",
@@ -342,7 +473,11 @@ function AddWarehouse() {
                 color: "#6B7280",
                 fontSize: "14px",
               }}
-            ></select>
+            >
+              <option value="">Select City</option>
+              <option value="Los Angeles">Los Angeles</option>
+              <option value="Mumbai">Mumbai</option>
+            </select>
           </div>
           <div style={{ flex: 1 }}>
             <label
@@ -357,6 +492,8 @@ function AddWarehouse() {
               Pin Code
             </label>
             <select
+              value={pinCode}
+              onChange={(e) => setPinCode(e.target.value)}
               style={{
                 width: "100%",
                 padding: "12px",
@@ -366,7 +503,11 @@ function AddWarehouse() {
                 color: "#6B7280",
                 fontSize: "14px",
               }}
-            ></select>
+            >
+              <option value="">Select Pin Code</option>
+              <option value="90001">90001</option>
+              <option value="400001">400001</option>
+            </select>
           </div>
         </div>
       </div>
@@ -667,7 +808,7 @@ function AddWarehouse() {
                           gap: "16px",
                         }}
                       >
-                        {/* <button
+                        <button
                           type="button"
                           onClick={close}
                           style={{
@@ -690,7 +831,7 @@ function AddWarehouse() {
                           }
                         >
                           Cancel
-                        </button> */}
+                        </button>
                         <button
                           type="button"
                           onClick={() => handleImport(close)}
@@ -779,9 +920,82 @@ function AddWarehouse() {
         </div>
       </div>
 
-      {/* button draft & save */}
-      <div>
-        
+      {/* Draft, Save, or Done Button */}
+      <div
+        style={{
+          margin: "30px auto",
+          width: "100%",
+          maxWidth: "900px",
+          display: "flex",
+          justifyContent: "flex-end",
+          gap: "16px",
+        }}
+      >
+        {!isImported ? (
+          <>
+            <button
+              type="button"
+              onClick={handleDraft}
+              style={{
+                backgroundColor: "#6B7280",
+                color: "#FFFFFF",
+                border: "none",
+                borderRadius: "8px",
+                padding: "12px 24px",
+                fontWeight: "500",
+                fontSize: "16px",
+                cursor: "pointer",
+                boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+                transition: "background-color 0.3s",
+              }}
+              onMouseOver={(e) => (e.target.style.backgroundColor = "#4B5563")}
+              onMouseOut={(e) => (e.target.style.backgroundColor = "#6B7280")}
+            >
+              Draft
+            </button>
+            <button
+              type="button"
+              onClick={handleSave}
+              style={{
+                backgroundColor: "#3B82F6",
+                color: "#FFFFFF",
+                border: "none",
+                borderRadius: "8px",
+                padding: "12px 24px",
+                fontWeight: "500",
+                fontSize: "16px",
+                cursor: "pointer",
+                boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+                transition: "background-color 0.3s",
+              }}
+              onMouseOver={(e) => (e.target.style.backgroundColor = "#2563EB")}
+              onMouseOut={(e) => (e.target.style.backgroundColor = "#3B82F6")}
+            >
+              Save
+            </button>
+          </>
+        ) : (
+          <button
+            type="button"
+            onClick={handleDone}
+            style={{
+              backgroundColor: "#3B82F6",
+              color: "#FFFFFF",
+              border: "none",
+              borderRadius: "8px",
+              padding: "12px 24px",
+              fontWeight: "500",
+              fontSize: "16px",
+              cursor: "pointer",
+              boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+              transition: "background-color 0.3s",
+            }}
+            onMouseOver={(e) => (e.target.style.backgroundColor = "#2563EB")}
+            onMouseOut={(e) => (e.target.style.backgroundColor = "#3B82F6")}
+          >
+            Done
+          </button>
+        )}
       </div>
     </div>
   );
