@@ -13,7 +13,7 @@ function AllWarehouse() {
         style={{
           display: "flex",
           justifyContent: "space-between",
-          alignItem: "center",
+          alignItems: "center",
         }}
       >
         <div
@@ -146,7 +146,9 @@ function AllWarehouse() {
 
                   {/* Arrow */}
                   <div>
-                    <FaArrowRight />
+                    <Link to="/WarehouseDetails">
+                      <FaArrowRight />
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -239,7 +241,9 @@ function AllWarehouse() {
 
                   {/* Arrow */}
                   <div>
-                    <FaArrowRight />
+                    <Link to="/WarehouseDetails">
+                      <FaArrowRight />
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -355,7 +359,9 @@ function AllWarehouse() {
 
                   {/* Arrow */}
                   <div>
-                    <FaArrowRight />
+                    <Link to="/WarehouseDetails">
+                      <FaArrowRight />
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -448,7 +454,9 @@ function AllWarehouse() {
 
                   {/* Arrow */}
                   <div>
-                    <FaArrowRight />
+                    <Link to="/WarehouseDetails">
+                      <FaArrowRight />
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -562,7 +570,9 @@ function AllWarehouse() {
 
                   {/* Arrow */}
                   <div>
-                    <FaArrowRight />
+                    <Link to="/WarehouseDetails">
+                      <FaArrowRight />
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -655,7 +665,9 @@ function AllWarehouse() {
 
                   {/* Arrow */}
                   <div>
-                    <FaArrowRight />
+                    <Link to="/WarehouseDetails">
+                      <FaArrowRight />
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -749,7 +761,9 @@ function AllWarehouse() {
 
                   {/* Arrow */}
                   <div>
-                    <FaArrowRight />
+                    <Link to="/WarehouseDetails">
+                      <FaArrowRight />
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -840,7 +854,9 @@ function AllWarehouse() {
 
                   {/* Arrow */}
                   <div>
-                    <FaArrowRight />
+                    <Link to="/WarehouseDetails">
+                      <FaArrowRight />
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -952,7 +968,9 @@ function AllWarehouse() {
 
                   {/* Arrow */}
                   <div>
-                    <FaArrowRight />
+                    <Link to="/WarehouseDetails">
+                      <FaArrowRight />
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -1045,7 +1063,9 @@ function AllWarehouse() {
 
                   {/* Arrow */}
                   <div>
-                    <FaArrowRight />
+                    <Link to="/WarehouseDetails">
+                      <FaArrowRight />
+                    </Link>
                   </div>
                 </div>
               </div>

@@ -113,7 +113,7 @@ function AddWarehouse() {
     setState("");
     setCity("");
     setPinCode("");
-    setMainRows(4);
+    setMainRows(3);
     setMainColumns(3);
     setMainWidth(1);
     setMainZones(1);
@@ -226,9 +226,10 @@ function AddWarehouse() {
       {showMessage && (
         <div
           style={{
-            backgroundColor: "#10B981",
-            color: "#FFFFFF",
-            padding: "12px 24px",
+            backgroundColor: "#BAFFDF",
+            border:' 1px solid #007B42',
+            color: "black",
+            padding: "10px 16px",
             borderRadius: "8px",
             textAlign: "center",
             marginBottom: "20px",

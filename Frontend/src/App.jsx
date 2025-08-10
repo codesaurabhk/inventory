@@ -43,6 +43,7 @@ import AllCustomer from "./component/Customer/AllCustomers.jsx";
 //warehouse
 import AllWarehouse from './component/Warehouse/AllWarehouse.jsx';
 import StockInOutHistory from './component/Warehouse/StockInOutHistory.jsx'
+import WarehouseDetails from './component/Warehouse/WarehouseDetails.jsx';
 
 //sales
 import SalesRecord from './component/Sales/SalesRecord'
@@ -175,6 +176,10 @@ const router = createBrowserRouter([
       {
         path: "/AddWarehouse",
         element: <AddWarehouse />
+      },
+      {
+        path: "/WarehouseDetails",
+        element: <WarehouseDetails />
       },
       {
         path: "/StockInOutHistory",
