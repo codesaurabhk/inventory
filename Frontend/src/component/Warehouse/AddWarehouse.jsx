@@ -370,6 +370,7 @@ function AddWarehouse() {
               display: "block",
             }}
           >
+<<<<<<< Updated upstream
             Address
           </label>
           <textarea
@@ -509,6 +510,111 @@ function AddWarehouse() {
               <option value="90001">90001</option>
               <option value="400001">400001</option>
             </select>
+=======
+            {/* Country */}
+            <div style={{ width: "25%" }}>
+              <span
+                style={{
+                  color: "#262626",
+                  fontWeight: "400",
+                  fontSize: "18px",
+                }}
+              >
+                Country
+              </span>
+              <br />
+              <select
+                name=""
+                style={{
+                  width: "100%",
+                  color: "#676767",
+                  borderRadius: "8px",
+                  border: "2px solid #c2c2c2",
+                  padding: "10px 16px",
+                  backgroundColor: " #FBFBFB",
+                  width: "100%",
+                }}
+              ></select>
+            </div>
+
+            {/* State */}
+            <div style={{ width: "25%" }}>
+              <span
+                style={{
+                  color: "#262626",
+                  fontWeight: "400",
+                  fontSize: "18px",
+                }}
+              >
+                State
+              </span>
+              <br />
+              <select
+                name=""
+                style={{
+                  width: "100%",
+                  color: "#676767",
+                  borderRadius: "8px",
+                  border: "2px solid #c2c2c2",
+                  padding: "10px 16px",
+                  backgroundColor: " #FBFBFB",
+                  width: "100%",
+                }}
+              ></select>
+            </div>
+            
+            {/* City */}
+            <div style={{ width: "25%" }}>
+              <span
+                style={{
+                  color: "#262626",
+                  fontWeight: "400",
+                  fontSize: "18px",
+                }}
+              >
+                City
+              </span>
+              <br />
+              <select
+                name=""
+                style={{
+                  width: "100%",
+                  color: "#676767",
+                  borderRadius: "8px",
+                  border: "2px solid #c2c2c2",
+                  padding: "10px 16px",
+                  backgroundColor: " #FBFBFB",
+                  width: "100%",
+                }}
+              ></select>
+            </div>
+
+            {/* pin Code */}
+            <div style={{ width: "25%" }}>
+              <span
+                style={{
+                  color: "#262626",
+                  fontWeight: "400",
+                  fontSize: "18px",
+                }}
+              >
+                Pin Code
+              </span>
+              <br />
+              <select
+                name=""
+                style={{
+                  width: "100%",
+                  color: "#676767",
+                  borderRadius: "8px",
+                  border: "2px solid #c2c2c2",
+                  padding: "10px 16px",
+                  backgroundColor: " #FBFBFB",
+                  width: "100%",
+                }}
+              ></select>
+            </div>
+>>>>>>> Stashed changes
           </div>
         </div>
       </div>
