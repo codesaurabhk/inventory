@@ -11,6 +11,8 @@ import { PiWarehouseBold } from "react-icons/pi";
 // import { style } from './../../../node_modules/@mui/system/esm/Stack/createStack';
 
 function WarehouseDetails() {
+  const [bgColor, setBgColor] = useState("");
+  
   const chartData = [
     {
       label: "Cement",
@@ -89,6 +91,49 @@ function WarehouseDetails() {
       available: 36,
       unit: "1,44,560.00",
       revenue: "₹2,98400.00",
+    },
+  ];
+
+  const dummyData = [
+    {
+      product: "Plywood Sheet",
+      time: "2025-08-11 09:45 AM",
+      qty: 25,
+      movementType: "IN",
+      sourceDest: "Supplier: ABC Plywood Co.",
+      reference: "PO-2345",
+    },
+    {
+      product: "Cement Bag (50kg)",
+      time: "2025-08-11 10:15 AM",
+      qty: 100,
+      movementType: "OUT",
+      sourceDest: "Project Site A",
+      reference: "Invoice-5678",
+    },
+    {
+      product: "Iron Rod (12mm)",
+      time: "2025-08-10 04:20 PM",
+      qty: 50,
+      movementType: "IN",
+      sourceDest: "Steel Works Pvt Ltd",
+      reference: "PO-2398",
+    },
+    {
+      product: "Water Heater 15L",
+      time: "2025-08-09 02:30 PM",
+      qty: 8,
+      movementType: "OUT",
+      sourceDest: "Retail Customer",
+      reference: "Sales-INV-9912",
+    },
+    {
+      product: "Sunmica Sheet",
+      time: "2025-08-08 11:00 AM",
+      qty: 40,
+      movementType: "IN",
+      sourceDest: "Decor Supplies Ltd",
+      reference: "PO-2410",
     },
   ];
 
@@ -544,7 +589,7 @@ function WarehouseDetails() {
               padding: "8px",
             }}
           >
-            Stock Out{" "}
+            Stock Out
           </span>
           <span
             style={{
@@ -587,10 +632,10 @@ function WarehouseDetails() {
               </tr>
             </thead>
             <tbody>
-              {sellingProducts.map((cust, i) => (
+              {sellingProducts.map((wholeseller, i) => (
                 <tr
-                  key={cust.id}
-                  onClick={() => handleCustomerClick(cust)}
+                  key={wholeseller.id}
+                  onClick={() => handleCustomerClick(wholeseller)}
                   style={{ cursor: "pointer" }}
                 >
                   <td>
@@ -603,14 +648,14 @@ function WarehouseDetails() {
                         alt="avatar"
                         className="avatar"
                       />
-                      {cust.product}
+                      {wholeseller.product}
                     </div>
                   </td>
-                  <td>{cust.sku}</td>
-                  <td>{cust.mrp}</td>
-                  <td>{cust.available}</td>
-                  <td>{cust.unit}</td>
-                  <td>{cust.revenue}</td>
+                  <td>{wholeseller.sku}</td>
+                  <td>{wholeseller.mrp}</td>
+                  <td>{wholeseller.available}</td>
+                  <td>{wholeseller.unit}</td>
+                  <td>{wholeseller.revenue}</td>
                 </tr>
               ))}
             </tbody>
@@ -628,6 +673,7 @@ function WarehouseDetails() {
           padding: "16px",
         }}
       >
+        {/* Header */}
         <div
           style={{
             padding: "16px",
@@ -636,21 +682,33 @@ function WarehouseDetails() {
           }}
         >
           <span>Godown</span>
-          <span style={{ color: "#1368EC" }}>
+          <span
+            style={{
+              color: "#1368EC",
+              display: "flex",
+              alignItems: "center",
+              gap: "4px",
+              cursor: "pointer",
+            }}
+          >
             View All <FaArrowRight />
           </span>
         </div>
 
+        {/* Content */}
         <div
           style={{
             border: "1px solid #e6e6e6",
             backgroundColor: "#FBFBFB",
             borderRadius: "8px",
             padding: "24px",
-            gap: "24px",
+            display: "flex",
+            flexDirection: "column",
+            gap: "10px",
           }}
         >
-          <div style={{}}>
+          {/* Zone */}
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
             <span
               style={{
                 color: "#262626",
@@ -658,150 +716,260 @@ function WarehouseDetails() {
                 fontSize: "14px",
                 borderRadius: "8px",
                 border: "1px solid #e6e6e6",
-                padding: "6 px",
+                padding: "8px",
+                alignItems: "center",
+                gap: "4px",
               }}
             >
               <PiWarehouseBold style={{ color: "#1368EC" }} /> Zone 01
             </span>
-          </div>
-          <div>
-            <span style={{ color: "#1368EC" }}>86% Used</span>
+            <span>
+              <FaArrowRight />
+            </span>
           </div>
 
+          {/* Used */}
+          <span style={{ color: "#1368EC", fontWeight: "500" }}>86% Used</span>
+
+          {/* Tags */}
           <div
             style={{
-              width: "670px",
-              // height: "56px",
+              display: "flex",
+              flexWrap: "wrap",
               gap: "8px",
-              flex:'wrap'
             }}
           >
-            <span
-              style={{
-                width:'auto',
-                fontWeight: "400",
-                fontSize: "14px",
-                color: "#262626",
-                padding: "4px",
-                border: "1px solid #e6e6e6e",
-                backgroundColor: "#f1f1f1",
-              }}
-            >
-              Construction Material
-            </span>
-            <span
-              style={{
-                width:'auto',
-                fontWeight: "400",
-                fontSize: "14px",
-                color: "#262626",
-                padding: "4px",
-                border: "1px solid #e6e6e6e",
-                backgroundColor: "#f1f1f1",
-              }}
-            >
-              
-              PlyWood Material
-            </span>
-            <span
-              style={{
-                width:'auto',
-                fontWeight: "400",
-                fontSize: "14px",
-                color: "#262626",
-                padding: "4px",
-                border: "1px solid #e6e6e6e",
-                backgroundColor: "#f1f1f1",
-              }}
-            >
-              Paint{" "}
-            </span>
+            <span style={tagStyle}>Construction Material</span>
+            <span style={tagStyle}>Plywood Material</span>
+            <span style={tagStyle}>Paint</span>
+            <span style={tagStyle}>Adhesive</span>
+            <span style={tagStyle}>Cements</span>
+            <span style={tagStyle}>Iron Rods</span>
+            <span style={tagStyle}>Water Heater</span>
+            <span style={tagStyle}>Plywood</span>
+            <span style={tagStyle}>Sunmica</span>
+          </div>
+        </div>
 
+        {/* godown 2 */}
+        <div
+          style={{
+            marginTop: "20px",
+            backgroundColor: "#fff",
+            borderRadius: "8px",
+            boxShadow: "0px 0px 8px 3px #0000001A",
+            padding: "16px",
+          }}
+        >
+          {/* Header */}
+          <div
+            style={{
+              padding: "16px",
+              display: "flex",
+              justifyContent: "space-between",
+            }}
+          >
+            <span>Godown</span>
             <span
               style={{
-                width:'auto',
-                fontWeight: "400",
-                fontSize: "14px",
-                color: "#262626",
-                padding: "4px",
-                border: "1px solid #e6e6e6e",
-                backgroundColor: "#f1f1f1",
+                color: "#1368EC",
+                display: "flex",
+                alignItems: "center",
+                gap: "4px",
+                cursor: "pointer",
               }}
             >
-              Adessive{" "}
-            </span>
-
-            <span
-              style={{
-                width:'auto',
-                fontWeight: "400",
-                fontSize: "14px",
-                color: "#262626",
-                padding: "4px",
-                border: "1px solid #e6e6e6e",
-                backgroundColor: "#f1f1f1",
-              }}
-            >
-              Cements{" "}
-            </span>
-
-            <span
-              style={{
-                width:'auto',
-                fontWeight: "400",
-                fontSize: "14px",
-                color: "#262626",
-                padding: "4px",
-                border: "1px solid #e6e6e6e",
-                backgroundColor: "#f1f1f1",
-              }}
-            >
-              Iron Rods{" "}
-            </span>
-            <span
-              style={{
-                width:'auto',
-                fontWeight: "400",
-                fontSize: "14px",
-                color: "#262626",
-                padding: "4px",
-                border: "1px solid #e6e6e6e",
-                backgroundColor: "#f1f1f1",
-              }}
-            >
-              Water Heater{" "}
-            </span>
-            <span
-              style={{
-                width:'auto',
-                fontWeight: "400",
-                fontSize: "14px",
-                color: "#262626",
-                padding: "4px",
-                border: "1px solid #e6e6e6e",
-                backgroundColor: "#f1f1f1",
-              }}
-            >
-              Plywood
-            </span>
-            <span
-              style={{
-                width:'auto',
-                fontWeight: "400",
-                fontSize: "14px",
-                color: "#262626",
-                padding: "4px",
-                border: "1px solid #e6e6e6e",
-                backgroundColor: "#f1f1f1",
-              }}
-            >
-              Sunmica
+              View All <FaArrowRight />
             </span>
           </div>
+
+          {/* Content */}
+          <div
+            style={{
+              border: "1px solid #e6e6e6",
+              backgroundColor: "#FBFBFB",
+              borderRadius: "8px",
+              padding: "24px",
+              display: "flex",
+              flexDirection: "column",
+              gap: "10px",
+            }}
+          >
+            {/* Zone */}
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
+              <span
+                style={{
+                  color: "#262626",
+                  fontWeight: "400",
+                  fontSize: "14px",
+                  borderRadius: "8px",
+                  border: "1px solid #e6e6e6",
+                  padding: "8px",
+                  alignItems: "center",
+                  gap: "4px",
+                }}
+              >
+                <PiWarehouseBold style={{ color: "#1368EC" }} /> Zone 01
+              </span>
+              <span>
+                <FaArrowRight />
+              </span>
+            </div>
+
+            {/* Used */}
+            <span style={{ color: "#1368EC", fontWeight: "500" }}>
+              86% Used
+            </span>
+
+            {/* Tags */}
+            <div
+              style={{
+                display: "flex",
+                flexWrap: "wrap",
+                gap: "8px",
+              }}
+            >
+              <span style={tagStyle}>Construction Material</span>
+              <span style={tagStyle}>Plywood Material</span>
+              <span style={tagStyle}>Paint</span>
+              <span style={tagStyle}>Adhesive</span>
+              <span style={tagStyle}>Cements</span>
+              <span style={tagStyle}>Iron Rods</span>
+              <span style={tagStyle}>Water Heater</span>
+              <span style={tagStyle}>Plywood</span>
+              <span style={tagStyle}>Sunmica</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Stock Movement History */}
+
+      <div
+        style={{
+          backgroundColor: "#fff",
+          marginTop: "20px",
+          borderRadius: "8px",
+          gap: "8px",
+        }}
+      >
+        <div
+          style={{
+            padding: "16px 24px",
+            borderBottom: "1px solid #e6e6e6",
+            font: "robot",
+            fontWeight: "500",
+            fontSize: "18px",
+            color: "#262626",
+          }}
+        >
+          <span>Stock Movement history</span>
+        </div>
+
+        <div style={{ padding: "8px 24px", gap: "18px" }}>
+          <span
+            style={{
+              font: "Robot",
+              fontWeight: "400",
+              fontSize: "16px",
+              color: "#262626",
+              padding: "8px",
+            }}
+          >
+            All
+          </span>
+          <span
+            style={{
+              font: "Robot",
+              fontWeight: "400",
+              fontSize: "16px",
+              color: "#262626",
+              padding: "8px",
+            }}
+          >
+            Stock In
+          </span>
+          <span
+            style={{
+              font: "Robot",
+              fontWeight: "400",
+              fontSize: "16px",
+              color: "#262626",
+              padding: "8px",
+            }}
+          >
+            Stock Out
+          </span>
+          <span
+            style={{
+              font: "Robot",
+              fontWeight: "400",
+              fontSize: "16px",
+              color: "#262626",
+              padding: "8px",
+            }}
+          >
+            Transfer
+          </span>
+          <span
+            style={{
+              font: "Robot",
+              fontWeight: "400",
+              fontSize: "16px",
+              color: "#262626",
+              padding: "8px",
+            }}
+          >
+            Processing
+          </span>
+        </div>
+
+        {/* Table */}
+        <div>
+          <table className="customer-table">
+            <thead>
+              <tr style={{ backgroundColor: "#e6e6e6" }}>
+                <th>
+                  <input type="checkbox" />
+                </th>
+                <th>Product</th>
+                <th>Time</th>
+                <th>QTY</th>
+                <th>Movement type</th>
+                <th>Source/Destination</th>
+                <th>Reference/Note</th>
+              </tr>
+            </thead>
+            <tbody>
+              {dummyData.map((item, index) => (
+                <tr key={index}>
+                  <td>
+                    <input type="checkbox" />
+                  </td>
+                  <td>{item.product}</td>
+                  <td>{item.time}</td>
+                  <td>{item.qty}</td>
+                  <td>{item.movementType}</td>
+                  <td>{item.sourceDest}</td>
+                  <td>{item.reference}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
   );
 }
+
+const tagStyle = {
+  fontWeight: "400",
+  fontSize: "14px",
+  color: "#262626",
+  padding: "4px 8px",
+  border: "1px solid #e6e6e6",
+  backgroundColor: "#f1f1f1",
+  borderRadius: "8px",
+};
 
 export default WarehouseDetails;
