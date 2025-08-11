@@ -370,7 +370,6 @@ function AddWarehouse() {
               display: "block",
             }}
           >
-<<<<<<< Updated upstream
             Address
           </label>
           <textarea
@@ -510,7 +509,6 @@ function AddWarehouse() {
               <option value="90001">90001</option>
               <option value="400001">400001</option>
             </select>
-=======
             {/* Country */}
             <div style={{ width: "25%" }}>
               <span
@@ -614,7 +612,6 @@ function AddWarehouse() {
                 }}
               ></select>
             </div>
->>>>>>> Stashed changes
           </div>
         </div>
       </div>

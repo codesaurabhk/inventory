@@ -1,10 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { MdArrowForwardIos } from "react-icons/md";
 import { TbMoneybag } from "react-icons/tb";
 import RadioActive from "../images/Radioactive.png";
 import CircleLogo from "../images/Circlelogo.png";
 import DonutChart from "react-donut-chart";
-import LineChart from "react-linechart";
 
 function WarehouseDetails() {
   const chartData = [
@@ -29,35 +28,6 @@ function WarehouseDetails() {
       value: 3,
     },
   ];
-
-  const lineChartData = [
-    {
-      color: "#1368ec",
-      name: "Sold",
-      points: [
-        { x: 1, y: 40 },
-        { x: 2, y: 50 },
-        { x: 3, y: 35 },
-        { x: 4, y: 55 },
-        { x: 5, y: 70 },
-        { x: 6, y: 90 },
-      ],
-    },
-    {
-      color: "#BBE1FF",
-      name: "Purchase",
-      points: [
-        { x: 1, y: 45 },
-        { x: 2, y: 60 },
-        { x: 3, y: 40 },
-        { x: 4, y: 50 },
-        { x: 5, y: 65 },
-        { x: 6, y: 75 },
-      ],
-    },
-  ];
-
-  const monthLabels = ["Jan", "Feb", "Mar", "Apr", "May", "Jun"];
 
   return (
     <div>
@@ -317,8 +287,8 @@ function WarehouseDetails() {
             height={220}
             legend={false} // hide built-in legend
             formatValues={(val) => `${val}%`}
-            strokeColor="transparent" // remove border
-            strokeWidth={0}
+            strokeColor="#fff" // remove border
+            strokeWidth={4}
             style={{
               margin: "20px auto 0", // center chart
               display: "block",
@@ -361,34 +331,6 @@ function WarehouseDetails() {
             ))}
           </div>
         </div>
-
-        {/* Line Chart */}
-
-         <div
-          style={{
-            width: "auto",
-            height: "520px",
-            borderRadius: "8px",
-            padding: "24px",
-            gap: "8px",
-            backgroundColor: "#fff",
-            marginTop: "20px",
-          }}
-        >
-          <h3 style={{ marginBottom: "20px", color: "#262626" }}>
-            Sales & Purchases (6 Months)
-          </h3>
-          <LineChart
-            width={600}
-            height={400}
-            data={lineChartData}
-            xLabel="Months"
-            yLabel="Quantity"
-            hidePoints={false}
-            interpolate="linear"
-            xLabels={monthLabels}
-          />
-        </div> 
       </div>
     </div>
   );
