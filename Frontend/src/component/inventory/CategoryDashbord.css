@@ -146,12 +146,14 @@
     text-transform: capitalize;
 }
 
-.status.active {
+.status.active, 
+.status.in {
     background-color: #d1f7dc;
     color: #1b8e3e;
 }
 
-.status.inactive {
+.status.inactive, 
+.status.out {
     background-color: #f7d1d1;
     color: #c0392b;
 }

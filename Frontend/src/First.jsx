@@ -157,7 +157,7 @@ function First() {
               <NavLink to="/StockInOutHistory" className="link"><li
                 className={`sidebar-list-all ${location.pathname === "/StockInOutHistory" ? "active" : ""}`}
               >
-               Stock In / Out History
+               Stock Movement Log  
               </li></NavLink>
             </ul>
           )}

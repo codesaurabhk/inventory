@@ -1,4 +1,4 @@
-import React from "react";
+ import React from "react";
 import { MdArrowForwardIos } from "react-icons/md";
 import { PiWarehouseFill } from "react-icons/pi";
 import { FaHeart } from "react-icons/fa";

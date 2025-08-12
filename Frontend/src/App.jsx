@@ -44,6 +44,7 @@ import AllCustomer from "./component/Customer/AllCustomers.jsx";
 import AllWarehouse from './component/Warehouse/AllWarehouse.jsx';
 import StockInOutHistory from './component/Warehouse/StockInOutHistory.jsx'
 import WarehouseDetails from './component/Warehouse/WarehouseDetails.jsx';
+import Godown from './component/Warehouse/Godown';
 
 //sales
 import SalesRecord from './component/Sales/SalesRecord'
@@ -184,6 +185,10 @@ const router = createBrowserRouter([
       {
         path: "/StockInOutHistory",
         element: <StockInOutHistory/>
+      },
+      {
+        path: "/Godown",
+        element: <Godown/>
       },
       {
         path: "/SalesRecord",
