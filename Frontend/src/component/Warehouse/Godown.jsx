@@ -8,6 +8,7 @@ import React from "react";
 import { MdArrowForwardIos } from "react-icons/md";
 import { FaSearch, FaArrowRight } from "react-icons/fa";
 import { RiArrowUpDownLine } from "react-icons/ri";
+import { FaArrowUp } from "react-icons/fa";
 
 function Godown() {
   // Grid labels for Zone 04 (5x8 grid, 40 cells)
@@ -56,15 +57,15 @@ function Godown() {
 
   // Grid labels for Zone 03 (3x3 grid, 9 cells)
   const zone03GridLabels = [
-    "A1",
-    "A2",
-    "A3",
-    "B1",
-    "B2",
-    "B3",
     "C1",
     "C2",
     "C3",
+    "B1",
+    "B2",
+    "B3",
+    "A1",
+    "A2",
+    "A3",
   ];
 
   // Highlighted cells for each zone
@@ -210,7 +211,9 @@ function Godown() {
       </div>
 
       {/* Grid Display for Zones */}
-      <div style={{ overflowX: "auto", marginTop: "20px" }}>
+      <div
+        style={{ overflowX: "auto", marginTop: "20px", marginBottom: "20px" }}
+      >
         {/* Zone 04 Layout */}
         <div
           style={{
@@ -218,7 +221,6 @@ function Godown() {
             justifyContent: "center",
             alignItems: "center",
             marginTop: "20px",
-            backgroundColor: "#f8f9fa",
           }}
         >
           <div>
@@ -276,24 +278,26 @@ function Godown() {
             </div>
           </div>
         </div>
+      </div>
 
-        {/* Zone 03 Layout (Rotated) */}
+      {/* grid Layout-table-grid layout */}
+      <div style={{ marginTop: "30px" }}>
+        {/*01-02-03 layout*/}
         <div
           style={{
-            marginTop: "10px",
+            overflowX: "auto",
+            marginTop: "20px",
+            marginBottom: "20px",
             display: "flex",
-            flexDirection: "column",
-            alignItems: "flex-start",
-            justifyContent: "flex-start",
+            padding: "20px",
           }}
         >
-          {/* Zone 03 */}
+          {/* Zone 03 Label and Grid */}
           <div
             style={{
-              transform: "rotate(-90deg)",
-              transformOrigin: "center",
-              padding: "10px",
-              marginBottom: "30px",
+              display: "flex",
+              justifyContent: "flex-start",
+              alignItems: "flex-start",
             }}
           >
             <div
@@ -305,25 +309,31 @@ function Godown() {
                 position: "relative",
                 fontSize: "18px",
                 fontWeight: "bold",
-                marginBottom: "15px",
+                marginRight: "15px",
                 textAlign: "center",
-                width: "100%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                width: "60px",
+                height: "200px", // Adjusted height to match the vertical label in the image
+                transform: "rotate(0deg)", // Rotate label to match vertical orientation
+                transformOrigin: "top left",
               }}
             >
-              Zone 03
-              <FaArrowRight
+              <span style={{ transform: "rotate(-90deg)",}}>Zone 03</span>
+              <FaArrowUp
                 style={{
                   position: "absolute",
-                  right: "15px",
-                  top: "50%",
-                  transform: "translateY(-50%)",
+                  left: "50%",
+                  top: "10px",
+                  transform: "translateX(-50%) rotate(0deg)", // Adjust arrow to point up
                 }}
               />
             </div>
             <div
               style={{
                 display: "grid",
-                gridTemplateColumns: "repeat(3, 60px)", // 3x3 grid for 9 cells
+                gridTemplateColumns: "repeat(3, 60px)",
                 gap: "10px",
                 justifyContent: "center",
               }}
@@ -337,262 +347,36 @@ function Godown() {
                       : "#fff",
                     border: "1px solid #ccc",
                     borderRadius: "5px",
-                    height: "40px",
+                    height: "60px",
                     width: "60px",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
                     fontWeight: "500",
+                     transform: "rotate(-90deg)",
                   }}
                 >
                   {label}
                 </div>
               ))}
             </div>
-           
           </div>
-           {/* table */}
-        <div
-          style={{
-            marginLeft: "420px",
-            marginTop: "10px",
-            background: "#fff",
-            borderRadius: "8px",
-            boxShadow: "0 2px 8px rgba(0,0,0,0.05)",
-            padding: "20px",
-            width: "110%",
-            minWidth: "400px",
-          }}
-        >
-          <table style={{ width: "100%", borderCollapse: "collapse" }}>
-            <thead>
-              <tr style={{ background: "#E3F3FF" }}>
-                <th
-                  style={{
-                    padding: "8px",
-                    border: "1px solid #ccc",
-                    textAlign: "left",
-                  }}
-                >
-                  Product
-                </th>
-                <th
-                  style={{
-                    padding: "8px",
-                    border: "1px solid #ccc",
-                    textAlign: "left",
-                  }}
-                >
-                  SKU
-                </th>
-                <th
-                  style={{
-                    padding: "8px",
-                    border: "1px solid #ccc",
-                    textAlign: "left",
-                  }}
-                >
-                  Quantity
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td style={{ padding: "8px", border: "1px solid #ccc" }}>
-                  Chair
-                </td>
-                <td style={{ padding: "8px", border: "1px solid #ccc" }}>
-                  SKU-CHAIR-001
-                </td>
-                <td style={{ padding: "8px", border: "1px solid #ccc" }}>20</td>
-              </tr>
-              <tr>
-                <td style={{ padding: "8px", border: "1px solid #ccc" }}>
-                  Table
-                </td>
-                <td style={{ padding: "8px", border: "1px solid #ccc" }}>
-                  SKU-TABLE-002
-                </td>
-                <td style={{ padding: "8px", border: "1px solid #ccc" }}>10</td>
-              </tr>
-              <tr>
-                <td style={{ padding: "8px", border: "1px solid #ccc" }}>
-                  Sofa
-                </td>
-                <td style={{ padding: "8px", border: "1px solid #ccc" }}>
-                  SKU-SOFA-003
-                </td>
-                <td style={{ padding: "8px", border: "1px solid #ccc" }}>5</td>
-              </tr>
-              <tr>
-                <td style={{ padding: "8px", border: "1px solid #ccc" }}>
-                  Lamp
-                </td>
-                <td style={{ padding: "8px", border: "1px solid #ccc" }}>
-                  SKU-LAMP-004
-                </td>
-                <td style={{ padding: "8px", border: "1px solid #ccc" }}>15</td>
-              </tr>
-              <tr>
-                <td style={{ padding: "8px", border: "1px solid #ccc" }}>
-                  Bookshelf
-                </td>
-                <td style={{ padding: "8px", border: "1px solid #ccc" }}>
-                  SKU-BOOK-005
-                </td>
-                <td style={{ padding: "8px", border: "1px solid #ccc" }}>8</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+          {/* table */}
+         <div>
+           <div>
+            table
+          </div> 
+         </div>
+         {/* 05 */}
+         <div>
+          05 layout
+         </div>
         </div>
 
-        {/* Zone 2 Layout (Rotated, below Zone 3) */}
-        <div
-          style={{
-            marginTop: "10px",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "flex-start",
-            justifyContent: "flex-start",
-          }}
-        >
-          <div
-            style={{
-              transform: "rotate(-90deg)",
-              transformOrigin: "center",
-              padding: "10px",
-              marginBottom: "30px",
-            }}
-          >
-            <div
-              style={{
-                backgroundColor: "#3f99E1",
-                color: "#fff",
-                padding: "10px 15px",
-                borderRadius: "8px",
-                position: "relative",
-                fontSize: "18px",
-                fontWeight: "bold",
-                marginBottom: "15px",
-                textAlign: "center",
-                width: "100%",
-              }}
-            >
-              Zone 02
-              <FaArrowRight
-                style={{
-                  position: "absolute",
-                  right: "15px",
-                  top: "50%",
-                  transform: "translateY(-50%)",
-                }}
-              />
-            </div>
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(3, 60px)",
-                gap: "10px",
-                justifyContent: "center",
-              }}
-            >
-              {zone02GridLabels.map((label, idx) => (
-                <div
-                  key={idx}
-                  style={{
-                    backgroundColor: zone02Highlights.includes(label)
-                      ? "#E3F3FF"
-                      : "#fff",
-                    border: "1px solid #ccc",
-                    borderRadius: "5px",
-                    height: "40px",
-                    width: "60px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontWeight: "500",
-                  }}
-                >
-                  {label}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Zone 1 Layout (Rotated, below Zone 2) */}
-        <div
-          style={{
-            marginTop: "10px",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "flex-start",
-            justifyContent: "flex-start",
-          }}
-        >
-          <div
-            style={{
-              transform: "rotate(-90deg)",
-              transformOrigin: "center",
-              padding: "10px",
-            }}
-          >
-            <div
-              style={{
-                backgroundColor: "#3f99E1",
-                color: "#fff",
-                padding: "10px 15px",
-                borderRadius: "8px",
-                position: "relative",
-                fontSize: "18px",
-                fontWeight: "bold",
-                marginBottom: "15px",
-                textAlign: "center",
-                width: "100%",
-              }}
-            >
-              Zone 01
-              <FaArrowRight
-                style={{
-                  position: "absolute",
-                  right: "15px",
-                  top: "50%",
-                  transform: "translateY(-50%)",
-                }}
-              />
-            </div>
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(3, 60px)",
-                gap: "10px",
-                justifyContent: "center",
-              }}
-            >
-              {zone01GridLabels.map((label, idx) => (
-                <div
-                  key={idx}
-                  style={{
-                    backgroundColor: zone01Highlights.includes(label)
-                      ? "#E3F3FF"
-                      : "#fff",
-                    border: "1px solid #ccc",
-                    borderRadius: "5px",
-                    height: "40px",
-                    width: "60px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontWeight: "500",
-                  }}
-                >
-                  {label}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+        {/* 02 */}
+        <div>02</div>
+        {/* 03 */}
+        <div>03</div>
       </div>
     </div>
   );
