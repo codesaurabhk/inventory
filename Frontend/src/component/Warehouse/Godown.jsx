@@ -89,7 +89,6 @@ function Godown() {
 
   return (
     <div>
-
       {/* Breadcrumb Navigation */}
       <div
         style={{
@@ -209,278 +208,150 @@ function Godown() {
           </select>
         </div>
       </div>
-      
+
       {/* Grid Display for Zones */}
       <div style={{ overflowX: "auto", marginTop: "20px" }}>
-
-      {/* Zone 04 Layout */}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          marginTop: "20px",
-          backgroundColor: "#f8f9fa",
-        }}
-      >
-        <div>
-          <div
-            style={{
-              backgroundColor: "#3f99E1",
-              color: "#fff",
-              padding: "10px 15px",
-              borderRadius: "8px",
-              position: "relative",
-              fontSize: "18px",
-              fontWeight: "bold",
-              marginBottom: "15px",
-              textAlign: "center",
-            }}
-          >
-            Zone 04
-            <FaArrowRight
-              style={{
-                position: "absolute",
-                right: "15px",
-                top: "50%",
-                transform: "translateY(-50%)",
-              }}
-            />
-          </div>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(8, 60px)",
-              gap: "10px",
-              justifyContent: "center",
-            }}
-          >
-            {zone04GridLabels.map((label, idx) => (
-              <div
-                key={idx}
-                style={{
-                  backgroundColor: zone04Highlights.includes(label)
-                    ? "#E3F3FF"
-                    : "#fff",
-                  border: "1px solid #ccc",
-                  borderRadius: "5px",
-                  height: "40px",
-                  width: "60px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontWeight: "500",
-                }}
-              >
-                {label}
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Zone 03 Layout (Rotated) */}
-      <div
-        style={{
-          marginTop: "10px",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "flex-start",
-          justifyContent: "flex-start",
-        }}
-      >
-        {/* Zone 03 */}
+        {/* Zone 04 Layout */}
         <div
           style={{
-            transform: "rotate(-90deg)",
-            transformOrigin: "center",
-            padding: "10px",
-            marginBottom: "30px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            marginTop: "20px",
+            backgroundColor: "#f8f9fa",
           }}
         >
-          <div
-            style={{
-              backgroundColor: "#3f99E1",
-              color: "#fff",
-              padding: "10px 15px",
-              borderRadius: "8px",
-              position: "relative",
-              fontSize: "18px",
-              fontWeight: "bold",
-              marginBottom: "15px",
-              textAlign: "center",
-              width: "100%",
-            }}
-          >
-            Zone 03
-            <FaArrowRight
+          <div>
+            <div
               style={{
-                position: "absolute",
-                right: "15px",
-                top: "50%",
-                transform: "translateY(-50%)",
+                backgroundColor: "#3f99E1",
+                color: "#fff",
+                padding: "10px 15px",
+                borderRadius: "8px",
+                position: "relative",
+                fontSize: "18px",
+                fontWeight: "bold",
+                marginBottom: "15px",
+                textAlign: "center",
               }}
-            />
-          </div>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(3, 60px)", // 3x3 grid for 9 cells
-              gap: "10px",
-              justifyContent: "center",
-            }}
-          >
-            {zone03GridLabels.map((label, idx) => (
-              <div
-                key={idx}
+            >
+              Zone 04
+              <FaArrowRight
                 style={{
-                  backgroundColor: zone03Highlights.includes(label)
-                    ? "#E3F3FF"
-                    : "#fff",
-                  border: "1px solid #ccc",
-                  borderRadius: "5px",
-                  height: "40px",
-                  width: "60px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontWeight: "500",
+                  position: "absolute",
+                  right: "15px",
+                  top: "50%",
+                  transform: "translateY(-50%)",
                 }}
-              >
-                {label}
-              </div>
-            ))}
+              />
+            </div>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(8, 60px)",
+                gap: "10px",
+                justifyContent: "center",
+              }}
+            >
+              {zone04GridLabels.map((label, idx) => (
+                <div
+                  key={idx}
+                  style={{
+                    backgroundColor: zone04Highlights.includes(label)
+                      ? "#E3F3FF"
+                      : "#fff",
+                    border: "1px solid #ccc",
+                    borderRadius: "5px",
+                    height: "40px",
+                    width: "60px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontWeight: "500",
+                  }}
+                >
+                  {label}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
-        {/* Zone 2 Layout (Rotated, below Zone 3) */}
+        {/* Zone 03 Layout (Rotated) */}
         <div
           style={{
-            transform: "rotate(-90deg)",
-            transformOrigin: "center",
-            padding: "10px",
-            marginBottom: "30px",
+            marginTop: "10px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-start",
+            justifyContent: "flex-start",
           }}
         >
+          {/* Zone 03 */}
           <div
             style={{
-              backgroundColor: "#3f99E1",
-              color: "#fff",
-              padding: "10px 15px",
-              borderRadius: "8px",
-              position: "relative",
-              fontSize: "18px",
-              fontWeight: "bold",
-              marginBottom: "15px",
-              textAlign: "center",
-              width: "100%",
+              transform: "rotate(-90deg)",
+              transformOrigin: "center",
+              padding: "10px",
+              marginBottom: "30px",
             }}
           >
-            Zone 02
-            <FaArrowRight
+            <div
               style={{
-                position: "absolute",
-                right: "15px",
-                top: "50%",
-                transform: "translateY(-50%)",
+                backgroundColor: "#3f99E1",
+                color: "#fff",
+                padding: "10px 15px",
+                borderRadius: "8px",
+                position: "relative",
+                fontSize: "18px",
+                fontWeight: "bold",
+                marginBottom: "15px",
+                textAlign: "center",
+                width: "100%",
               }}
-            />
-          </div>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(3, 60px)",
-              gap: "10px",
-              justifyContent: "center",
-            }}
-          >
-            {zone02GridLabels.map((label, idx) => (
-              <div
-                key={idx}
+            >
+              Zone 03
+              <FaArrowRight
                 style={{
-                  backgroundColor: zone02Highlights.includes(label)
-                    ? "#E3F3FF"
-                    : "#fff",
-                  border: "1px solid #ccc",
-                  borderRadius: "5px",
-                  height: "40px",
-                  width: "60px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontWeight: "500",
+                  position: "absolute",
+                  right: "15px",
+                  top: "50%",
+                  transform: "translateY(-50%)",
                 }}
-              >
-                {label}
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Zone 1 Layout (Rotated, below Zone 2) */}
-        <div
-          style={{
-            transform: "rotate(-90deg)",
-            transformOrigin: "center",
-            padding: "10px",
-          }}
-        >
-          <div
-            style={{
-              backgroundColor: "#3f99E1",
-              color: "#fff",
-              padding: "10px 15px",
-              borderRadius: "8px",
-              position: "relative",
-              fontSize: "18px",
-              fontWeight: "bold",
-              marginBottom: "15px",
-              textAlign: "center",
-              width: "100%",
-            }}
-          >
-            Zone 01
-            <FaArrowRight
+              />
+            </div>
+            <div
               style={{
-                position: "absolute",
-                right: "15px",
-                top: "50%",
-                transform: "translateY(-50%)",
+                display: "grid",
+                gridTemplateColumns: "repeat(3, 60px)", // 3x3 grid for 9 cells
+                gap: "10px",
+                justifyContent: "center",
               }}
-            />
+            >
+              {zone03GridLabels.map((label, idx) => (
+                <div
+                  key={idx}
+                  style={{
+                    backgroundColor: zone03Highlights.includes(label)
+                      ? "#E3F3FF"
+                      : "#fff",
+                    border: "1px solid #ccc",
+                    borderRadius: "5px",
+                    height: "40px",
+                    width: "60px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontWeight: "500",
+                  }}
+                >
+                  {label}
+                </div>
+              ))}
+            </div>
+           
           </div>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(3, 60px)",
-              gap: "10px",
-              justifyContent: "center",
-            }}
-          >
-            {zone01GridLabels.map((label, idx) => (
-              <div
-                key={idx}
-                style={{
-                  backgroundColor: zone01Highlights.includes(label)
-                    ? "#E3F3FF"
-                    : "#fff",
-                  border: "1px solid #ccc",
-                  borderRadius: "5px",
-                  height: "40px",
-                  width: "60px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontWeight: "500",
-                }}
-              >
-                {label}
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* table */}
+           {/* table */}
         <div
           style={{
             marginLeft: "420px",
@@ -574,10 +445,155 @@ function Godown() {
             </tbody>
           </table>
         </div>
-      </div>
+        </div>
 
-      </div>
+        {/* Zone 2 Layout (Rotated, below Zone 3) */}
+        <div
+          style={{
+            marginTop: "10px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-start",
+            justifyContent: "flex-start",
+          }}
+        >
+          <div
+            style={{
+              transform: "rotate(-90deg)",
+              transformOrigin: "center",
+              padding: "10px",
+              marginBottom: "30px",
+            }}
+          >
+            <div
+              style={{
+                backgroundColor: "#3f99E1",
+                color: "#fff",
+                padding: "10px 15px",
+                borderRadius: "8px",
+                position: "relative",
+                fontSize: "18px",
+                fontWeight: "bold",
+                marginBottom: "15px",
+                textAlign: "center",
+                width: "100%",
+              }}
+            >
+              Zone 02
+              <FaArrowRight
+                style={{
+                  position: "absolute",
+                  right: "15px",
+                  top: "50%",
+                  transform: "translateY(-50%)",
+                }}
+              />
+            </div>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(3, 60px)",
+                gap: "10px",
+                justifyContent: "center",
+              }}
+            >
+              {zone02GridLabels.map((label, idx) => (
+                <div
+                  key={idx}
+                  style={{
+                    backgroundColor: zone02Highlights.includes(label)
+                      ? "#E3F3FF"
+                      : "#fff",
+                    border: "1px solid #ccc",
+                    borderRadius: "5px",
+                    height: "40px",
+                    width: "60px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontWeight: "500",
+                  }}
+                >
+                  {label}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
 
+        {/* Zone 1 Layout (Rotated, below Zone 2) */}
+        <div
+          style={{
+            marginTop: "10px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-start",
+            justifyContent: "flex-start",
+          }}
+        >
+          <div
+            style={{
+              transform: "rotate(-90deg)",
+              transformOrigin: "center",
+              padding: "10px",
+            }}
+          >
+            <div
+              style={{
+                backgroundColor: "#3f99E1",
+                color: "#fff",
+                padding: "10px 15px",
+                borderRadius: "8px",
+                position: "relative",
+                fontSize: "18px",
+                fontWeight: "bold",
+                marginBottom: "15px",
+                textAlign: "center",
+                width: "100%",
+              }}
+            >
+              Zone 01
+              <FaArrowRight
+                style={{
+                  position: "absolute",
+                  right: "15px",
+                  top: "50%",
+                  transform: "translateY(-50%)",
+                }}
+              />
+            </div>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(3, 60px)",
+                gap: "10px",
+                justifyContent: "center",
+              }}
+            >
+              {zone01GridLabels.map((label, idx) => (
+                <div
+                  key={idx}
+                  style={{
+                    backgroundColor: zone01Highlights.includes(label)
+                      ? "#E3F3FF"
+                      : "#fff",
+                    border: "1px solid #ccc",
+                    borderRadius: "5px",
+                    height: "40px",
+                    width: "60px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontWeight: "500",
+                  }}
+                >
+                  {label}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
