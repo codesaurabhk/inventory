@@ -1,14 +1,10 @@
-// Grid labels for Zone 02 and Zone 01 (3x3 grid, 9 cells each)
-const zone02GridLabels = ["A1", "A2", "A3", "B1", "B2", "B3", "C1", "C2", "C3"];
-const zone01GridLabels = ["A1", "A2", "A3", "B1", "B2", "B3", "C1", "C2", "C3"];
-// Highlights for Zone 2 and Zone 1 (dummy)
-const zone02Highlights = ["A1", "B2", "C3"];
-const zone01Highlights = ["B1", "C2", "A3"];
+
 import React from "react";
 import { MdArrowForwardIos } from "react-icons/md";
 import { FaSearch, FaArrowRight } from "react-icons/fa";
 import { RiArrowUpDownLine } from "react-icons/ri";
-import { FaArrowUp } from "react-icons/fa";
+import '../styles/Godown.css';
+
 
 function Godown() {
   // Grid labels for Zone 04 (5x8 grid, 40 cells)
@@ -87,6 +83,45 @@ function Godown() {
     "H5",
   ];
   const zone03Highlights = ["A1", "A2", "B2", "B3", "C3"];
+
+  const products = [
+    {
+      name: "Ponds Moisturizer cream",
+      sku: "JDFG846",
+      qty: 654,
+      img: "https://via.placeholder.com/40",
+    },
+    {
+      name: "Office Chair",
+      sku: "JDFG846",
+      qty: 566,
+      img: "https://via.placeholder.com/40",
+    },
+    {
+      name: "Luxury Handbag",
+      sku: "JDFG846",
+      qty: 254,
+      img: "https://via.placeholder.com/40",
+    },
+    {
+      name: "Gaming Mouse",
+      sku: "JDFG846",
+      qty: 12,
+      img: "https://via.placeholder.com/40",
+    },
+  ];
+
+  // Pagination state and derived values for the middle table
+  const [currentPage, setCurrentPage] = React.useState(1);
+  const pageSize = 10;
+  const totalCount = products.length;
+  const totalPages = Math.max(1, Math.ceil(totalCount / pageSize));
+  const safePage = Math.min(currentPage, totalPages);
+  const startIndex = (safePage - 1) * pageSize;
+  const endIndexExclusive = Math.min(startIndex + pageSize, totalCount);
+  const displayStart = totalCount === 0 ? 0 : startIndex + 1;
+  const displayEnd = endIndexExclusive;
+  const paginatedProducts = products.slice(startIndex, endIndexExclusive);
 
   return (
     <div>
@@ -280,104 +315,89 @@ function Godown() {
         </div>
       </div>
 
-      {/* grid Layout-table-grid layout */}
-      <div style={{ marginTop: "30px" }}>
-        {/*01-02-03 layout*/}
+      {/* grid & tables */}
+      
+        {/* all zone & table */}
         <div
+          className="row"
           style={{
-            overflowX: "auto",
-            marginTop: "20px",
-            marginBottom: "20px",
             display: "flex",
-            padding: "20px",
+            gap: "20px",
+            justifyContent: "space-between",
+            alignItems:"center",
+            width: "100%",
           }}
         >
-          {/* Zone 03 Label and Grid */}
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "flex-start",
-              alignItems: "flex-start",
-            }}
-          >
+          {/* Zone 3 */}
+        <div className="zone-container">
+      <div className="zone-label">
+         <span className="invisible">hg</span>
+        <span className="zone-text">Zone 03</span>
+       
+        <span style={{transform:"rotate(90deg)"}}><FaArrowRight /></span>
+         
+      </div>
+
+      <div className="grid">
+        <div className="grid-item">C1</div>
+        <div className="grid-item">C2</div>
+        <div className="grid-item">C3</div>
+
+        <div className="grid-item tall">B1</div>
+        <div className="grid-item tall blue">B2</div>
+        <div className="grid-item tall blue">B3</div>
+
+        <div className="grid-item">A1</div>
+        <div className="grid-item">A2</div>
+        <div className="grid-item">A3</div>
+      </div>
+    </div>
+
+
+          {/* table */}
+          <div className="col">
             <div
               style={{
-                backgroundColor: "#3f99E1",
-                color: "#fff",
-                padding: "10px 15px",
+                backgroundColor: "#fff",
+                padding: "24px",
+                border: "1px solid #e6e6e6",
                 borderRadius: "8px",
-                position: "relative",
-                fontSize: "18px",
-                fontWeight: "bold",
-                marginRight: "15px",
-                textAlign: "center",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                width: "60px",
-                height: "200px", // Adjusted height to match the vertical label in the image
-                transform: "rotate(0deg)", // Rotate label to match vertical orientation
-                transformOrigin: "top left",
               }}
             >
-              <span style={{ transform: "rotate(-90deg)",}}>Zone 03</span>
-              <FaArrowUp
-                style={{
-                  position: "absolute",
-                  left: "50%",
-                  top: "10px",
-                  transform: "translateX(-50%) rotate(0deg)", // Adjust arrow to point up
-                }}
-              />
-            </div>
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(3, 60px)",
-                gap: "10px",
-                justifyContent: "center",
-              }}
-            >
-              {zone03GridLabels.map((label, idx) => (
-                <div
-                  key={idx}
-                  style={{
-                    backgroundColor: zone03Highlights.includes(label)
-                      ? "#E3F3FF"
-                      : "#fff",
-                    border: "1px solid #ccc",
-                    borderRadius: "5px",
-                    height: "60px",
-                    width: "60px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontWeight: "500",
-                     transform: "rotate(-90deg)",
-                  }}
-                >
-                  {label}
-                </div>
-              ))}
+              <table className="customer-table">
+                <thead>
+                  <tr style={{ backgroundColor: "#e6e6e6" }}>
+                    <th>Product</th>
+                    <th>SKU</th>
+                    <th>Quantity</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {paginatedProducts.map((products, index) => (
+                    <tr key={index}>
+                      <td>{products.name}</td>
+                      <td>{products.sku}</td>
+                      <td>{products.qty}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </div>
-          {/* table */}
-         <div>
-           <div>
-            table
-          </div> 
-         </div>
-         {/* 05 */}
-         <div>
-          05 layout
-         </div>
-        </div>
 
-        {/* 02 */}
-        <div>02</div>
-        {/* 03 */}
-        <div>03</div>
-      </div>
+          {/* Zone 05 */}
+          <div className="zone-container-5">
+      <div className="zone-item a4">A4</div>
+      <div className="zone-item a3">A3</div>
+      <div className="zone-item a2">A2</div>
+      <div className="zone-item a1">A1</div>
+      <div className="zone-item a5">A5</div>
+      <div className="zone-item b2">B2</div>
+      <div className="zone-item b1">B1</div>
+      <div className="zone-label-5">Zone 05 →</div>
+    </div>
+        </div>
+     
     </div>
   );
 }
