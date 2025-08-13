@@ -3,6 +3,7 @@ const cors = require("cors")
 const dotenv = require("dotenv")
 const connectDB = require("./src/config/db.js")
 const categoryrouter = require("./src/Route/CategoryRoute.js")
+const warehouserouter = require("./src/Route/WarehouseRoutes.js")
 
 
 const app = express();
@@ -14,7 +15,8 @@ connectDB();
 app.use(cors());
 app.use(express.json());
 
-app.use("/api/category", categoryrouter)
+app.use("/api/category", categoryrouter);
+app.use("/api/warehouse", warehouserouter);
 
 app.get('/', (req, res) => {
     res.send('Backend is running!')
