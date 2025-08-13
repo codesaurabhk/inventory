@@ -1,10 +1,8 @@
-
 import React from "react";
 import { MdArrowForwardIos } from "react-icons/md";
 import { FaSearch, FaArrowRight } from "react-icons/fa";
 import { RiArrowUpDownLine } from "react-icons/ri";
-import '../styles/Godown.css';
-
+import "./Godown.css";
 
 function Godown() {
   // Grid labels for Zone 04 (5x8 grid, 40 cells)
@@ -316,89 +314,103 @@ function Godown() {
       </div>
 
       {/* grid & tables */}
-      
-        {/* all zone & table */}
-        <div
-          className="row"
-          style={{
-            display: "flex",
-            gap: "20px",
-            justifyContent: "space-between",
-            alignItems:"center",
-            width: "100%",
-          }}
-        >
-          {/* Zone 3 */}
+
+      {/* all zone & table */}
+      <div
+        className="row"
+        style={{
+          display: "flex",
+          gap: "20px",
+          justifyContent: "space-between",
+          alignItems: "center",
+          width: "100%",
+        }}
+      >
+        {/* Zone 3 */}
         <div className="zone-container">
-      <div className="zone-label">
-         <span className="invisible">hg</span>
-        <span className="zone-text">Zone 03</span>
-       
-        <span style={{transform:"rotate(90deg)"}}><FaArrowRight /></span>
-         
-      </div>
+          <div className="zone-label">
+            <span className="invisible">hg</span>
+            <span className="zone-text">Zone 03</span>
 
-      <div className="grid">
-        <div className="grid-item">C1</div>
-        <div className="grid-item">C2</div>
-        <div className="grid-item">C3</div>
-
-        <div className="grid-item tall">B1</div>
-        <div className="grid-item tall blue">B2</div>
-        <div className="grid-item tall blue">B3</div>
-
-        <div className="grid-item">A1</div>
-        <div className="grid-item">A2</div>
-        <div className="grid-item">A3</div>
-      </div>
-    </div>
-
-
-          {/* table */}
-          <div className="col">
-            <div
-              style={{
-                backgroundColor: "#fff",
-                padding: "24px",
-                border: "1px solid #e6e6e6",
-                borderRadius: "8px",
-              }}
-            >
-              <table className="customer-table">
-                <thead>
-                  <tr style={{ backgroundColor: "#e6e6e6" }}>
-                    <th>Product</th>
-                    <th>SKU</th>
-                    <th>Quantity</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {paginatedProducts.map((products, index) => (
-                    <tr key={index}>
-                      <td>{products.name}</td>
-                      <td>{products.sku}</td>
-                      <td>{products.qty}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+            <span style={{ transform: "rotate(90deg)" }}>
+              <FaArrowRight />
+            </span>
           </div>
 
-          {/* Zone 05 */}
-          <div className="zone-container-5">
-      <div className="zone-item a4">A4</div>
-      <div className="zone-item a3">A3</div>
-      <div className="zone-item a2">A2</div>
-      <div className="zone-item a1">A1</div>
-      <div className="zone-item a5">A5</div>
-      <div className="zone-item b2">B2</div>
-      <div className="zone-item b1">B1</div>
-      <div className="zone-label-5">Zone 05 →</div>
-    </div>
+          <div className="grid">
+            <div className="grid-item">C1</div>
+            <div className="grid-item">C2</div>
+            <div className="grid-item">C3</div>
+
+            <div className="grid-item tall">B1</div>
+            <div className="grid-item tall blue">B2</div>
+            <div className="grid-item tall blue">B3</div>
+
+            <div className="grid-item">A1</div>
+            <div className="grid-item">A2</div>
+            <div className="grid-item">A3</div>
+          </div>
         </div>
-     
-    </div>
+
+        {/* table */}
+        <div className="col">
+          <div
+            style={{
+              backgroundColor: "#fff",
+              padding: "24px",
+              border: "1px solid #e6e6e6",
+              borderRadius: "8px",
+            }}
+          >
+            <table className="customer-table">
+              <thead>
+                <tr style={{ backgroundColor: "#e6e6e6" }}>
+                  <th>Product</th>
+                  <th>SKU</th>
+                  <th>Quantity</th>
+                </tr>
+              </thead>
+              <tbody>
+                {paginatedProducts.map((products, index) => (
+                  <tr key={index}>
+                    <td>{products.name}</td>
+                    <td>{products.sku}</td>
+                    <td>{products.qty}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        {/* Zone 05 */}
+        <div style={{width: '303px', height:'345px', marginTop: '30px', transform:'rotate(90deg)'}}>
+          <div style={{transform:'rotate(-0deg)', backgroundColor:'#3498db', padding:'10px', color:
+            'white', justifyContent:'space-between', display:'flex'
+          }}>
+            <span className="invisible">hg</span>
+            <span className="zone-text">Zone 03</span>
+            <span style={{ transform: "rotate(90deg)" }}>
+              <FaArrowRight />
+            </span>
+          </div>
+            
+          
+        
+          <div className="grid-container">
+            <div className="item a1">A1</div>
+            <div className="item a2">A2</div>
+            <div className="item a3">A3</div>
+            <div className="item a4">A4</div>
+            <div className="item a5">A5</div>
+            <div className="item b1">B1</div>
+            <div className="item b2">B2</div>
+
+          </div>
+          </div>
+        </div>
+      </div>
+    
   );
 }
 
