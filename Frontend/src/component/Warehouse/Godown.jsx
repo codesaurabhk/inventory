@@ -327,7 +327,9 @@ function Godown() {
         }}
       >
         {/* Zone 3 */}
-        <div className="zone-container">
+        <div className="zone-container" style={{ width: "303px",
+            height: "345px",
+            marginTop: "30px",}}>
           <div className="zone-label">
             <span className="invisible">hg</span>
             <span className="zone-text">Zone 03</span>
@@ -384,19 +386,34 @@ function Godown() {
         </div>
 
         {/* Zone 05 */}
-        <div style={{width: '303px', height:'345px', marginTop: '30px', transform:'rotate(90deg)'}}>
-          <div style={{transform:'rotate(-0deg)', backgroundColor:'#3498db', padding:'10px', color:
-            'white', justifyContent:'space-between', display:'flex'
-          }}>
+        <div
+          style={{
+            width: "303px",
+            height: "345px",
+            marginTop: "30px",
+            transform: "rotate(90deg)",
+          }}
+        >
+          <div
+            style={{
+              transform: "rotate(-0deg)",
+              backgroundColor: "#3F99E1",
+              padding: "24px",
+              color: "#FFF",
+              justifyContent: "space-between",
+              display: "flex",
+              border: "1px solid #e6e6e6",
+              borderRadius: "8px",
+
+            }}
+          >
             <span className="invisible">hg</span>
             <span className="zone-text">Zone 03</span>
             <span style={{ transform: "rotate(90deg)" }}>
               <FaArrowRight />
             </span>
           </div>
-            
-          
-        
+
           <div className="grid-container">
             <div className="item a1">A1</div>
             <div className="item a2">A2</div>
@@ -405,12 +422,10 @@ function Godown() {
             <div className="item a5">A5</div>
             <div className="item b1">B1</div>
             <div className="item b2">B2</div>
-
-          </div>
           </div>
         </div>
       </div>
-    
+    </div>
   );
 }
 
