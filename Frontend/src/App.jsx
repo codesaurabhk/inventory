@@ -45,6 +45,7 @@ import AllWarehouse from './component/Warehouse/AllWarehouse.jsx';
 import StockInOutHistory from './component/Warehouse/StockInOutHistory.jsx'
 import WarehouseDetails from './component/Warehouse/WarehouseDetails.jsx';
 import Godown from './component/Warehouse/Godown';
+import SelectPage from './component/Warehouse/SelectPage.jsx'
 
 //sales
 import SalesRecord from './component/Sales/SalesRecord'
@@ -181,6 +182,10 @@ const router = createBrowserRouter([
       {
         path: "/WarehouseDetails",
         element: <WarehouseDetails />
+      },
+      {
+        path: "/SelectPage",
+        element: <SelectPage />
       },
       {
         path: "/StockInOutHistory",
