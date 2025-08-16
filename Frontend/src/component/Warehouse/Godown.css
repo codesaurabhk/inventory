@@ -1,9 +1,9 @@
-/* .zone-container {
+ /* .zone-container {
   display: grid;
-  /* grid-template-columns: repeat(3, 1fr); 
+  grid-template-columns: repeat(3, 1fr); 
   grid-template-rows: repeat(3, 100px); 
   gap: 10px;  
-} */
+
 
 
 .zone-label {
@@ -57,7 +57,6 @@
 
 .grid-container {
   display: grid;
-  /* grid-template-columns: 150px; */
   gap: 10px;
   padding: 5px;
 }
@@ -186,4 +185,4 @@
   grid-row: 3 / 4;
   background-color: #BBE1FF;
   border: 1px solid #E6E6E6;
-}
+} */

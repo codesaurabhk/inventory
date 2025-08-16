@@ -1,74 +1,39 @@
 import React from "react";
+import { useState } from "react";
 import { MdArrowForwardIos } from "react-icons/md";
 import { FaSearch, FaArrowRight } from "react-icons/fa";
 import { RiArrowUpDownLine } from "react-icons/ri";
 import { FaAngleLeft } from "react-icons/fa6";
 import { FaChevronRight } from "react-icons/fa";
 import "./Godown.css";
+import Popup from "./popup";
 
 function Godown() {
-  // Grid labels for Zone 04 (5x8 grid, 40 cells)
-  const zone04GridLabels = [
-    "A1",
-    "B1",
-    "C1",
-    "D1",
-    "E1",
-    "F1",
-    "G1",
-    "H1",
-    "A2",
-    "B2",
-    "C2",
-    "D2",
-    "E2",
-    "F2",
-    "G2",
-    "H2",
-    "A3",
-    "B3",
-    "C3",
-    "D3",
-    "E3",
-    "F3",
-    "G3",
-    "H3",
-    "A4",
-    "B4",
-    "C4",
-    "D4",
-    "E4",
-    "F4",
-    "G4",
-    "H4",
-    "A5",
-    "B5",
-    "C5",
-    "D5",
-    "E5",
-    "F5",
-    "G5",
-    "H5",
-  ];
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState("");
 
-  // Highlighted cells for each zone
-  const zone04Highlights = [
-    "D1",
-    "E1",
-    "F1",
-    "H1",
-    "D2",
-    "E2",
-    "F2",
-    "G2",
-    "C3",
-    "D3",
-    "B4",
-    "E4",
-    "F4",
-    "B5",
-    "H5",
-  ];
+  const handleGridClick = (e, item) => {
+    const style = window.getComputedStyle(e.target);
+    console.log(
+      "Clicked item:",
+      item,
+      "Background color:",
+      style.backgroundColor
+    ); // Debug log
+    if (
+      style.backgroundColor === "rgb(255, 255, 255)" ||
+      style.backgroundColor === "#ffffff"
+    ) {
+      setSelectedItem(item);
+      setIsPopupOpen(true);
+    } else {
+      console.log("Popup not opened, background color:", style.backgroundColor); // Debug log
+    }
+  };
+
+  const closePopup = () => {
+    setIsPopupOpen(false);
+  };
 
   const products = [
     {
@@ -281,442 +246,134 @@ function Godown() {
             justifyContent: "space-between",
           }}
         >
-          <div
-            style={{
-              border: "1px solid #e6e6e6",
-              color: "#000000",
-              borderRadius: "8px",
-              fontFamily: "robot",
-              fontWeight: "400",
-              fontSize: "16px",
-              alignItems: "center",
-              justifyContent: "center",
-              display: "flex",
-            }}
-          >
-            A1
-          </div>
-          <div
-            style={{
-              border: "1px solid #e6e6e6",
-              color: "#000000",
-              borderRadius: "8px",
-              fontFamily: "robot",
-              fontWeight: "400",
-              fontSize: "16px",
-              alignItems: "center",
-              justifyContent: "center",
-              display: "flex",
-            }}
-          >
-            B1
-          </div>
-          <div
-            style={{
-              border: "1px solid #e6e6e6",
-              color: "#000000",
-              borderRadius: "8px",
-              fontFamily: "robot",
-              fontWeight: "400",
-              fontSize: "16px",
-              alignItems: "center",
-              justifyContent: "center",
-              display: "flex",
-            }}
-          >
-            C1
-          </div>
-          <div
-            style={{
-              border: "1px solid #e6e6e6",
-              color: "#000000",
-              borderRadius: "8px",
-              fontFamily: "robot",
-              fontWeight: "400",
-              fontSize: "16px",
-              alignItems: "center",
-              justifyContent: "center",
-              display: "flex",
-            }}
-          >
-            D1
-          </div>
-          <div
-            style={{
-              border: "1px solid #e6e6e6",
-              color: "#000000",
-              borderRadius: "8px",
-              fontFamily: "robot",
-              fontWeight: "400",
-              fontSize: "16px",
-              alignItems: "center",
-              justifyContent: "center",
-              display: "flex",
-            }}
-          >
-            A2
-          </div>
-          <div
-            style={{
-              border: "1px solid #e6e6e6",
-              color: "#000000",
-              borderRadius: "8px",
-              fontFamily: "robot",
-              fontWeight: "400",
-              fontSize: "16px",
-              alignItems: "center",
-              justifyContent: "center",
-              display: "flex",
-            }}
-          >
-            B2
-          </div>
-          <div
-            style={{
-              border: "1px solid #e6e6e6",
-              color: "#000000",
-              borderRadius: "8px",
-              fontFamily: "robot",
-              fontWeight: "400",
-              fontSize: "16px",
-              alignItems: "center",
-              justifyContent: "center",
-              display: "flex",
-            }}
-          >
-            C2
-          </div>
-          <div
-            style={{
-              border: "1px solid #e6e6e6",
-              color: "#000000",
-              borderRadius: "8px",
-              fontFamily: "robot",
-              fontWeight: "400",
-              fontSize: "16px",
-              alignItems: "center",
-              justifyContent: "center",
-              display: "flex",
-            }}
-          >
-            D2
-          </div>
-          <div
-            style={{
-              border: "1px solid #e6e6e6",
-              color: "#000000",
-              borderRadius: "8px",
-              fontFamily: "robot",
-              fontWeight: "400",
-              fontSize: "16px",
-              alignItems: "center",
-              justifyContent: "center",
-              display: "flex",
-            }}
-          >
-            A3
-          </div>
-          <div
-            style={{
-              border: "1px solid #e6e6e6",
-              color: "#000000",
-              borderRadius: "8px",
-              fontFamily: "robot",
-              fontWeight: "400",
-              fontSize: "16px",
-              alignItems: "center",
-              justifyContent: "center",
-              display: "flex",
-            }}
-          >
-            B3
-          </div>
-          <div
-            style={{
-              border: "1px solid #e6e6e6",
-              color: "#000000",
-              borderRadius: "8px",
-              fontFamily: "robot",
-              fontWeight: "400",
-              fontSize: "16px",
-              alignItems: "center",
-              justifyContent: "center",
-              display: "flex",
-            }}
-          >
-            C3
-          </div>
-          <div
-            style={{
-              border: "1px solid #e6e6e6",
-              color: "#000000",
-              borderRadius: "8px",
-              fontFamily: "robot",
-              fontWeight: "400",
-              fontSize: "16px",
-              alignItems: "center",
-              justifyContent: "center",
-              display: "flex",
-            }}
-          >
-            C4
-          </div>
-          <div
-            style={{
-              border: "1px solid #e6e6e6",
-              color: "#000000",
-              borderRadius: "8px",
-              fontFamily: "robot",
-              fontWeight: "400",
-              fontSize: "16px",
-              alignItems: "center",
-              justifyContent: "center",
-              display: "flex",
-            }}
-          >
-            A4
-          </div>
-          <div
-            style={{
-              border: "1px solid #e6e6e6",
-              color: "#000000",
-              borderRadius: "8px",
-              fontFamily: "robot",
-              fontWeight: "400",
-              fontSize: "16px",
-              alignItems: "center",
-              justifyContent: "center",
-              display: "flex",
-            }}
-          >
-            B4
-          </div>
-          <div
-            style={{
-              border: "1px solid #e6e6e6",
-              color: "#000000",
-              borderRadius: "8px",
-              fontFamily: "robot",
-              fontWeight: "400",
-              fontSize: "16px",
-              alignItems: "center",
-              justifyContent: "center",
-              display: "flex",
-            }}
-          >
-            C4
-          </div>
-          <div
-            style={{
-              border: "1px solid #e6e6e6",
-              color: "#000000",
-              borderRadius: "8px",
-              fontFamily: "robot",
-              fontWeight: "400",
-              fontSize: "16px",
-              alignItems: "center",
-              justifyContent: "center",
-              display: "flex",
-            }}
-          >
-            C5
-          </div>
-          <div
-            style={{
-              border: "1px solid #e6e6e6",
-              color: "#000000",
-              borderRadius: "8px",
-              fontFamily: "robot",
-              fontWeight: "400",
-              fontSize: "16px",
-              alignItems: "center",
-              justifyContent: "center",
-              display: "flex",
-            }}
-          >
-            A5
-          </div>
-          <div
-            style={{
-              border: "1px solid #e6e6e6",
-              color: "#000000",
-              borderRadius: "8px",
-              fontFamily: "robot",
-              fontWeight: "400",
-              fontSize: "16px",
-              alignItems: "center",
-              justifyContent: "center",
-              display: "flex",
-            }}
-          >
-            B5
-          </div>
-          <div
-            style={{
-              border: "1px solid #e6e6e6",
-              color: "#000000",
-              borderRadius: "8px",
-              fontFamily: "robot",
-              fontWeight: "400",
-              fontSize: "16px",
-              alignItems: "center",
-              justifyContent: "center",
-              display: "flex",
-            }}
-          >
-            C5
-          </div>
-          <div
-            style={{
-              border: "1px solid #e6e6e6",
-              color: "#000000",
-              borderRadius: "8px",
-              fontFamily: "robot",
-              fontWeight: "400",
-              fontSize: "16px",
-              alignItems: "center",
-              justifyContent: "center",
-              display: "flex",
-            }}
-          >
-            D5
-          </div>
+          {[
+            "A1",
+            "B1",
+            "C1",
+            "D1",
+            "A2",
+            "B2",
+            "C2",
+            "D2",
+            "A3",
+            "B3",
+            "C3",
+            "C4",
+            "A4",
+            "B4",
+            "C4",
+            "C5",
+            "A5",
+            "B5",
+            "C5",
+            "D5",
+          ].map((item, idx) => (
+            <div
+              key={idx}
+              onClick={(e) => handleGridClick(e, item)}
+              style={{
+                border: "1px solid #e6e6e6",
+                color: "#000000",
+                borderRadius: "8px",
+                fontFamily: "Roboto",
+                fontWeight: "400",
+                fontSize: "16px",
+                alignItems: "center",
+                justifyContent: "center",
+                display: "flex",
+                cursor: "pointer",
+                backgroundColor: ["A1", "C2", "D1"].includes(item)
+                  ? "#ffffff"
+                  : "#e3f3ff",
+              }}
+            >
+              {item}
+            </div>
+          ))}
         </main>
         {/* other grid & tables */}
 
         {/* all zone & table */}
+
         <div
           style={{
             display: "flex",
-            gap: "20px",
             justifyContent: "space-evenly",
-            alignItems: "center",
-            width: "100%",
-            padding: "20px",
+            padding: "24px",
           }}
         >
-          {/* Zone 3 */}
-          <div
-            style={{
-              width: "303px",
-              height: "345px",
-              marginTop: "30px",
-              transform: "rotate(-90deg)",
-            }}
-          >
-            <div
-              style={{
-                transform: "rotate(-0deg)",
-                backgroundColor: "#3f99e1",
-                padding: "24px",
-                color: "#FFF",
-                justifyContent: "space-between",
-                display: "flex",
-                border: "1px solid #e6e6e6",
-                borderRadius: "8px",
-                marginTop: "40px",
-                marginBottom: "20px",
-              }}
-            >
-              <span className="invisible">hg</span>
-              <span className="zone-text">Zone 03</span>
-              <span style={{ transform: "rotate(0deg)" }}>
-                <FaArrowRight />
-              </span>
+          <div style={{ transform: "rotate(-90deg)", marginBottom: "100px" }}>
+            <div>
+              <div
+                style={{
+                  transform: "rotate(-0deg)",
+                  backgroundColor: "#3f99e1",
+                  padding: "24px",
+                  color: "#FFF",
+                  justifyContent: "space-between",
+                  display: "flex",
+                  border: "1px solid #e6e6e6",
+                  borderRadius: "8px",
+                  marginTop: "40px",
+                  marginBottom: "20px",
+                  width: "100%",
+                  height: "100%",
+                }}
+              >
+                <span className="invisible">hg</span>
+                <span className="zone-text">Zone 04</span>
+                <span style={{ transform: "rotate(0deg)" }}>
+                  <FaArrowRight />
+                </span>
+              </div>
             </div>
 
-            <div className="grid-container-two">
-              <div
-                className="zone3-01"
-                style={{
-                  textAlign: "center",
-                  justifyContent: "center",
-                  display: "flex",
-                }}
-              >
-                A1
-              </div>
-              <div
-                className="zone3-02"
-                style={{
-                  textAlign: "center",
-                  justifyContent: "center",
-                  display: "flex",
-                }}
-              >
-                A2
-              </div>
-              <div
-                className="zone3-03"
-                style={{
-                  textAlign: "center",
-                  justifyContent: "center",
-                  display: "flex",
-                }}
-              >
-                A3
-              </div>
-              <div
-                className="zone3-04"
-                style={{
-                  textAlign: "center",
-                  justifyContent: "center",
-                  display: "flex",
-                }}
-              >
-                B1
-              </div>
-              <div
-                className="zone3-05"
-                style={{
-                  textAlign: "center",
-                  justifyContent: "center",
-                  display: "flex",
-                }}
-              >
-                A2
-              </div>
-              <div
-                className="zone3-06"
-                style={{
-                  textAlign: "center",
-                  justifyContent: "center",
-                  display: "flex",
-                }}
-              >
-                B3
-              </div>
-              <div
-                className="zone3-07"
-                style={{
-                  textAlign: "center",
-                  justifyContent: "center",
-                  display: "flex",
-                }}
-              >
-                C1
-              </div>
-              <div
-                className="zone3-08"
-                style={{
-                  textAlign: "center",
-                  justifyContent: "center",
-                  display: "flex",
-                }}
-              >
-                C2
-              </div>
-              <div
-                className="zone3-09"
-                style={{
-                  textAlign: "center",
-                  justifyContent: "center",
-                  display: "flex",
-                }}
-              >
-                C3
-              </div>
-            </div>
+            <main
+              style={{
+                width: "100%",
+                display: "grid",
+                gridTemplateRows: "40px 40px 40px",
+                gridTemplateColumns: "repeat(4, 1fr)",
+                gap: "10px",
+              }}
+            >
+              {["A1", "B1", "C1", "A2", "B2", "C2", "A3", "B3", "C3"].map(
+                (item, idx) => {
+                  let extraStyle = {};
+
+                  if (item === "B1") {
+                    extraStyle = { gridColumn: "2 / 4", gridRow: "1 / 2" };
+                  } else if (item === "B2") {
+                    extraStyle = { gridColumn: "2 / 4", gridRow: "2 / 3" };
+                  } else if (item === "B3") {
+                    extraStyle = { gridColumn: "2 / 4", gridRow: "3 / 4" };
+                  }
+
+                  return (
+                    <div
+                      key={idx}
+                      style={{
+                        border: "1px solid #e6e6e6",
+                        borderRadius: "8px",
+                        fontFamily: "Roboto",
+                        fontWeight: "400",
+                        fontSize: "16px",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        cursor: "pointer",
+                        backgroundColor: ["A1", "C2", "B3", "C3"].includes(item)
+                          ? "white"
+                          : "#e3f3ff", // ✅ conditional color
+                        ...extraStyle,
+                      }}
+                    >
+                      {item}
+                    </div>
+                  );
+                }
+              )}
+            </main>
           </div>
 
           {/* table */}
@@ -735,13 +392,12 @@ function Godown() {
                 alignItems: "center",
               }}
             >
-              {/* table header */}
               <div
                 style={{ display: "flex", alignItems: "center", gap: "50px" }}
               >
                 <span
                   style={{
-                    fontFamily: "roboto",
+                    fontFamily: "Roboto",
                     fontWeight: "500",
                     fontSize: "16px",
                     color: "#262626",
@@ -763,12 +419,10 @@ function Godown() {
                       color: "#676767",
                     }}
                   >
-                    Assign Product Product{" "}
+                    Assign Product
                   </span>
-
                   <select
-                    name=""
-                    id=""
+                    name="rack"
                     style={{
                       border: "1px solid #e6e6e6",
                       borderRadius: "4px",
@@ -779,25 +433,12 @@ function Godown() {
                       color: "#676767",
                     }}
                   >
-                    <option
-                      value=""
-                      disabled
-                      selected
-                      style={{
-                        border: "1px solid #e6e6e6",
-                        borderRadius: "4px",
-                        padding: "8px",
-                        fontFamily: "Roboto",
-                        fontWeight: "400",
-                        fontSize: "16px",
-                        color: "#676767",
-                      }}
-                    >
+                    <option value="" disabled selected>
                       Rack 1
                     </option>
                   </select>
-
                   <select
+                    name="grid"
                     style={{
                       border: "1px solid #e6e6e6",
                       borderRadius: "4px",
@@ -808,20 +449,7 @@ function Godown() {
                       color: "#676767",
                     }}
                   >
-                    <option
-                      value=""
-                      disabled
-                      selected
-                      style={{
-                        border: "1px solid #e6e6e6",
-                        borderRadius: "4px",
-                        padding: "8px",
-                        fontFamily: "Roboto",
-                        fontWeight: "400",
-                        fontSize: "16px",
-                        color: "#676767",
-                      }}
-                    >
+                    <option value="" disabled selected>
                       A1
                     </option>
                   </select>
@@ -835,7 +463,7 @@ function Godown() {
                 marginTop: "10px",
               }}
             >
-              <table className="customer-tables">
+              <table>
                 <thead>
                   <tr
                     style={{
@@ -844,28 +472,40 @@ function Godown() {
                       fontSize: "16px",
                       fontWeight: "400",
                       fontFamily: "Roboto",
+                      borderRadius:'8px'
                     }}
                   >
                     <th style={{ padding: "8px" }}>Product</th>
-                    <th>SKU</th>
-                    <th>Quantity</th>
+                    <th style={{ padding: "8px" }}>SKU</th>
+                    <th style={{ padding: "8px" }}>Quantity</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {paginatedProducts.map((products, index) => (
+                  {paginatedProducts.map((product, index) => (
                     <tr
                       key={index}
                       style={{ borderBottom: "1px solid #e6e6e6" }}
                     >
-                      <td style={{ padding: "8px" }}>{products.name}</td>
-                      <td>{products.sku}</td>
-                      <td>{products.qty}</td>
+                      <td style={{ padding: "8px" }}>
+                        <img
+                          src={product.img}
+                          style={{
+                            width: "40px",
+                            height: "40px",
+                            marginRight: "10px",
+                            border: "none" // Added to remove border
+                          }}
+                        />
+                        {product.name}
+                      </td>
+                      <td style={{ padding: "8px" }}>{product.sku}</td>
+                      <td style={{ padding: "8px" }}>{product.qty}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
-            {/* paggination */}
+            {/* Pagination */}
             <div
               className="pagination"
               style={{
@@ -873,58 +513,110 @@ function Godown() {
                 justifyContent: "center",
                 alignItems: "center",
                 gap: "20px",
+                marginTop: "10px",
               }}
             >
               <div className="pagination-boxx">10 per page</div>
               <div className="pagination-boxx pagination-info">
                 <span></span>
-                <span style={{ color: "grey" }}> 1 - 10 of 700</span>
-                <button className="pagination-arrow">
+                <span style={{ color: "grey" }}>
+                  {displayStart} - {displayEnd} of {totalCount}
+                </span>
+                <button
+                  className="pagination-arrow"
+                  onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+                  disabled={currentPage === 1}
+                >
                   <FaAngleLeft />
                 </button>
-                <button className="pagination-arrow">
+                <button
+                  className="pagination-arrow"
+                  onClick={() =>
+                    setCurrentPage(Math.min(totalPages, currentPage + 1))
+                  }
+                  disabled={currentPage === totalPages}
+                >
                   <FaChevronRight />
                 </button>
               </div>
             </div>
           </div>
 
-          {/* Zone 05 */}
-          <div
-            style={{
-              width: "303px",
-              height: "345px",
-              marginTop: "30px",
-              transform: "rotate(90deg)",
-            }}
-          >
-            <div
-              style={{
-                transform: "rotate(-0deg)",
-                backgroundColor: "#3F99E1",
-                padding: "24px",
-                color: "#FFF",
-                justifyContent: "space-between",
-                display: "flex",
-                border: "1px solid #e6e6e6",
-                borderRadius: "8px",
-              }}
-            >
-              <span className="invisible">hg</span>
-              <span className="zone-text">Zone 05</span>
-              <span style={{ transform: "rotate(0deg)" }}>
-                <FaArrowRight />
-              </span>
-            </div>
+          <div>
+            {/* Zone 05 */}
+            <div style={{ transform: "rotate(90deg)", marginBottom: "100px" }}>
+              <div>
+                <div
+                  style={{
+                    transform: "rotate(-0deg)",
+                    backgroundColor: "#3f99e1",
+                    padding: "24px",
+                    color: "#FFF",
+                    justifyContent: "space-between",
+                    display: "flex",
+                    border: "1px solid #e6e6e6",
+                    borderRadius: "8px",
+                    marginTop: "40px",
+                    marginBottom: "20px",
+                    width: "100%",
+                  }}
+                >
+                  <span className="invisible">hg</span>
+                  <span className="zone-text">Zone 04</span>
+                  <span style={{ transform: "rotate(0deg)" }}>
+                    <FaArrowRight />
+                  </span>
+                </div>
+              </div>
 
-            <div className="grid-container">
-              <div className="item a1">A1</div>
-              <div className="item a2">A2</div>
-              <div className="item a3">A3</div>
-              <div className="item a4">A4</div>
-              <div className="item a5">A5</div>
-              <div className="item b1">B1</div>
-              <div className="item b2">B2</div>
+              <main
+                style={{
+                  width: "100%",
+                  display: "grid",
+                  gridTemplateRows: "40px 40px 40px",
+                  gridTemplateColumns: "repeat(4, 1fr)",
+                  gap: "10px",
+                }}
+              >
+                {["A1", "B1", "C1", "A2", "B2", "C2", "A3", "B3", "C3"].map(
+                  (item, idx) => {
+                    let extraStyle = {};
+
+                    if (item === "B1") {
+                      extraStyle = { gridColumn: "2 / 4", gridRow: "1 / 2" };
+                    } else if (item === "B2") {
+                      extraStyle = { gridColumn: "2 / 4", gridRow: "2 / 3" };
+                    } else if (item === "B3") {
+                      extraStyle = { gridColumn: "2 / 4", gridRow: "3 / 4" };
+                    }
+
+                    return (
+                      <div
+                        key={idx}
+                        style={{
+                          border: "1px solid #e6e6e6",
+                          borderRadius: "8px",
+                          fontFamily: "Roboto",
+                          fontWeight: "400",
+                          fontSize: "16px",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          cursor: "pointer",
+                          backgroundColor: ["A1", "C2", "B3", "C3"].includes(
+                            item
+                          )
+                            ? "white"
+                            : "#e3f3ff", // ✅ conditional color
+                          ...extraStyle,
+                        }}
+                      >
+                        {item}
+                      </div>
+                    );
+                  }
+                )}
+              </main>
             </div>
           </div>
         </div>
@@ -1154,6 +846,11 @@ function Godown() {
           </div>
         </div>
       </div>
+      <Popup
+        isOpen={isPopupOpen}
+        onClose={closePopup}
+        selectedItem={selectedItem}
+      />
     </div>
   );
 }

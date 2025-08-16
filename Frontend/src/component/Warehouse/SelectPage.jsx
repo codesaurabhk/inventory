@@ -16,6 +16,7 @@ const dummyData = [
 function SelectPage() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState('');
+  const [zoneName, setZoneName] = useState("Zone 04"); // Initialized to match zone header
 
   const handleGridClick = (e, item) => {
     const style = window.getComputedStyle(e.target);
@@ -77,7 +78,7 @@ function SelectPage() {
                 color: '#262626',
               }}
             >
-              Zone 01
+              {zoneName}
             </span>
           </div>
         </div>
@@ -137,7 +138,7 @@ function SelectPage() {
               borderRadius: '8px',
             }}
           >
-            <select name='zone' style={{ border: 'none', outline: 'none' }}>
+            <select name='zone' style={{ border: 'none', outline: 'none' }} onChange={(e) => setZoneName(e.target.value)}>
               <option
                 value=''
                 style={{
@@ -185,7 +186,7 @@ function SelectPage() {
             }}
           >
             <span className='invisible'>hg</span>
-            <span className='zone-text'>Zone 04</span>
+            <span className='zone-text'>{zoneName}</span>
             <span style={{ transform: 'rotate(0deg)' }}>
               <FaArrowRight />
             </span>
@@ -241,7 +242,7 @@ function SelectPage() {
             marginTop: '20px',
           }}
         >
-          <span>Zone 01</span>
+          <span>{zoneName}</span>
           <div style={{ display: 'flex', justifyContent: 'space-between', gap: '10px' }}>
             <select name='' id=''>
               <option value=''>Assign Products</option>
@@ -454,7 +455,15 @@ function SelectPage() {
         </div>
 
         {/* Popup */}
-        <Popup isOpen={isPopupOpen} onClose={closePopup} selectedItem={selectedItem} />
+        {['A1', 'B1', 'C1', 'D1', 'A2', 'B2', 'C2', 'D2', 'A3', 'B3', 'C3', 'C4', 'A4', 'B4', 'C4', 'C5', 'A5', 'B5', 'C5', 'D5'].map((zone, idx) => (
+          <Popup 
+            key={idx} 
+            isOpen={isPopupOpen && selectedItem === zone} 
+            onClose={closePopup} 
+            selectedItem={zone} 
+            zoneName={zoneName} // Use state-managed zoneName
+          />
+        ))}
       </div>
     </div>
   );
