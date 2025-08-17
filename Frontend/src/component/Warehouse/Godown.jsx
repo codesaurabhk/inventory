@@ -1,22 +1,21 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { MdArrowForwardIos } from "react-icons/md";
-import { FaSearch, FaArrowRight } from "react-icons/fa";
+import { FaSearch, FaArrowRight, FaAngleLeft, FaChevronRight } from "react-icons/fa";
 import { RiArrowUpDownLine } from "react-icons/ri";
-import { FaAngleLeft } from "react-icons/fa6";
-import { FaChevronRight } from "react-icons/fa";
 import "./Godown.css";
 import Popup from "./popup";
 
 function Godown() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [selectedItem, setSelectedItem] = useState("");
+  const [selectedItem, setSelectedItem] = useState({ zone: "", grid: "" });
 
-  const handleGridClick = (e, item) => {
+  const handleGridClick = (e, grid, zone) => {
     const style = window.getComputedStyle(e.target);
     console.log(
       "Clicked item:",
-      item,
+      grid,
+      "Zone:",
+      zone,
       "Background color:",
       style.backgroundColor
     ); // Debug log
@@ -24,7 +23,7 @@ function Godown() {
       style.backgroundColor === "rgb(255, 255, 255)" ||
       style.backgroundColor === "#ffffff"
     ) {
-      setSelectedItem(item);
+      setSelectedItem({ zone, grid });
       setIsPopupOpen(true);
     } else {
       console.log("Popup not opened, background color:", style.backgroundColor); // Debug log
@@ -62,8 +61,8 @@ function Godown() {
     },
   ];
 
-  // Pagination state and derived values for the middle table
-  const [currentPage, setCurrentPage] = React.useState(1);
+  // Pagination state and derived values
+  const [currentPage, setCurrentPage] = useState(1);
   const pageSize = 10;
   const totalCount = products.length;
   const totalPages = Math.max(1, Math.ceil(totalCount / pageSize));
@@ -202,7 +201,7 @@ function Godown() {
           </div>
         </div>
 
-        {/* grid */}
+        {/* Zone 04 Grid */}
         <div
           style={{
             margin: "0 auto",
@@ -232,8 +231,6 @@ function Godown() {
             </span>
           </div>
         </div>
-        {/* grid */}
-
         <main
           style={{
             width: "40%",
@@ -258,11 +255,11 @@ function Godown() {
             "A3",
             "B3",
             "C3",
-            "C4",
+            "D3",
             "A4",
             "B4",
             "C4",
-            "C5",
+            "D4",
             "A5",
             "B5",
             "C5",
@@ -270,7 +267,7 @@ function Godown() {
           ].map((item, idx) => (
             <div
               key={idx}
-              onClick={(e) => handleGridClick(e, item)}
+              onClick={(e) => handleGridClick(e, item, "Zone 04")}
               style={{
                 border: "1px solid #e6e6e6",
                 color: "#000000",
@@ -291,10 +288,8 @@ function Godown() {
             </div>
           ))}
         </main>
-        {/* other grid & tables */}
 
-        {/* all zone & table */}
-
+        {/* Zone 03 and Zone 05 Section */}
         <div
           style={{
             display: "flex",
@@ -302,32 +297,29 @@ function Godown() {
             padding: "24px",
           }}
         >
+          {/* Zone 03 */}
           <div style={{ transform: "rotate(-90deg)", marginBottom: "100px" }}>
-            <div>
-              <div
-                style={{
-                  transform: "rotate(-0deg)",
-                  backgroundColor: "#3f99e1",
-                  padding: "24px",
-                  color: "#FFF",
-                  justifyContent: "space-between",
-                  display: "flex",
-                  border: "1px solid #e6e6e6",
-                  borderRadius: "8px",
-                  marginTop: "40px",
-                  marginBottom: "20px",
-                  width: "100%",
-                  height: "100%",
-                }}
-              >
-                <span className="invisible">hg</span>
-                <span className="zone-text">Zone 04</span>
-                <span style={{ transform: "rotate(0deg)" }}>
-                  <FaArrowRight />
-                </span>
-              </div>
+            <div
+              style={{
+                transform: "rotate(0deg)",
+                backgroundColor: "#3f99e1",
+                padding: "24px",
+                color: "#FFF",
+                justifyContent: "space-between",
+                display: "flex",
+                border: "1px solid #e6e6e6",
+                borderRadius: "8px",
+                marginTop: "40px",
+                marginBottom: "20px",
+                width: "100%",
+              }}
+            >
+              <span className="invisible">hg</span>
+              <span className="zone-text">Zone 03</span>
+              <span style={{ transform: "rotate(0deg)" }}>
+                <FaArrowRight />
+              </span>
             </div>
-
             <main
               style={{
                 width: "100%",
@@ -340,7 +332,6 @@ function Godown() {
               {["A1", "B1", "C1", "A2", "B2", "C2", "A3", "B3", "C3"].map(
                 (item, idx) => {
                   let extraStyle = {};
-
                   if (item === "B1") {
                     extraStyle = { gridColumn: "2 / 4", gridRow: "1 / 2" };
                   } else if (item === "B2") {
@@ -348,10 +339,10 @@ function Godown() {
                   } else if (item === "B3") {
                     extraStyle = { gridColumn: "2 / 4", gridRow: "3 / 4" };
                   }
-
                   return (
                     <div
                       key={idx}
+                      onClick={(e) => handleGridClick(e, item, "Zone 03")}
                       style={{
                         border: "1px solid #e6e6e6",
                         borderRadius: "8px",
@@ -363,8 +354,8 @@ function Godown() {
                         justifyContent: "center",
                         cursor: "pointer",
                         backgroundColor: ["A1", "C2", "B3", "C3"].includes(item)
-                          ? "white"
-                          : "#e3f3ff", // ✅ conditional color
+                          ? "#ffffff"
+                          : "#e3f3ff",
                         ...extraStyle,
                       }}
                     >
@@ -376,7 +367,7 @@ function Godown() {
             </main>
           </div>
 
-          {/* table */}
+          {/* Table */}
           <div
             style={{
               backgroundColor: "#fff",
@@ -472,7 +463,7 @@ function Godown() {
                       fontSize: "16px",
                       fontWeight: "400",
                       fontFamily: "Roboto",
-                      borderRadius:'8px'
+                      borderRadius: "8px",
                     }}
                   >
                     <th style={{ padding: "8px" }}>Product</th>
@@ -493,7 +484,7 @@ function Godown() {
                             width: "40px",
                             height: "40px",
                             marginRight: "10px",
-                            border: "none" // Added to remove border
+                            border: "none",
                           }}
                         />
                         {product.name}
@@ -542,87 +533,78 @@ function Godown() {
             </div>
           </div>
 
-          <div>
-            {/* Zone 05 */}
-            <div style={{ transform: "rotate(90deg)", marginBottom: "100px" }}>
-              <div>
-                <div
-                  style={{
-                    transform: "rotate(-0deg)",
-                    backgroundColor: "#3f99e1",
-                    padding: "24px",
-                    color: "#FFF",
-                    justifyContent: "space-between",
-                    display: "flex",
-                    border: "1px solid #e6e6e6",
-                    borderRadius: "8px",
-                    marginTop: "40px",
-                    marginBottom: "20px",
-                    width: "100%",
-                  }}
-                >
-                  <span className="invisible">hg</span>
-                  <span className="zone-text">Zone 04</span>
-                  <span style={{ transform: "rotate(0deg)" }}>
-                    <FaArrowRight />
-                  </span>
-                </div>
-              </div>
-
-              <main
-                style={{
-                  width: "100%",
-                  display: "grid",
-                  gridTemplateRows: "40px 40px 40px",
-                  gridTemplateColumns: "repeat(4, 1fr)",
-                  gap: "10px",
-                }}
-              >
-                {["A1", "B1", "C1", "A2", "B2", "C2", "A3", "B3", "C3"].map(
-                  (item, idx) => {
-                    let extraStyle = {};
-
-                    if (item === "B1") {
-                      extraStyle = { gridColumn: "2 / 4", gridRow: "1 / 2" };
-                    } else if (item === "B2") {
-                      extraStyle = { gridColumn: "2 / 4", gridRow: "2 / 3" };
-                    } else if (item === "B3") {
-                      extraStyle = { gridColumn: "2 / 4", gridRow: "3 / 4" };
-                    }
-
-                    return (
-                      <div
-                        key={idx}
-                        style={{
-                          border: "1px solid #e6e6e6",
-                          borderRadius: "8px",
-                          fontFamily: "Roboto",
-                          fontWeight: "400",
-                          fontSize: "16px",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          cursor: "pointer",
-                          backgroundColor: ["A1", "C2", "B3", "C3"].includes(
-                            item
-                          )
-                            ? "white"
-                            : "#e3f3ff", // ✅ conditional color
-                          ...extraStyle,
-                        }}
-                      >
-                        {item}
-                      </div>
-                    );
-                  }
-                )}
-              </main>
+          {/* Zone 05 */}
+          <div style={{ transform: "rotate(90deg)", marginBottom: "100px" }}>
+            <div
+              style={{
+                transform: "rotate(0deg)",
+                backgroundColor: "#3f99e1",
+                padding: "24px",
+                color: "#FFF",
+                justifyContent: "space-between",
+                display: "flex",
+                border: "1px solid #e6e6e6",
+                borderRadius: "8px",
+                marginTop: "40px",
+                marginBottom: "20px",
+                width: "100%",
+              }}
+            >
+              <span className="invisible">hg</span>
+              <span className="zone-text">Zone 05</span>
+              <span style={{ transform: "rotate(0deg)" }}>
+                <FaArrowRight />
+              </span>
             </div>
+            <main
+              style={{
+                width: "100%",
+                display: "grid",
+                gridTemplateRows: "40px 40px 40px",
+                gridTemplateColumns: "repeat(4, 1fr)",
+                gap: "10px",
+              }}
+            >
+              {["A1", "B1", "C1", "A2", "B2", "C2", "A3", "B3", "C3"].map(
+                (item, idx) => {
+                  let extraStyle = {};
+                  if (item === "B1") {
+                    extraStyle = { gridColumn: "2 / 4", gridRow: "1 / 2" };
+                  } else if (item === "B2") {
+                    extraStyle = { gridColumn: "2 / 4", gridRow: "2 / 3" };
+                  } else if (item === "B3") {
+                    extraStyle = { gridColumn: "2 / 4", gridRow: "3 / 4" };
+                  }
+                  return (
+                    <div
+                      key={idx}
+                      onClick={(e) => handleGridClick(e, item, "Zone 05")}
+                      style={{
+                        border: "1px solid #e6e6e6",
+                        borderRadius: "8px",
+                        fontFamily: "Roboto",
+                        fontWeight: "400",
+                        fontSize: "16px",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        cursor: "pointer",
+                        backgroundColor: ["A1", "C2", "B3", "C3"].includes(item)
+                          ? "#ffffff"
+                          : "#e3f3ff",
+                        ...extraStyle,
+                      }}
+                    >
+                      {item}
+                    </div>
+                  );
+                }
+              )}
+            </main>
           </div>
         </div>
 
-        {/* 06 & 07 */}
-
+        {/* Zone 06 and Zone 07 (corrected to Zone 06 and Zone 07) */}
         <div
           style={{
             display: "flex",
@@ -631,7 +613,7 @@ function Godown() {
             marginRight: "70px",
           }}
         >
-          {/* 06 */}
+          {/* Zone 06 */}
           <div
             style={{
               width: "303px",
@@ -642,7 +624,7 @@ function Godown() {
           >
             <div
               style={{
-                transform: "rotate(-0deg)",
+                transform: "rotate(0deg)",
                 backgroundColor: "#3f99e1",
                 padding: "24px",
                 color: "#FFF",
@@ -655,106 +637,48 @@ function Godown() {
               }}
             >
               <span className="invisible">hg</span>
-              <span className="zone-text">Zone 03</span>
+              <span className="zone-text">Zone 06</span>
               <span style={{ transform: "rotate(0deg)" }}>
                 <FaArrowRight />
               </span>
             </div>
-
-            <div className="grid-container-two">
-              <div
-                className="zone3-01"
-                style={{
-                  textAlign: "center",
-                  justifyContent: "center",
-                  display: "flex",
-                }}
-              >
-                A1
-              </div>
-              <div
-                className="zone3-02"
-                style={{
-                  textAlign: "center",
-                  justifyContent: "center",
-                  display: "flex",
-                }}
-              >
-                A2
-              </div>
-              <div
-                className="zone3-03"
-                style={{
-                  textAlign: "center",
-                  justifyContent: "center",
-                  display: "flex",
-                }}
-              >
-                A3
-              </div>
-              <div
-                className="zone3-04"
-                style={{
-                  textAlign: "center",
-                  justifyContent: "center",
-                  display: "flex",
-                }}
-              >
-                B1
-              </div>
-              <div
-                className="zone3-05"
-                style={{
-                  textAlign: "center",
-                  justifyContent: "center",
-                  display: "flex",
-                }}
-              >
-                A2
-              </div>
-              <div
-                className="zone3-06"
-                style={{
-                  textAlign: "center",
-                  justifyContent: "center",
-                  display: "flex",
-                }}
-              >
-                B3
-              </div>
-              <div
-                className="zone3-07"
-                style={{
-                  textAlign: "center",
-                  justifyContent: "center",
-                  display: "flex",
-                }}
-              >
-                C1
-              </div>
-              <div
-                className="zone3-08"
-                style={{
-                  textAlign: "center",
-                  justifyContent: "center",
-                  display: "flex",
-                }}
-              >
-                C2
-              </div>
-              <div
-                className="zone3-09"
-                style={{
-                  textAlign: "center",
-                  justifyContent: "center",
-                  display: "flex",
-                }}
-              >
-                C3
-              </div>
-            </div>
+            <main
+              style={{
+                width: "100%",
+                display: "grid",
+                gridTemplateRows: "40px 40px 40px",
+                gridTemplateColumns: "repeat(3, 1fr)",
+                gap: "10px",
+              }}
+            >
+              {["A1", "A2", "A3", "B1", "B2", "B3", "C1", "C2", "C3"].map(
+                (item, idx) => (
+                  <div
+                    key={idx}
+                    onClick={(e) => handleGridClick(e, item, "Zone 06")}
+                    style={{
+                      border: "1px solid #e6e6e6",
+                      borderRadius: "8px",
+                      fontFamily: "Roboto",
+                      fontWeight: "400",
+                      fontSize: "16px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      cursor: "pointer",
+                      backgroundColor: ["A1", "C2", "B3"].includes(item)
+                        ? "#ffffff"
+                        : "#e3f3ff",
+                    }}
+                  >
+                    {item}
+                  </div>
+                )
+              )}
+            </main>
           </div>
-          {/* 07 */}
+
+          {/* Zone 07 */}
           <div
             style={{
               width: "303px",
@@ -765,61 +689,84 @@ function Godown() {
           >
             <div
               style={{
-                transform: "rotate(-0deg)",
-                backgroundColor: "#3F99E1",
+                transform: "rotate(0deg)",
+                backgroundColor: "#3f99e1",
                 padding: "24px",
                 color: "#FFF",
                 justifyContent: "space-between",
                 display: "flex",
                 border: "1px solid #e6e6e6",
                 borderRadius: "8px",
+                marginTop: "40px",
+                marginBottom: "20px",
               }}
             >
               <span className="invisible">hg</span>
-              <span className="zone-text">Zone 05</span>
+              <span className="zone-text">Zone 07</span>
               <span style={{ transform: "rotate(0deg)" }}>
                 <FaArrowRight />
               </span>
             </div>
-
-            <div className="grid-container">
-              <div className="item a1">A1</div>
-              <div className="item a2">A2</div>
-              <div className="item a3">A3</div>
-              <div className="item a4">A4</div>
-              <div className="item a5">A5</div>
-              <div className="item b1">B1</div>
-              <div className="item b2">B2</div>
-            </div>
+            <main
+              style={{
+                width: "100%",
+                display: "grid",
+                gridTemplateRows: "40px 40px 40px",
+                gridTemplateColumns: "repeat(3, 1fr)",
+                gap: "10px",
+              }}
+            >
+              {["A1", "A2", "A3", "B1", "B2", "B3", "C1", "C2", "C3"].map(
+                (item, idx) => (
+                  <div
+                    key={idx}
+                    onClick={(e) => handleGridClick(e, item, "Zone 07")}
+                    style={{
+                      border: "1px solid #e6e6e6",
+                      borderRadius: "8px",
+                      fontFamily: "Roboto",
+                      fontWeight: "400",
+                      fontSize: "16px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      cursor: "pointer",
+                      backgroundColor: ["A1", "C2", "B3"].includes(item)
+                        ? "#ffffff"
+                        : "#e3f3ff",
+                    }}
+                  >
+                    {item}
+                  </div>
+                )
+              )}
+            </main>
           </div>
         </div>
-      </div>
 
-      {/* Footer*/}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          position: "fixed",
-          bottom: "0px",
-          width: "84%",
-          backgroundColor: "#f7f7f7",
-          padding: "10px",
-        }}
-      >
-        <div style={{ display: "flex", gap: "10px" }}>
+        {/* Footer */}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            position: "fixed",
+            bottom: "0px",
+            width: "84%",
+            backgroundColor: "#f7f7f7",
+            padding: "10px",
+          }}
+        >
           <div style={{ display: "flex", gap: "10px" }}>
-            <div
-              style={{
-                backgroundColor: "#fff",
-                padding: "5px 15px",
-                borderRadius: "5px",
-              }}
-            ></div>
-            <span>Available</span>
-          </div>
-
-          <div style={{ display: "flex", gap: "10px" }}>
+            <div style={{ display: "flex", gap: "10px" }}>
+              <div
+                style={{
+                  backgroundColor: "#fff",
+                  padding: "5px 15px",
+                  borderRadius: "5px",
+                }}
+              ></div>
+              <span>Available</span>
+            </div>
             <div style={{ display: "flex", gap: "10px" }}>
               <div
                 style={{
@@ -830,9 +777,6 @@ function Godown() {
               ></div>
               <span>Occupied</span>
             </div>
-          </div>
-
-          <div style={{ display: "flex", gap: "10px" }}>
             <div style={{ display: "flex", gap: "10px" }}>
               <div
                 style={{
@@ -845,12 +789,15 @@ function Godown() {
             </div>
           </div>
         </div>
+
+        {/* Popup */}
+        <Popup
+          isOpen={isPopupOpen}
+          onClose={closePopup}
+          selectedItem={selectedItem.grid}
+          zoneName={selectedItem.zone}
+        />
       </div>
-      <Popup
-        isOpen={isPopupOpen}
-        onClose={closePopup}
-        selectedItem={selectedItem}
-      />
     </div>
   );
 }

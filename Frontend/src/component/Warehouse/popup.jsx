@@ -1,5 +1,6 @@
 import React from 'react';
 import { IoMdClose } from "react-icons/io";
+import { IoSearch } from "react-icons/io5";
 
 const Popup = ({ isOpen, onClose, selectedItem, zoneName = "Zone 01" }) => {
   if (!isOpen) return null;
@@ -12,11 +13,11 @@ const Popup = ({ isOpen, onClose, selectedItem, zoneName = "Zone 01" }) => {
         left: '0',
         width: '100%',
         height: '100%',
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        backgroundColor: '#ffffff',
         display: 'flex',
         justifyContent: 'center',
-        alignItems: 'center',
-        zIndex: '1000',
+      //  alignItems: 'center',
+        zIndex: '1000'
       }}
     >
       <div
@@ -25,10 +26,10 @@ const Popup = ({ isOpen, onClose, selectedItem, zoneName = "Zone 01" }) => {
           padding: '20px',
           borderRadius: '8px',
           textAlign: 'center',
-          width: '90%', // Adjusted for better visibility
-          maxHeight: '80vh', // Limits height with scrollbar if needed
-          overflowY: 'auto', // Adds scrollbar if content overflows
+          width: '100%',  
+          overflowY: 'auto', 
           boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',
+          position: 'relative',
         }}
       >
         <div
@@ -57,40 +58,59 @@ const Popup = ({ isOpen, onClose, selectedItem, zoneName = "Zone 01" }) => {
             <IoMdClose />
           </button>
         </div>
-        <div style={{ padding: '20px' }}>
+
+        <div style={{ marginTop:'10px' }}>
           <div
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '10px',
+              gap: '8px',
               marginBottom: '20px',
+              padding: '5px 10px',
             }}
           >
             <span
               style={{
-                backgroundColor: '#e3f3ff',
-                padding: '5px 10px',
-                borderRadius: '4px',
-                color: '#007bff',
+                color: '#676767',
+                fontFamily:'roboto',
+                fontWeight:'400',
+                fontSize:'16px',
               }}
             >
-              {zoneName} - {selectedItem} {/* Display zone name before grid name */}
+
+              {zoneName}  
             </span>
-            <input
-              type="text"
-              placeholder="Search"
-              style={{
-                width: '100%',
-                padding: '8px',
-                border: '1px solid #ccc',
-                borderRadius: '4px',
-              }}
-            />
+            {/* grid name */}
+            <span style={{
+                color: '#262626',
+                fontFamily:'roboto',
+                fontWeight:'400',
+                fontSize:'16px',
+              }}>
+              {selectedItem} 
+            </span>
           </div>
-          <p style={{ color: '#666', margin: '20px 0' }}>
-            You haven't added any products yet. Use browse or search to get started.
+
+          {/* search bar */}
+
+          <div style={{border:'1px solid #c2c2c2', padding:'10px 16px', color:'#fbfbfb', borderRadius:'8px', gap:'8px', display:'flex', alignItems:'center'}}>
+            <span><IoSearch style={{color:'#676767'}}/></span>
+            <input type="search" style={{border:'none', outline:'none', flex:'1'}}/>
+          </div>
+
+
+          <div style={{border:'1px solid #c2c2c2', color:'#ffffff', borderRadius:'8px', gap:'10px', marginTop:'5px'}}>
+            <div style={{padding:'10px 16px', }}> 
+
+              <p style={{ color: '#676767', margin: '20px 0' }}>
+            You haven't added any products yet.
+            <br /> Use <span style={{color:'#177ecc'}}>browse</span>  or <span style={{color:'#177ecc'}}>search</span> to get started.
           </p>
-          <button
+            </div>
+            <div style={{position:'absolute', bottom:'10px', right:'20px', justifyContent:'right', display:'flex'
+            
+          }}>
+            <button
             onClick={onClose}
             style={{
               padding: '8px 16px',
@@ -99,12 +119,19 @@ const Popup = ({ isOpen, onClose, selectedItem, zoneName = "Zone 01" }) => {
               border: 'none',
               borderRadius: '4px',
               cursor: 'pointer',
+              
             }}
           >
             Done
           </button>
+          </div>
+            
+          </div>
+          
+          
         </div>
       </div>
+
     </div>
   );
 };
