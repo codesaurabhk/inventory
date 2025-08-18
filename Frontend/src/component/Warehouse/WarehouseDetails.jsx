@@ -1003,7 +1003,7 @@ function WarehouseDetails() {
         {/* Table */}
         <div>
           <table
-            className="customer-table"
+            
             style={{
               width: "100%",
               borderCollapse: "collapse",
