@@ -298,10 +298,15 @@ function Godown() {
           }}
         >
           {/* Zone 03 */}
-          <div style={{ transform: "rotate(-90deg)", marginBottom: "100px" }}>
+          <div style={{ 
+            transform: "rotate(-90deg)", 
+            // marginBottom: "100px",
+            width: "300px", 
+            marginTop: "40px",
+            }}>
             <div
               style={{
-                transform: "rotate(0deg)",
+               transform: "rotate(0deg)",
                 backgroundColor: "#3f99e1",
                 padding: "24px",
                 color: "#FFF",
@@ -309,14 +314,17 @@ function Godown() {
                 display: "flex",
                 border: "1px solid #e6e6e6",
                 borderRadius: "8px",
-                marginTop: "40px",
+                marginTop: "150px",
                 marginBottom: "20px",
                 width: "100%",
               }}
             >
               <span className="invisible">hg</span>
               <span className="zone-text">Zone 03</span>
-              <span style={{ transform: "rotate(0deg)" }}>
+              <span 
+              style={{ 
+                transform: "rotate(0deg)"
+               }}>
                 <FaArrowRight />
               </span>
             </div>
@@ -534,7 +542,12 @@ function Godown() {
           </div>
 
           {/* Zone 05 */}
-          <div style={{ transform: "rotate(90deg)", marginBottom: "100px" }}>
+          <div 
+          style={{ 
+            transform: "rotate(90deg)", 
+            // marginBottom: "100px", 
+            marginTop: "40px",
+            }}>
             <div
               style={{
                 transform: "rotate(0deg)",
@@ -545,9 +558,10 @@ function Godown() {
                 display: "flex",
                 border: "1px solid #e6e6e6",
                 borderRadius: "8px",
-                marginTop: "40px",
+                marginTop: "150px",
                 marginBottom: "20px",
-                width: "100%",
+                width: "300px",
+                
               }}
             >
               <span className="invisible">hg</span>
@@ -618,7 +632,7 @@ function Godown() {
             style={{
               width: "303px",
               height: "345px",
-              marginTop: "-30px",
+              marginTop: "0px",
               transform: "rotate(-90deg)",
             }}
           >
@@ -632,7 +646,7 @@ function Godown() {
                 display: "flex",
                 border: "1px solid #e6e6e6",
                 borderRadius: "8px",
-                marginTop: "40px",
+                marginTop: "150px",
                 marginBottom: "20px",
               }}
             >
@@ -697,7 +711,7 @@ function Godown() {
                 display: "flex",
                 border: "1px solid #e6e6e6",
                 borderRadius: "8px",
-                marginTop: "40px",
+                marginTop: "150px",
                 marginBottom: "20px",
               }}
             >

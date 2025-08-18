@@ -143,7 +143,7 @@ function WarehouseDetails() {
   ];
 
   return (
-    <div>
+    <div style={{ padding: "20px", backgroundColor: "#f9f9f9" }} >
       {/* Header */}
       <div
         style={{
@@ -219,19 +219,6 @@ function WarehouseDetails() {
           </div>
         </div>
 
-        {/* order
-        <div className="radio-active">
-          <div>
-            <img src={CircleLogo} alt="money" />
-          </div>
-          <div className="bag-content">
-            <span style={{ color: "#676767", marginTop: "50px" }}>Order</span>
-            <br />
-            <span style={{ textAlign: "left" }}>
-              <b>₹5,987</b>
-            </span>
-          </div>
-        </div> */}
 
         {/* Initial Purchase Date */}
         <div className="radio-active">
@@ -443,20 +430,7 @@ function WarehouseDetails() {
 
         {/* Line Chart */}
         <div style={{ width: "100%" }}>
-          {/* <LineChart
-            xAxis={[{ data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] }]}
-            series={[
-              {
-                data: [2, 3, 5.5, 8.5, 1.5, 5, 1, 4, 3, 8],
-                showMark: ({ index }) => index % 2 === 0,
-              },
-              {
-                data: [3, 3, 5.5, 8.5, 1.5, 5, 1, 4, 3, 8],
-                showMark: ({ index }) => index % 2 === 0,
-              },
-            ]}
-            height={300}
-          /> */}
+          
           <Box
             sx={{
               width: "auto",
@@ -756,8 +730,7 @@ function WarehouseDetails() {
               cursor: "pointer",
             }}
           >
-            <Link to="/Godown">
-              {" "}
+            <Link to="/Godown" style={{ textDecoration: "none", color: "#1368EC" }}>
               View All <FaArrowRight />
             </Link>
           </span>

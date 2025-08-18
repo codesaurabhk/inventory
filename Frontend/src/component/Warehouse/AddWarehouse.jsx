@@ -526,7 +526,7 @@ function AddWarehouse() {
           boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
         }}
       >
-        <div style={{ width: "100%", maxWidth: "900px", margin: "0 auto" }}>
+        <div style={{ width: "100%", maxWidth: "900px", margin: "0 auto", overflow: "auto" }}>
           <div
             style={{
               display: "flex",

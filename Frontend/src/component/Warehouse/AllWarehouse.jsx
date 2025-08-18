@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 function AllWarehouse() {
   return (
-    <div>
+    <div style={{ padding: "20px", backgroundColor: "#f9f9f9" }}>
       {/* Warehouse header */}
       <div
         style={{
