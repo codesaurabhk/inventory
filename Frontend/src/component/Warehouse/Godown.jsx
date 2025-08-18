@@ -716,7 +716,7 @@ function Godown() {
               }}
             >
               <span className="invisible">hg</span>
-              <span className="zone-text">Zone 07</span>
+              <span className="zone-text">Zone 77</span>
               <span style={{ transform: "rotate(0deg)" }}>
                 <FaArrowRight />
               </span>
