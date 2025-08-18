@@ -697,7 +697,7 @@ function Godown() {
             style={{
               width: "303px",
               height: "345px",
-              marginTop: "-30px",
+              marginTop: "0px",
               transform: "rotate(90deg)",
             }}
           >
